@@ -1,5 +1,9 @@
 package com.source.meuble.analytique.centre;
 
-public class CentreRepository {
+import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+@Repository
+public interface CentreRepository extends JpaRepository<Centre, String> {
 
 }
