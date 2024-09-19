@@ -5,7 +5,7 @@ create database mr_meuble;
 create sequence seq_centre;
 create sequence seq_rubrique;
 create sequence seq_imputation;
-create sequence seq_ue;
+create sequence seq_unite_oeuvre;
 
 create table centre (
     idCentre varchar(20) primary key default 'CENTRE'||nextval('seq_centre'),
@@ -13,8 +13,8 @@ create table centre (
     categorie int -- 1 direct , 0 indirect
 );
 
-create table ue (
-    idUe varchar(20) primary key default 'UE'||nextval('seq_ue'),
+create table unite_oeuvre (
+    idUniteOeuvre varchar(20) primary key default 'UNITE'||nextval('seq_unite_oeuvre'),
     nom varchar(20)
 );
 
@@ -22,9 +22,9 @@ create table rubrique (
     idRubrique varchar(20) PRIMARY KEY DEFAULT 'RUBRIQUE'||nextval('seq_rubrique'),
     libelle varchar(20),
     nature int, -- 1 variable, 0 fixe
-    idUe varchar(20),
+    idUniteOeuvre varchar(20),
     montant decimal(11, 2),
-    foreign key (idUe) references ue(idUe)
+    foreign key (idUniteOeuvre) references ue(idUniteOeuvre)
 );
 
 create table imputation (
@@ -66,7 +66,7 @@ INSERT INTO centre (nom, categorie) VALUES ('ATELIER', 1);
 
 INSERT INTO ue(nom) VALUES ('KG');  
 
-INSERT INTO rubrique (libelle, nature, idUe, montant) VALUES ('ACHAT SEMANCE', 1, 'UE1', 4235.1);
+INSERT INTO rubrique (libelle, nature, idUniteOeuvre, montant) VALUES ('ACHAT SEMANCE', 1, 'UE1', 4235.1);
 
 INSERT INTO imputation (idCentre, idRubrique, pourcentage) VALUES ('CENTRE2', 'RUBRIQUE1', 90);
 INSERT INTO imputation (idCentre, idRubrique, pourcentage) VALUES ('CENTRE3', 'RUBRIQUE1', 11);
