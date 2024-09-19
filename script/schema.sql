@@ -8,32 +8,32 @@ create sequence seq_imputation;
 create sequence seq_unite_oeuvre;
 
 create table centre (
-    idCentre varchar(20) primary key default 'CENTRE'||nextval('seq_centre'),
+    id_centre varchar(20) primary key default 'CENTRE'||nextval('seq_centre'),
     nom varchar(50),
     categorie int -- 1 direct , 0 indirect
 );
 
 create table unite_oeuvre (
-    idUniteOeuvre varchar(20) primary key default 'UNITE'||nextval('seq_unite_oeuvre'),
+    id_unite_oeuvre varchar(20) primary key default 'UNITE'||nextval('seq_unite_oeuvre'),
     nom varchar(20)
 );
 
 create table rubrique (
-    idRubrique varchar(20) PRIMARY KEY DEFAULT 'RUBRIQUE'||nextval('seq_rubrique'),
+    id_rubrique varchar(20) PRIMARY KEY DEFAULT 'RUBRIQUE'||nextval('seq_rubrique'),
     libelle varchar(20),
     nature int, -- 1 variable, 0 fixe
-    idUniteOeuvre varchar(20),
+    id_unite_oeuvre varchar(20),
     montant decimal(11, 2),
-    foreign key (idUniteOeuvre) references ue(idUniteOeuvre)
+    foreign key (id_unite_oeuvre) references ue(id_unite_oeuvre)
 );
 
 create table imputation (
-    idImputation varchar(20) primary key default 'IMPUTATION'||nextval('seq_imputation'),
-    idCentre varchar(20),
-    idRubrique varchar(20),
+    id_imputation varchar(20) primary key default 'IMPUTATION'||nextval('seq_imputation'),
+    id_centre varchar(20),
+    id_rubrique varchar(20),
     pourcentage decimal(5,2),
-    foreign key (idCentre) references centre(idCentre),
-    foreign key (idRubrique) references rubrique(idRubrique)
+    foreign key (id_centre) references centre(id_centre),
+    foreign key (id_rubrique) references rubrique(id_rubrique)
 );
 
 
@@ -48,10 +48,10 @@ BEGIN
     from
         imputation
     where
-        idRubrique = NEW.idRubrique;
+        id_rubrique = NEW.idRubrique;
     IF total + NEW.pourcentage > 100
     THEN
-        RAISE EXCEPTION 'Total pourcentage depasse les 100%', NEW.idRubrique;
+        RAISE EXCEPTION 'Total pourcentage depasse les 100%', NEW.id_rubrique;
     END IF;
     RETURN NEW;
 END;
@@ -64,9 +64,9 @@ INSERT INTO centre (nom, categorie) VALUES ('ADM/DIST', 0);
 INSERT INTO centre (nom, categorie) VALUES ('USINE', 1);
 INSERT INTO centre (nom, categorie) VALUES ('ATELIER', 1);
 
-INSERT INTO ue(nom) VALUES ('KG');  
+INSERT INTO unite_oeuvre(nom) VALUES ('KG');  
 
-INSERT INTO rubrique (libelle, nature, idUniteOeuvre, montant) VALUES ('ACHAT SEMANCE', 1, 'UE1', 4235.1);
+INSERT INTO rubrique (libelle, nature, id_unite_oeuvre, montant) VALUES ('ACHAT SEMANCE', 1, 'UE1', 4235.1);
 
-INSERT INTO imputation (idCentre, idRubrique, pourcentage) VALUES ('CENTRE2', 'RUBRIQUE1', 90);
-INSERT INTO imputation (idCentre, idRubrique, pourcentage) VALUES ('CENTRE3', 'RUBRIQUE1', 11);
+INSERT INTO imputation (id_centre, id_rubrique, pourcentage) VALUES ('CENTRE2', 'RUBRIQUE1', 90);
+INSERT INTO imputation (id_centre, id_rubrique, pourcentage) VALUES ('CENTRE3', 'RUBRIQUE1', 11);

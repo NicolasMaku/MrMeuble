@@ -1,18 +1,31 @@
 package com.source.meuble.analytique.centre;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "centre")
 public class Centre {
-    int idCentre;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "idCentre")
+    String idCentre;
+
+    @Column(name = "nom")
     String nom;
+
+    @Column(name = "categorie")
     int categorie;
 
-    public int getIdCentre() {
+    public String getIdCentre() {
         return idCentre;
     }
 
-    public void setIdCentre(int idCentre) {
+    public void setIdCentre(String idCentre) {
         this.idCentre = idCentre;
     }
 
