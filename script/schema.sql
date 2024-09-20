@@ -24,7 +24,7 @@ create table rubrique (
     nature int, -- 1 variable, 0 fixe
     id_unite_oeuvre varchar(20),
     montant decimal(11, 2),
-    foreign key (id_unite_oeuvre) references ue(id_unite_oeuvre)
+    foreign key (id_unite_oeuvre) references unite_oeuvre(id_unite_oeuvre)
 );
 
 create table imputation (
@@ -66,7 +66,7 @@ INSERT INTO centre (nom, categorie) VALUES ('ATELIER', 1);
 
 INSERT INTO unite_oeuvre(nom) VALUES ('KG');  
 
-INSERT INTO rubrique (libelle, nature, id_unite_oeuvre, montant) VALUES ('ACHAT SEMANCE', 1, 'UE1', 4235.1);
+INSERT INTO rubrique (libelle, nature, id_unite_oeuvre, montant) VALUES ('ACHAT SEMANCE', 1, 'UNITE1', 4235.1);
 
 INSERT INTO imputation (id_centre, id_rubrique, pourcentage) VALUES ('CENTRE2', 'RUBRIQUE1', 90);
 INSERT INTO imputation (id_centre, id_rubrique, pourcentage) VALUES ('CENTRE3', 'RUBRIQUE1', 11);
