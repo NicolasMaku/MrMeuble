@@ -15,11 +15,11 @@ public class Imputation {
     @Column(name = "id_imputation", nullable = false, length = 20)
     private String idImputation;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_centre")
     private Centre idCentre;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_rubrique")
     private Rubrique idRubrique;
 

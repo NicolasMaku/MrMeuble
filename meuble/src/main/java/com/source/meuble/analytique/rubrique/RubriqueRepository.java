@@ -7,6 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RubriqueRepository extends JpaRepository<Rubrique, String> {
-    // @Query("select r from Rubrique r where id_centre like :idCentre")
-    // List<Rubrique> getByIdCentre(String idCentre);
+
 }
