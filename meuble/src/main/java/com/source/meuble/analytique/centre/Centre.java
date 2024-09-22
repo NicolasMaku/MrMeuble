@@ -1,5 +1,12 @@
 package com.source.meuble.analytique.centre;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.source.meuble.analytique.rubrique.Rubrique;
+import com.source.meuble.analytique.rubrique.RubriqueRepository;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,6 +27,21 @@ public class Centre {
 
     @Column(name = "categorie")
     int categorie;
+
+    // @Autowired
+    // RubriqueRepository rubriqueRepository;
+
+    public Double get_charge() {
+        // List<Rubrique> rubriques = rubriqueRepository.getByIdCentre("CENTRE1");
+        // List<Rubrique> rubriques = rubriqueRepository.findAll();
+        Double somme = 0.0;
+
+        // for (Rubrique rubrique : rubriques) {
+        // somme += rubrique.getMontant().doubleValue();
+        // }
+
+        return 0.0;
+    }
 
     public String getIdCentre() {
         return idCentre;

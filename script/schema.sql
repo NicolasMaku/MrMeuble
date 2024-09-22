@@ -48,7 +48,7 @@ BEGIN
     from
         imputation
     where
-        id_rubrique = NEW.idRubrique;
+        id_rubrique = NEW.id_rubrique;
     IF total + NEW.pourcentage > 100
     THEN
         RAISE EXCEPTION 'Total pourcentage depasse les 100%', NEW.id_rubrique;
@@ -69,4 +69,4 @@ INSERT INTO unite_oeuvre(nom) VALUES ('KG');
 INSERT INTO rubrique (libelle, nature, id_unite_oeuvre, montant) VALUES ('ACHAT SEMANCE', 1, 'UNITE1', 4235.1);
 
 INSERT INTO imputation (id_centre, id_rubrique, pourcentage) VALUES ('CENTRE2', 'RUBRIQUE1', 90);
-INSERT INTO imputation (id_centre, id_rubrique, pourcentage) VALUES ('CENTRE3', 'RUBRIQUE1', 11);
+INSERT INTO imputation (id_centre, id_rubrique, pourcentage) VALUES ('CENTRE3', 'RUBRIQUE1', 10);

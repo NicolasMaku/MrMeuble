@@ -7,7 +7,6 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 
-
 @Entity
 @Table(name = "rubrique")
 public class Rubrique {
@@ -21,7 +20,7 @@ public class Rubrique {
     @Column(name = "nature")
     private Integer nature;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_unite_oeuvre")
     private UniteOeuvre idUniteOeuvre;
 
