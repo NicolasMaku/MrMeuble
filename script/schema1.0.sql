@@ -57,7 +57,9 @@ create trigger verify before INSERT ON imputation for each row execute function 
 -- View
 
 create or replace view ensemble AS
-select * from  rubrique join imputation on rubrique.id_rubrique = imputation.id_rubrique;
+select *, rubrique.montant*(imputation.pourcentage/100) as reel from  rubrique join imputation on rubrique.id_rubrique = imputation.id_rubrique;
+
+
 
 -- test behhh
 INSERT INTO centre (nom, categorie) VALUES ('ADM/DIST', 0);
@@ -67,6 +69,9 @@ INSERT INTO centre (nom, categorie) VALUES ('ATELIER', 1);
 INSERT INTO unite_oeuvre(nom) VALUES ('KG');  
 
 INSERT INTO rubrique (libelle, nature, id_unite_oeuvre, montant) VALUES ('ACHAT SEMANCE', 1, 1, 4235.1);
+INSERT INTO rubrique (libelle, nature, id_unite_oeuvre, montant) VALUES ('ACHAT BOIS', 1, 1, 20000);
 
-INSERT INTO imputation (id_centre, id_rubrique, pourcentage) VALUES (2, 1', 90);
+INSERT INTO imputation (id_centre, id_rubrique, pourcentage) VALUES (2, 1, 90);
 INSERT INTO imputation (id_centre, id_rubrique, pourcentage) VALUES (3, 1, 10);
+INSERT INTO imputation (id_centre, id_rubrique, pourcentage) VALUES (2, 2, 50);
+INSERT INTO imputation (id_centre, id_rubrique, pourcentage) VALUES (3, 2, 50);
