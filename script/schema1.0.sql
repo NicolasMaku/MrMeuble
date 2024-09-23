@@ -56,8 +56,10 @@ create trigger verify before INSERT ON imputation for each row execute function 
 
 -- View
 
-create or replace view ensemble AS
-select *, rubrique.montant*(imputation.pourcentage/100) as reel from  rubrique join imputation on rubrique.id_rubrique = imputation.id_rubrique;
+create or replace view analyse_ensemble AS
+select rubrique.*,imputation.id_imputation,imputation.pourcentage,centre.*, rubrique.montant*(imputation.pourcentage/100) as reel
+from  rubrique join imputation on rubrique.id_rubrique = imputation.id_rubrique
+join centre on imputation.id_centre=centre.id_centre;
 
 
 
