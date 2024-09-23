@@ -20,7 +20,7 @@ public class Centre {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id_centre")
-    String idCentre;
+    Long idCentre;
 
     @Column(name = "nom")
     String nom;
@@ -43,14 +43,6 @@ public class Centre {
         return 0.0;
     }
 
-    public String getIdCentre() {
-        return idCentre;
-    }
-
-    public void setIdCentre(String idCentre) {
-        this.idCentre = idCentre;
-    }
-
     public String getNom() {
         return nom;
     }
@@ -69,6 +61,14 @@ public class Centre {
         }
 
         this.categorie = categorie;
+    }
+
+    public Long getIdCentre() {
+        return idCentre;
+    }
+
+    public void setIdCentre(Long idCentre) {
+        this.idCentre = idCentre;
     }
 
 }

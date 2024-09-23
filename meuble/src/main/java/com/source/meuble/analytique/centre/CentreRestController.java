@@ -36,7 +36,7 @@ public class CentreRestController {
     @GetMapping("/test")
     public String teste(HttpSession session) {
         Centre centre = new Centre();
-        centre.setIdCentre("CENTRE2");
+        centre.setIdCentre(Long.valueOf(2));
 
         List<Imputation> imputations = imputationRepository.findByIdCentre(centre);
         // List<Rubrique> rubriques = rubriqueRepository.findAll();
