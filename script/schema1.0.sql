@@ -5,7 +5,7 @@ create database mr_meuble;
 create table centre (
     id_centre serial primary key ,
     nom varchar(50),
-    categorie int -- 1 direct , 0 indirect
+    categorie int -- 1 direct , 0 indirect ;;;; 1 opérationnels , 0 structure
 );
 
 create table unite_oeuvre (
@@ -16,7 +16,7 @@ create table unite_oeuvre (
 create table rubrique (
     id_rubrique serial PRIMARY KEY,
     libelle varchar(20),
-    nature int, -- 1 variable, 0 fixe
+    nature int, -- 1 variable, 0 fixe , supplétive(Karaman'i DG)
     id_unite_oeuvre int,
     montant decimal(11, 2),
     foreign key (id_unite_oeuvre) references unite_oeuvre(id_unite_oeuvre)
@@ -61,6 +61,7 @@ select rubrique.*,imputation.id_imputation,imputation.pourcentage,centre.*, rubr
 from  rubrique join imputation on rubrique.id_rubrique = imputation.id_rubrique
 join centre on imputation.id_centre=centre.id_centre;
 
+select id_centre, nom,sum(reel) from analyse_ensemble GROUP BY id_centre, nom; 
 
 
 -- test behhh
