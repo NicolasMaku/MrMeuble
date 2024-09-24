@@ -17,8 +17,10 @@ create table rubrique (
     id_rubrique serial PRIMARY KEY,
     libelle varchar(20),
     nature int, -- 1 variable, 0 fixe , supplétive(Karaman'i DG)
+    incorporabilite int, -- 0 non incorporable, 1 incorporable
     id_unite_oeuvre int,
-    montant decimal(11, 2),
+    prix_unitaire decimal(11, 2),
+    quantite int,
     foreign key (id_unite_oeuvre) references unite_oeuvre(id_unite_oeuvre)
 );
 
