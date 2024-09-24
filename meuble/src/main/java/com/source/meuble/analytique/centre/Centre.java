@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.source.meuble.analytique.rubrique.Rubrique;
-import com.source.meuble.analytique.rubrique.RubriqueRepository;
+import com.source.meuble.analytique.typeRubrique.TypeRubrique;
+import com.source.meuble.analytique.typeRubrique.TypeRubriqueRepository;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

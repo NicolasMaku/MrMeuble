@@ -1,7 +1,9 @@
 package com.source.meuble.analytique.imputation;
 
 import com.source.meuble.analytique.centre.Centre;
-import com.source.meuble.analytique.rubrique.Rubrique;
+import com.source.meuble.analytique.exercice.Exercice;
+import com.source.meuble.analytique.typeRubrique.TypeRubrique;
+
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,11 +22,15 @@ public class Imputation {
     private Centre idCentre;
 
     @ManyToOne
-    @JoinColumn(name = "id_rubrique")
-    private Rubrique idRubrique;
+    @JoinColumn(name = "id_type_rubrique")
+    private TypeRubrique idTypeRubrique;
 
     @Column(name = "pourcentage", precision = 5, scale = 2)
     private BigDecimal pourcentage;
+
+    @ManyToOne
+    @Column(name = "id_exercice")
+    Exercice exercice;
 
     public Centre getIdCentre() {
         return idCentre;
@@ -32,14 +38,6 @@ public class Imputation {
 
     public void setIdCentre(Centre idCentre) {
         this.idCentre = idCentre;
-    }
-
-    public Rubrique getIdRubrique() {
-        return idRubrique;
-    }
-
-    public void setIdRubrique(Rubrique idRubrique) {
-        this.idRubrique = idRubrique;
     }
 
     public BigDecimal getPourcentage() {

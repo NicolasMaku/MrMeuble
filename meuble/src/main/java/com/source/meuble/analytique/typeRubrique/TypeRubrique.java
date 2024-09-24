@@ -1,4 +1,4 @@
-package com.source.meuble.analytique.rubrique;
+package com.source.meuble.analytique.typeRubrique;
 
 import com.source.meuble.analytique.uniteOeuvre.UniteOeuvre;
 import jakarta.persistence.*;
@@ -8,10 +8,10 @@ import lombok.Setter;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "rubrique")
-public class Rubrique {
+@Table(name = "type_rubrique")
+public class TypeRubrique {
     @Id
-    @Column(name = "id_rubrique", nullable = false, length = 20)
+    @Column(name = "id_type_rubrique", nullable = false, length = 20)
     private String idRubrique;
 
     @Column(name = "libelle", length = 20)
