@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface RubriqueRepository extends JpaRepository<Rubrique, String> {
+public interface RubriqueRepository extends JpaRepository<Rubrique, Integer> {
 
 }

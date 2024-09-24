@@ -6,7 +6,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
+@Setter
+@Getter
 @Entity
 @Table(name = "unite_oeuvre")
 public class UniteOeuvre {
@@ -17,21 +21,5 @@ public class UniteOeuvre {
 
     @Column(name = "nom")
     String nom;
-
-    public String getIdUniteOeuvre() {
-        return idUniteOeuvre;
-    }
-
-    public void setIdUniteOeuvre(String idUniteOeuvre) {
-        this.idUniteOeuvre = idUniteOeuvre;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
 
 }

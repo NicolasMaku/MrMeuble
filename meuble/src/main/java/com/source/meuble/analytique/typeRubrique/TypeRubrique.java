@@ -1,18 +1,20 @@
 package com.source.meuble.analytique.typeRubrique;
 
+import com.source.meuble.analytique.exercice.Exercice;
 import com.source.meuble.analytique.uniteOeuvre.UniteOeuvre;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.math.BigDecimal;
-
+@Getter
+@Setter
 @Entity
 @Table(name = "type_rubrique")
 public class TypeRubrique {
     @Id
-    @Column(name = "id_type_rubrique", nullable = false, length = 20)
-    private String idRubrique;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_type_rubrique", nullable = false)
+    private Integer id;
 
     @Column(name = "libelle", length = 20)
     private String libelle;
@@ -21,60 +23,14 @@ public class TypeRubrique {
     private Integer nature;
 
     @Column(name = "incorporabilite")
-    private int incorporabilite;
+    private Integer incorporabilite;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_unite_oeuvre")
-    private UniteOeuvre UniteOeuvre;
+    private UniteOeuvre idUniteOeuvre;
 
-    @Column(name = "montant", precision = 11, scale = 2)
-    private BigDecimal montant;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_exercice")
+    private Exercice idExercice;
 
-    public String getIdRubrique() {
-        return idRubrique;
-    }
-
-    public void setIdRubrique(String idRubrique) {
-        this.idRubrique = idRubrique;
-    }
-
-    public String getLibelle() {
-        return libelle;
-    }
-
-    public void setLibelle(String libelle) {
-        this.libelle = libelle;
-    }
-
-    public Integer getNature() {
-        return nature;
-    }
-
-    public void setNature(Integer nature) {
-        this.nature = nature;
-    }
-
-    public int getIncorporabilite() {
-        return incorporabilite;
-    }
-
-    public void setIncorporabilite(int incorporabilite) {
-        this.incorporabilite = incorporabilite;
-    }
-
-    public UniteOeuvre getUniteOeuvre() {
-        return UniteOeuvre;
-    }
-
-    public void setUniteOeuvre(UniteOeuvre uniteOeuvre) {
-        UniteOeuvre = uniteOeuvre;
-    }
-
-    public BigDecimal getMontant() {
-        return montant;
-    }
-
-    public void setMontant(BigDecimal montant) {
-        this.montant = montant;
-    }
 }
