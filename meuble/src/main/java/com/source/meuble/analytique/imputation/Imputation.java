@@ -13,26 +13,18 @@ import java.math.BigDecimal;
 public class Imputation {
     @Id
     @Column(name = "id_imputation", nullable = false, length = 20)
-    private String idImputation;
+    private Long idImputation;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_centre")
     private Centre idCentre;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_rubrique")
     private Rubrique idRubrique;
 
     @Column(name = "pourcentage", precision = 5, scale = 2)
     private BigDecimal pourcentage;
-
-    public String getIdImputation() {
-        return idImputation;
-    }
-
-    public void setIdImputation(String idImputation) {
-        this.idImputation = idImputation;
-    }
 
     public Centre getIdCentre() {
         return idCentre;
@@ -56,5 +48,13 @@ public class Imputation {
 
     public void setPourcentage(BigDecimal pourcentage) {
         this.pourcentage = pourcentage;
+    }
+
+    public Long getIdImputation() {
+        return idImputation;
+    }
+
+    public void setIdImputation(Long idImputation) {
+        this.idImputation = idImputation;
     }
 }

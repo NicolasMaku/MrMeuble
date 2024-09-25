@@ -2,35 +2,30 @@ create database mr_meuble;
 
 \c mr_meuble
 
-create sequence seq_centre;
-create sequence seq_rubrique;
-create sequence seq_imputation;
-create sequence seq_unite_oeuvre;
-
 create table centre (
-    id_centre varchar(20) primary key default 'CENTRE'||nextval('seq_centre'),
+    id_centre serial primary key ,
     nom varchar(50),
     categorie int -- 1 direct , 0 indirect
 );
 
 create table unite_oeuvre (
-    id_unite_oeuvre varchar(20) primary key default 'UNITE'||nextval('seq_unite_oeuvre'),
+    id_unite_oeuvre serial primary key ,
     nom varchar(20)
 );
 
 create table rubrique (
-    id_rubrique varchar(20) PRIMARY KEY DEFAULT 'RUBRIQUE'||nextval('seq_rubrique'),
+    id_rubrique serial PRIMARY KEY,
     libelle varchar(20),
     nature int, -- 1 variable, 0 fixe
-    id_unite_oeuvre varchar(20),
+    id_unite_oeuvre int,
     montant decimal(11, 2),
     foreign key (id_unite_oeuvre) references unite_oeuvre(id_unite_oeuvre)
 );
 
 create table imputation (
-    id_imputation varchar(20) primary key default 'IMPUTATION'||nextval('seq_imputation'),
-    id_centre varchar(20),
-    id_rubrique varchar(20),
+    id_imputation serial primary key,
+    id_centre int,
+    id_rubrique int,
     pourcentage decimal(5,2),
     foreign key (id_centre) references centre(id_centre),
     foreign key (id_rubrique) references rubrique(id_rubrique)
@@ -59,6 +54,13 @@ $$ LANGUAGE plpgsql;
 
 create trigger verify before INSERT ON imputation for each row execute function check_percentage();
 
+-- View
+
+create or replace view ensemble AS
+select *, rubrique.montant*(imputation.pourcentage/100) as reel from  rubrique join imputation on rubrique.id_rubrique = imputation.id_rubrique;
+
+
+
 -- test behhh
 INSERT INTO centre (nom, categorie) VALUES ('ADM/DIST', 0);
 INSERT INTO centre (nom, categorie) VALUES ('USINE', 1);
@@ -66,7 +68,10 @@ INSERT INTO centre (nom, categorie) VALUES ('ATELIER', 1);
 
 INSERT INTO unite_oeuvre(nom) VALUES ('KG');  
 
-INSERT INTO rubrique (libelle, nature, id_unite_oeuvre, montant) VALUES ('ACHAT SEMANCE', 1, 'UNITE1', 4235.1);
+INSERT INTO rubrique (libelle, nature, id_unite_oeuvre, montant) VALUES ('ACHAT SEMANCE', 1, 1, 4235.1);
+INSERT INTO rubrique (libelle, nature, id_unite_oeuvre, montant) VALUES ('ACHAT BOIS', 1, 1, 20000);
 
-INSERT INTO imputation (id_centre, id_rubrique, pourcentage) VALUES ('CENTRE2', 'RUBRIQUE1', 90);
-INSERT INTO imputation (id_centre, id_rubrique, pourcentage) VALUES ('CENTRE3', 'RUBRIQUE1', 10);
+INSERT INTO imputation (id_centre, id_rubrique, pourcentage) VALUES (2, 1, 90);
+INSERT INTO imputation (id_centre, id_rubrique, pourcentage) VALUES (3, 1, 10);
+INSERT INTO imputation (id_centre, id_rubrique, pourcentage) VALUES (2, 2, 50);
+INSERT INTO imputation (id_centre, id_rubrique, pourcentage) VALUES (3, 2, 50);
