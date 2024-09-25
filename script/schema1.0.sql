@@ -45,9 +45,20 @@ create table rubrique(
     id_type_rubrique int,
     prix_unitaire decimal(11, 2),
     quantite decimal(17,2),
+    date_achat date,
     foreign key (id_type_rubrique) references type_rubrique(id_type_rubrique)
 );
 
+create table produit(
+    id_produit serial PRIMARY KEY ,
+    libelle varchar(30),
+    quantite decimal(11,2),
+    id_centre int,
+    id_exercice int,
+    date_sortie date,
+    foreign key (id_exercice) references exercice(id_exercice),
+    foreign key (id_centre) references centre(id_centre)
+);
 
 create or replace function check_percentage()
 returns trigger as $$
@@ -128,3 +139,6 @@ INSERT INTO rubrique (id_type_rubrique, prix_unitaire, quantite) values
 (2,35000, 3),
 (1, 25000, 4),
 (3, 55000, 3);
+
+insert into produit (libelle, quantite, id_centre, id_exercice, date_sortie) VALUES
+("")

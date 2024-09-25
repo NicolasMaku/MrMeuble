@@ -37,4 +37,8 @@ public class CentreService {
         return retour;
     }
 
+    public List<Centre> getCentre(List<Integer> id_centres) {
+        return centreRepository.findAllById(id_centres);
+    }
+
 }
