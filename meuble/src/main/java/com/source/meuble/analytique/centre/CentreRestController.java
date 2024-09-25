@@ -2,6 +2,9 @@ package com.source.meuble.analytique.centre;
 
 import java.util.HashMap;
 
+import com.source.meuble.visible.AdminRepartition;
+import com.source.meuble.visible.repartition.Repartition;
+import com.source.meuble.visible.repartition.RepartitionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,6 +27,9 @@ public class CentreRestController {
     @Autowired
     CentreService centreService;
 
+    @Autowired
+    AdminRepartition adminRepartition;
+
     @GetMapping("/call")
     public String parametreGlobal(HttpSession session) {
         HashMap<String, String> reponse = new HashMap<>();
@@ -31,7 +37,7 @@ public class CentreRestController {
         Utilisateur nico = new Utilisateur(1, "Nicolas");
         Gson conversion = new Gson();
 
-        return conversion.toJson(nico);
+        return conversion.toJson(adminRepartition.getTotal());
     }
 
     @GetMapping("/test")
