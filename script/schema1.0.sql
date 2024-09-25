@@ -78,6 +78,10 @@ select rubrique.*,imputation.id_imputation,imputation.pourcentage,centre.*, (rub
 from  rubrique join imputation on rubrique.id_rubrique = imputation.id_rubrique
 join centre on imputation.id_centre=centre.id_centre;
 
+select rubrique.*,imputation.id_imputation,imputation.pourcentage,centre.*, (rubrique.prix_unitaire * rubrique.quantite)*(imputation.pourcentage/100) as reel
+from  rubrique join imputation on rubrique.id_type_rubrique = imputation.id_type_rubrique
+join centre on imputation.id_centre=centre.id_centre;
+
 select id_centre, nom,sum(reel) from analyse_ensemble GROUP BY id_centre, nom; 
 
 
@@ -88,10 +92,10 @@ INSERT INTO centre (nom, categorie) VALUES ('ADM/DIST', 0);
 INSERT INTO centre (nom, categorie) VALUES ('USINE', 1);
 INSERT INTO centre (nom, categorie) VALUES ('ATELIER', 1);
 
-INSERT INTO unite_oeuvre(nom) VALUES 
-('KG'),  
-('Kwh'),  
-('L');  
+INSERT INTO unite_oeuvre(nom) VALUES
+('KG'),
+('Kwh'),
+('L');
 
 INSERT INTO type_rubrique (libelle, nature, incorporabilite, id_unite_oeuvre, id_exercice) VALUES ('ACHAT SEMANCE', 1, 0, 1, 1);
 INSERT INTO type_rubrique (libelle, nature, incorporabilite, id_unite_oeuvre, id_exercice) VALUES ('ACHAT BOIS', 1, 1, 1, 1);
@@ -100,3 +104,8 @@ INSERT INTO imputation (id_centre, id_type_rubrique, pourcentage) VALUES (2, 1, 
 INSERT INTO imputation (id_centre, id_type_rubrique, pourcentage) VALUES (3, 1, 10);
 INSERT INTO imputation (id_centre, id_type_rubrique, pourcentage) VALUES (2, 2, 50);
 INSERT INTO imputation (id_centre, id_type_rubrique, pourcentage) VALUES (3, 2, 50);
+
+INSERT INTO rubrique (id_type_rubrique, prix_unitaire, quantite) values
+(1, 25000, 2),
+(2,35000, 3),
+(1, 25000, 4);
