@@ -6,10 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.source.meuble.analytique.imputation.Imputation;
+import com.source.meuble.analytique.centre.SommeCentre.SommeCentre;
 import com.source.meuble.analytique.imputation.ImputationRepository;
-import com.source.meuble.analytique.rubrique.Rubrique;
-import com.source.meuble.analytique.rubrique.RubriqueRepository;
 import com.source.meuble.utilisateur.Utilisateur;
 
 import jakarta.servlet.http.HttpSession;
@@ -23,6 +21,9 @@ public class CentreRestController {
     @Autowired
     ImputationRepository imputationRepository;
 
+    @Autowired
+    CentreService centreService;
+
     @GetMapping("/call")
     public String parametreGlobal(HttpSession session) {
         HashMap<String, String> reponse = new HashMap<>();
@@ -35,17 +36,7 @@ public class CentreRestController {
 
     @GetMapping("/test")
     public String teste(HttpSession session) {
-        Centre centre = new Centre();
-        centre.setIdCentre(Long.valueOf(2));
-
-        List<Imputation> imputations = imputationRepository.findByIdCentre(centre);
-        // List<Rubrique> rubriques = rubriqueRepository.findAll();
-        Double somme = 0.0;
-
-        for (Imputation imputation : imputations) {
-            somme += imputation.getPourcentage().doubleValue();
-        }
-
-        return Integer.toString(imputations.size());
+        List<SommeCentre> scs = centreService.listeSommeCentre();
+        return Integer.toString(scs.size());
     }
 }

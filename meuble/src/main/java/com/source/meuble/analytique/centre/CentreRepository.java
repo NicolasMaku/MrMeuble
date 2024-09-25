@@ -11,4 +11,5 @@ import org.springframework.data.jpa.repository.Query;
 public interface CentreRepository extends JpaRepository<Centre, Long> {
     @Query(value = "select * from centre where categorie = :categ", nativeQuery = true)
     List<Centre> centreByCategorie(int categ);
+
 }

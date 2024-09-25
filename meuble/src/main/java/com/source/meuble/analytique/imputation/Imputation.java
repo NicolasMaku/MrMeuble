@@ -1,60 +1,35 @@
 package com.source.meuble.analytique.imputation;
 
 import com.source.meuble.analytique.centre.Centre;
-import com.source.meuble.analytique.rubrique.Rubrique;
+import com.source.meuble.analytique.typeRubrique.TypeRubrique;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "imputation")
 public class Imputation {
     @Id
-    @Column(name = "id_imputation", nullable = false, length = 20)
-    private Long idImputation;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_imputation", nullable = false)
+    private Integer id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_centre")
     private Centre idCentre;
 
-    @ManyToOne
-    @JoinColumn(name = "id_rubrique")
-    private Rubrique idRubrique;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_type_rubrique")
+    private TypeRubrique idTypeRubrique;
 
     @Column(name = "pourcentage", precision = 5, scale = 2)
     private BigDecimal pourcentage;
 
-    public Centre getIdCentre() {
-        return idCentre;
-    }
+    @Column(name = "id_exercice")
+    private Integer idExercice;
 
-    public void setIdCentre(Centre idCentre) {
-        this.idCentre = idCentre;
-    }
-
-    public Rubrique getIdRubrique() {
-        return idRubrique;
-    }
-
-    public void setIdRubrique(Rubrique idRubrique) {
-        this.idRubrique = idRubrique;
-    }
-
-    public BigDecimal getPourcentage() {
-        return pourcentage;
-    }
-
-    public void setPourcentage(BigDecimal pourcentage) {
-        this.pourcentage = pourcentage;
-    }
-
-    public Long getIdImputation() {
-        return idImputation;
-    }
-
-    public void setIdImputation(Long idImputation) {
-        this.idImputation = idImputation;
-    }
 }
