@@ -74,6 +74,7 @@ create trigger verify before INSERT ON imputation for each row execute function 
 -- View
 create or replace view liste_general AS
 SELECT
+    row_number() over () as id,
     tr.id_exercice as id_exeercice,
     tr.libelle as libelle,
     tr.id_type_rubrique as id_type_rubrique,
@@ -88,6 +89,7 @@ GROUP BY
 
 create or replace view list_analytique as
 select
+    row_number() over () as id,
     lg.libelle,
     imputation.pourcentage,
     imputation.id_centre,
