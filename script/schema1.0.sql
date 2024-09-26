@@ -102,14 +102,30 @@ join
 group by imputation.id_centre, imputation.pourcentage, lg.libelle, lg.total_rubrique, lg.incorporabilite;
 
 
-
-
 create or replace view analyse_ensemble AS
-select rubrique.*,imputation.id_imputation,imputation.pourcentage,centre.*, (rubrique.prix_unitaire * rubrique.quantite)*(imputation.pourcentage/100) as reel
+select rubrique.*,imputation.id_imputation,imputation.pourcentage,centre.*, (rubrique.prix_unitaire * rubrique.quantite) as montant ,(rubrique.prix_unitaire * rubrique.quantite)*(imputation.pourcentage/100) as reel
 from  rubrique join imputation on rubrique.id_type_rubrique = imputation.id_type_rubrique
 join centre on imputation.id_centre=centre.id_centre;
 
-select id_centre, nom,sum(reel) from analyse_ensemble GROUP BY id_centre, nom; 
+create or replace view v_repartition as
+select row_number() over ()
+    ,by_centre.*, round((montant*100)/operationnel,2) as cle,
+       structure*round((montant*100)/operationnel,2)/100 as structure,
+       (by_centre.montant + structure*round((montant*100)/operationnel,2)/100) as cout_total
+from
+    (select id_centre, nom,sum(reel) as montant,categorie
+     from analyse_ensemble GROUP BY id_centre,categorie, nom having categorie=1) as by_centre
+        join (select sum(reel) as operationnel from analyse_ensemble where categorie=1) as operationnel on True
+        join (select sum(reel) as structure from analyse_ensemble where categorie=0) as structure on True
+;
+
+create or replace view v_repartition_total as
+select row_number() over () as id,
+        sum(montant) as s_direct,
+       sum(structure) as s_structure ,
+       sum(cout_total) as s_cout_total
+from v_repartition;
+
 
 
 
@@ -128,13 +144,18 @@ INSERT INTO unite_oeuvre(nom) VALUES
 
 INSERT INTO type_rubrique (libelle, nature, incorporabilite, id_unite_oeuvre, id_exercice) VALUES ('ACHAT SEMANCE', 1, 0, 1, 1);
 INSERT INTO type_rubrique (libelle, nature, incorporabilite, id_unite_oeuvre, id_exercice) VALUES ('ACHAT BOIS', 1, 1, 1, 1);
+INSERT INTO type_rubrique (libelle, nature, incorporabilite, id_unite_oeuvre, id_exercice) VALUES ('EAU ET ELECTRICITE', 1, 1, 1, 1);
 
 INSERT INTO imputation (id_centre, id_type_rubrique, pourcentage) VALUES (2, 1, 90);
 INSERT INTO imputation (id_centre, id_type_rubrique, pourcentage) VALUES (3, 1, 10);
 INSERT INTO imputation (id_centre, id_type_rubrique, pourcentage) VALUES (2, 2, 50);
 INSERT INTO imputation (id_centre, id_type_rubrique, pourcentage) VALUES (3, 2, 50);
+INSERT INTO imputation (id_centre, id_type_rubrique, pourcentage) VALUES (1, 3, 20);
+INSERT INTO imputation (id_centre, id_type_rubrique, pourcentage) VALUES (2, 3, 50);
+INSERT INTO imputation (id_centre, id_type_rubrique, pourcentage) VALUES (3, 3, 30);
 
 INSERT INTO rubrique (id_type_rubrique, prix_unitaire, quantite) values
 (1, 25000, 2),
 (2,35000, 3),
-(1, 25000, 4);
+(1, 25000, 4),
+(3, 55000, 3);

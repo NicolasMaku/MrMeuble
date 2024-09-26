@@ -2,23 +2,29 @@
 package com.source.meuble.visible;
 
 import com.source.meuble.analytique.centre.SommeCentre.SommeCentre;
+import com.source.meuble.visible.repartition.Repartition;
+import com.source.meuble.visible.repartition.RepartitionRepository;
+import com.source.meuble.visible.repartition.TotauxRepartition;
+import com.source.meuble.visible.repartition.TotauxRepartitionRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class AdminRepartition {
-    List<SommeCentre> listeCentre;
 
+    @Autowired
+    RepartitionRepository repartitionRepository;
 
-    public List<SommeCentre> getOperationels(String[] args) {
-        AdminRepartition ar = new AdminRepartition();
-        ar.listeCentre.stream().filter(sommeCentre -> sommeCentre.);
+    @Autowired
+    TotauxRepartitionRepository totauxRepartitionRepository;
+
+    public List<Repartition> getListeRepartition() {
+        return repartitionRepository.findAll();
     }
 
-    public List<SommeCentre> getListeCentre() {
-        return listeCentre;
-    }
-
-    public void setListeCentre(List<SommeCentre> listeCentre) {
-        this.listeCentre = listeCentre;
+    public TotauxRepartition getTotal() {
+        return totauxRepartitionRepository.findAll().get(0);
     }
 }
