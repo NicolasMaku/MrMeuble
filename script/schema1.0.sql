@@ -2,6 +2,12 @@ create database mr_meuble;
 
 \c mr_meuble
 
+create table utilisateur (
+    id serial primary key,
+    username varchar(100),
+    password varchar(100)
+);
+
 create table exercice(
     id_exercice serial PRIMARY KEY,
     annee int UNIQUE,

@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    @font-face {
+      font-family: 'Quicksand';
+      font-style: normal;
+      font-weight: 300;
+      font-display: swap;
+      src: url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap') format('woff2');
+    }
+  }

@@ -1,8 +1,22 @@
 package com.source.meuble.utilisateur;
 
+import jakarta.persistence.*;
+import lombok.Data;
+
+@Data
+@Entity
+@Table(name = "utilisateur")
 public class Utilisateur {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     int id;
+
+    @Column(name = "username")
     String username;
+
+    @Column(name = "password")
+    String password;
 
     public int getId() {
         return id;
@@ -18,6 +32,10 @@ public class Utilisateur {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public Utilisateur() {
+
     }
 
     public Utilisateur(int id, String username) {
