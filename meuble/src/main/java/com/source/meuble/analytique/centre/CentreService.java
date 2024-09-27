@@ -37,4 +37,12 @@ public class CentreService {
         return retour;
     }
 
+    public Centre addCentre(Centre centre) {
+        return  centreRepository.save(centre);
+    }
+
+    public List<Centre> getAllCentre() {
+        return centreRepository.findAll();
+    }
+
 }

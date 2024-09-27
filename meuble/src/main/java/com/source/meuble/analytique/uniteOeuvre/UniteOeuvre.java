@@ -15,9 +15,9 @@ import lombok.Setter;
 @Table(name = "unite_oeuvre")
 public class UniteOeuvre {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_unite_oeuvre")
-    String idUniteOeuvre;
+    Integer idUniteOeuvre;
 
     @Column(name = "nom")
     String nom;

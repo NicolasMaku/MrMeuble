@@ -31,5 +31,4 @@ public class Imputation {
 
     @Column(name = "id_exercice")
     private Integer idExercice;
-
 }
