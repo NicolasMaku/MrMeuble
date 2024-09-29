@@ -49,6 +49,7 @@
     <button class="absolute top-10 left-20 p-2 px-3 rounded-3xl text-gray-50 bg-slate-500" id="generate">Generer PDF</button>
     <div
         class="overflow-x-auto m-8 bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-10">
+        <h1 class="text-black p-2 font-bold underline">Tableau des charges:</h1>
         <div class="table-container relative max-h-[75dvh] overflow-y-auto">
             <table class="table table-xs" id="table">
                 <thead>
@@ -134,6 +135,109 @@
                         <th class="number text-black text-right border border-black border-b-transparent border-r-transparent">
                             367585800.00</th>
                     </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+    <div
+            class="overflow-x-auto m-8 bg-gray-500 rounded-md bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-10">
+        <h1 class="text-black p-2 font-bold underline">Tableau de répartition:</h1>
+        <div class="table-container relative max-h-[75dvh] overflow-y-auto">
+            <table class="table table-xs" id="table-2">
+                <thead>
+                    <tr>
+                        <th class="text-center text-black">REPARTITION ADM/DIST</th>
+                        <th class="text-center text-black">Cout direct</th>
+                        <th class="text-center text-black"></th>
+                        <th class="text-center text-black">Clés (%)</th>
+                        <th class="text-center text-black">ADM/DIST</th>
+                        <th class="text-center text-black">Cout total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Total atelier</td>
+                        <td class="number text-right">15555.54</td>
+                        <td class="number text-right"></td>
+                        <td class="number text-right">54%</td>
+                        <td class="number text-right">15555.54</td>
+                        <td class="number text-right">1555455.54</td>
+                    </tr>
+                    <tr>
+                        <td>Total usine</td>
+                        <td class="number text-right">15555.54</td>
+                        <td class="number text-right"></td>
+                        <td class="number text-right">46 %</td>
+                        <td class="number text-right">15555.54</td>
+                        <td class="number text-right">1555455.54</td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td></tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <th class="text-black">Total générale</th>
+                    <th class="number text-right text-black">15555.54</th>
+                    <th class="number text-right text-black"></th>
+                    <th class="number text-right text-black">46%</th>
+                    <th class="number text-right text-black">15555.54</th>
+                    <th class="number text-right text-black">1555455.54</th>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
+    <div
+            class="overflow-x-auto w-1/3 m-8 bg-gray-500 rounded-md bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-10">
+    <h1 class="text-black p-2 font-bold underline">Calcul de cout de revient:</h1>
+        <div class="table-container relative max-h-[75dvh] overflow-y-auto">
+            <table class="table table-xs" id="table-3">
+                <thead>
+                    <tr>
+                        <th class="text-black">COUT DU KILOS DE MAIS GRAIN</th>
+                        <th class="text-black"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Unité d'oeuvre</td>
+                        <td class="text-right">Kg de grain de mais entrant</td>
+                    </tr>
+                    <tr>
+                        <td>Nombre</td>
+                        <td class="number text-right">481456.00</td>
+                    </tr>
+                    <tr>
+                        <td>Cout plantation</td>
+                        <td class="number text-right">29393223.33</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <th class="text-black">Cout du grain de mais</th>
+                    <th class="number text-right text-black">610.51</th>
+                </tr>
                 </tfoot>
             </table>
         </div>
