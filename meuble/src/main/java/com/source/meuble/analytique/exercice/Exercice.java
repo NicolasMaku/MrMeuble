@@ -22,4 +22,13 @@ public class Exercice {
     @Column(name = "date_debut")
     private LocalDate dateDebut;
 
+    public Exercice() {
+
+    }
+
+    public Exercice(LocalDate date) {
+        this.setDateDebut(date);
+        this.setAnnee(date.getYear());
+    }
+
 }

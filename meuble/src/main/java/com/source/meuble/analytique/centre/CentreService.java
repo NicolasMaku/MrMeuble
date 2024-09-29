@@ -37,8 +37,12 @@ public class CentreService {
         return retour;
     }
 
-    public List<Centre> getCentre(List<Integer> id_centres) {
-        return centreRepository.findAllById(id_centres);
+    public Centre addCentre(Centre centre) {
+        return centreRepository.save(centre);
+    }
+
+    public List<Centre> getAllCentre() {
+        return centreRepository.findAll();
     }
 
 }

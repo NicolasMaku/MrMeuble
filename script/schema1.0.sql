@@ -2,21 +2,27 @@ create database mr_meuble;
 
 \c mr_meuble
 
+create table utilisateur (
+    id serial primary key,
+    username varchar(100),
+    password varchar(100)
+);
+
 create table exercice(
     id_exercice serial PRIMARY KEY,
     annee int UNIQUE,
     date_debut date
 );
 
+create table unite_oeuvre (
+    id_unite_oeuvre serial primary key,
+    nom varchar(20)
+);
+
 create table centre (
     id_centre serial primary key ,
     nom varchar(50),
     categorie int -- 1 direct , 0 indirect ;;;; 1 opérationnels , 0 structure
-);
-
-create table unite_oeuvre (
-    id_unite_oeuvre serial primary key,
-    nom varchar(20)
 );
 
 create table type_rubrique (
@@ -83,6 +89,35 @@ $$ LANGUAGE plpgsql;
 create trigger verify before INSERT ON imputation for each row execute function check_percentage();
 
 -- View
+create or replace view liste_general AS
+SELECT
+    row_number() over () as id,
+    tr.id_exercice as id_exeercice,
+    tr.libelle as libelle,
+    tr.id_type_rubrique as id_type_rubrique,
+    SUM(r.prix_unitaire * r.quantite) AS total_rubrique,
+    tr.incorporabilite as incorporabilite
+FROM
+    rubrique r
+JOIN
+    type_rubrique tr ON r.id_type_rubrique = tr.id_type_rubrique
+GROUP BY
+    tr.id_exercice, tr.libelle, tr.id_type_rubrique;
+
+create or replace view list_analytique as
+select
+    row_number() over () as id,
+    lg.libelle,
+    imputation.pourcentage,
+    imputation.id_centre,
+    (lg.total_rubrique/100)*imputation.pourcentage as total_par_centre,
+    lg.incorporabilite as incorporabilite
+from
+    imputation
+join
+    liste_general lg on imputation.id_type_rubrique = lg.id_type_rubrique
+group by imputation.id_centre, imputation.pourcentage, lg.libelle, lg.total_rubrique, lg.incorporabilite;
+
 
 create or replace view analyse_ensemble AS
 select rubrique.*,imputation.id_imputation,imputation.pourcentage,centre.*, (rubrique.prix_unitaire * rubrique.quantite) as montant ,(rubrique.prix_unitaire * rubrique.quantite)*(imputation.pourcentage/100) as reel
@@ -107,6 +142,8 @@ select row_number() over () as id,
        sum(structure) as s_structure ,
        sum(cout_total) as s_cout_total
 from v_repartition;
+
+
 
 
 
