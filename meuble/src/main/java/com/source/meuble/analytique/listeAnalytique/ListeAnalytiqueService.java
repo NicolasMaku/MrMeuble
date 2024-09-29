@@ -1,6 +1,7 @@
 package com.source.meuble.analytique.listeAnalytique;
 
 
+import com.source.meuble.analytique.exercice.Exercice;
 import com.source.meuble.analytique.rubrique.Rubrique;
 import com.source.meuble.analytique.rubrique.RubriqueRepository;
 import com.source.meuble.analytique.typeRubrique.TypeRubrique;
@@ -21,8 +22,8 @@ public class ListeAnalytiqueService {
         this.typeRubriqueRepository = typeRubriqueRepository;
     }
 
-    public ListeAnalytiqueTableau getTableau() {
-        List<TypeRubrique> trs = typeRubriqueRepository.findAll();
+    public ListeAnalytiqueTableau getTableau(Integer idExercice) {
+        List<TypeRubrique> trs = typeRubriqueRepository.findByIdExercice(idExercice);
         List<ListeAnalytiqueRow> rows = new LinkedList<>();
 
         trs.forEach((tr) -> {

@@ -12,6 +12,8 @@ public class ListeAnalytiqueTableau {
     private Map<Integer, Double> totalParCentre;
     private Map<Integer, Double> totalVariableParCentre;
     private Map<Integer, Double> totalFixeParCentre;
+    private Double totalFixe;
+    private Double totalVariable;
     private Double grandTotal;
 
     public ListeAnalytiqueTableau(ListeAnalytiqueRow[] rows) {
@@ -19,6 +21,8 @@ public class ListeAnalytiqueTableau {
         totalVariableParCentre = new HashMap<>();
         totalFixeParCentre = new HashMap<>();
         grandTotal = 0.00;
+        totalFixe = 0.00;
+        totalVariable = 0.00;
 
         for(ListeAnalytiqueRow row : rows) {
             row.getRepartition().forEach((idCentre, repartition) -> {
@@ -28,10 +32,17 @@ public class ListeAnalytiqueTableau {
                     totalFixeParCentre.put(idCentre, 0.00);
                 }
 
-                totalParCentre.put(idCentre, totalParCentre.get(idCentre) + repartition.getTotal());
-                totalFixeParCentre.put(idCentre, totalFixeParCentre.get(idCentre) + (repartition.getFixe() != null ? repartition.getFixe() : 0.00));
-                totalVariableParCentre.put(idCentre, totalVariableParCentre.get(idCentre) + (repartition.getVariable() != null ? repartition.getVariable() : 0.00));
-                grandTotal += repartition.getTotal();
+                Double total = (repartition.getTotal() != null ? repartition.getTotal(): 0.00);
+                Double fixe = (repartition.getFixe() != null ? repartition.getFixe() : 0.00);
+                Double variable = (repartition.getVariable() != null ? repartition.getVariable() : 0.00);
+
+                totalParCentre.put(idCentre, totalParCentre.get(idCentre) + total);
+                totalFixeParCentre.put(idCentre, totalFixeParCentre.get(idCentre) + fixe);
+                totalVariableParCentre.put(idCentre, totalVariableParCentre.get(idCentre) + variable);
+
+                grandTotal += total;
+                totalFixe += fixe;
+                totalVariable += variable;
             });
         }
 
