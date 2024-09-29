@@ -1,10 +1,13 @@
 package com.source.meuble.analytique.typeRubrique;
 
 import com.source.meuble.analytique.exercice.Exercice;
+import com.source.meuble.analytique.listeAnalytique.ListAnalytique;
 import com.source.meuble.analytique.uniteOeuvre.UniteOeuvre;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.Set;
 
 @Getter
 @Setter
@@ -33,4 +36,6 @@ public class TypeRubrique {
     @JoinColumn(name = "id_exercice")
     private Exercice idExercice;
 
+    @OneToMany(mappedBy = "typeRubrique", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<ListAnalytique> listAnalytiques;
 }

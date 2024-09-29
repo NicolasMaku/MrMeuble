@@ -2,12 +2,18 @@
 <%@ page import="com.source.meuble.analytique.uniteOeuvre.UniteOeuvre" %>
 <%@ page import="com.source.meuble.analytique.centre.Centre" %>
 <%@ page import="com.source.meuble.analytique.typeRubrique.TypeRubrique" %>
+<%@ page import="com.source.meuble.analytique.listeAnalytique.ListeAnalytiqueRow" %>
+<%@ page import="com.source.meuble.util.RequestAttribute" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="com.source.meuble.analytique.listeAnalytique.RepartitionCentre" %>
 <%@page pageEncoding="UTF-8" %>
 
 <%
+    RequestAttribute requestAttribute = new RequestAttribute(request);
     List<UniteOeuvre> uos = ((List<UniteOeuvre>) request.getAttribute("uos"));
     List<Centre> centres = ((List<Centre>) request.getAttribute("centres"));
     List<TypeRubrique> trs = ((List<TypeRubrique>) request.getAttribute("trs"));
+    ListeAnalytiqueRow[] lars = requestAttribute.getObject("tableau", ListeAnalytiqueRow[].class, new ListeAnalytiqueRow[0]);
 %>
 
 <!DOCTYPE html>
@@ -58,49 +64,80 @@
                         </th>
                         <th class="text-black text-center" rowspan="2">UNITÉ D'OEUVRE</th>
                         <th class="text-black text-center" rowspan="2">NATURE</th>
-                        <th class="text-black text-center border border-black border-t-transparent" colspan="3">ADM/DIST
+                        <%
+                            for(Centre centre: centres)
+                            {
+                        %>
+
+                        <th class="text-black text-center border border-black border-t-transparent" colspan="3">
+                            <%=centre.getNom()%>
                         </th>
-                        <th class="text-black text-center border border-black border-t-transparent" colspan="3">USINE
-                        </th>
-                        <th class="text-black text-center border border-black border-t-transparent" colspan="3">ATELIER
-                        </th>
-                        <th class="text-black text-center border border-black border-t-transparent border-r-transparent"
-                            colspan="3">TOTAL</th>
+                        <%
+                            }
+                        %>
+
+<%--                        <th class="text-black text-center border border-black border-t-transparent border-r-transparent"--%>
+<%--                            colspan="3">TOTAL</th>--%>
                     </tr>
                     <tr>
-                        <th class="text-black text-center border border-l-black border-transparent">%</th>
-                        <th class="text-black text-center">FIXE</th>
-                        <th class="text-black text-center">VARIABLE</th>
-                        <th class="text-black text-center border border-l-black border-transparent">%</th>
-                        <th class="text-black text-center">FIXE</th>
-                        <th class="text-black text-center">VARIABLE</th>
-                        <th class="text-black text-center border border-l-black border-transparent">%</th>
-                        <th class="text-black text-center">FIXE</th>
-                        <th class="text-black text-center">VARIABLE</th>
-                        <th class="text-black text-center border border-l-black border-transparent w-[1px]"></th>
-                        <th class="text-black text-center">FIXE</th>
-                        <th class="text-black text-center">VARIABLE</th>
+                        <%
+                            for(int i = 0; i < centres.size(); i++)
+                            {
+                        %>
+                            <th class="text-black text-center border border-l-black border-transparent">%</th>
+                            <th class="text-black text-center">FIXE</th>
+                            <th class="text-black text-center">VARIABLE</th>
+                        <%
+                            }
+                        %>
+<%--                        <th class="text-black text-center border border-l-black border-transparent">%</th>--%>
+<%--                        <th class="text-black text-center">FIXE</th>--%>
+<%--                        <th class="text-black text-center">VARIABLE</th>--%>
+<%--                        <th class="text-black text-center border border-l-black border-transparent">%</th>--%>
+<%--                        <th class="text-black text-center">FIXE</th>--%>
+<%--                        <th class="text-black text-center">VARIABLE</th>--%>
+<%--                        <th class="text-black text-center border border-l-black border-transparent w-[1px]"></th>--%>
+<%--                        <th class="text-black text-center">FIXE</th>--%>
+<%--                        <th class="text-black text-center">VARIABLE</th>--%>
                     </tr>
                 </thead>
                 <tbody class="overflow-y-scroll">
+                <%
+                    for(ListeAnalytiqueRow row: lars)
+                    {
+                %>
                     <tr>
-                        <td>Achat semance</td>
-                        <td class="number text-right border border-r-black border-transparent">4321600</td>
-                        <td class="text-center">KG</td>
-                        <td class="text-center">V</td>
-                        <td class="text-center border border-l-black border-transparent">0.00%</td>
-                        <td class="number text-center">-</td>
-                        <td class="number text-center">-</td>
-                        <td class="text-center border border-l-black border-transparent">0.00%</td>
-                        <td class="number text-center">-</td>
-                        <td class="number text-center">-</td>
-                        <td class="text-center border border-l-black border-transparent">100%</td>
-                        <td class="number text-center">-</td>
-                        <td class="number text-center">4321600</td>
-                        <td class="text-center border border-l-black w-[1px] border-transparent"></td>
-                        <td class="number text-center">-</td>
-                        <td class="number text-center">4321600</td>
+                        <td><%=row.getRubrique()%>/td>
+                        <td class="number text-right border border-r-black border-transparent"><%=row.getTotal()%></td>
+                        <td class="text-center"><%=row.getUniteOeuvre()%></td>
+                        <td class="text-center"><%=row.getNature().substring(0, 1).toUpperCase()%></td>
+
+                        <%
+                            for(Centre centre: centres)
+                            {
+                                RepartitionCentre rc = row.getRepartition().get(centre.getIdCentre());
+                        %>
+                        <td class="text-center border border-l-black border-transparent"><%=rc != null ? rc.getPourcentage(): "-"%></td>
+                        <td class="number text-center"><%=rc != null ? rc.getFixeStr(): "-"%></td>
+                        <td class="number text-center"><%=rc != null ? rc.getVariableStr() : "-"%></td>
+                        <%
+                            }
+                        %>
+
+
+<%--                        <td class="text-center border border-l-black border-transparent">0.00%</td>--%>
+<%--                        <td class="number text-center">-</td>--%>
+<%--                        <td class="number text-center">-</td>--%>
+<%--                        <td class="text-center border border-l-black border-transparent">100%</td>--%>
+<%--                        <td class="number text-center">-</td>--%>
+<%--                        <td class="number text-center">4321600</td>--%>
+<%--                        <td class="text-center border border-l-black w-[1px] border-transparent"></td>--%>
+<%--                        <td class="number text-center">-</td>--%>
+<%--                        <td class="number text-center">4321600</td>--%>
                     </tr>
+                <%
+                    }
+                %>
                 </tbody>
                 <tfoot>
                     <tr>

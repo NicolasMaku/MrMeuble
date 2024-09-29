@@ -1,6 +1,6 @@
 <%@ page import="com.source.meuble.util.RequestAttribute" %><%
     RequestAttribute attribute = new RequestAttribute(request);
-    String error = attribute.getObject("error", String.class);
+    String error = attribute.getObject("error", String.class, null);
 %>
 
 <!DOCTYPE html>

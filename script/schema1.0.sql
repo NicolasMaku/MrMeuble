@@ -93,6 +93,7 @@ create or replace view liste_general AS
 SELECT
     row_number() over () as id,
     tr.id_exercice as id_exeercice,
+    tr.id_type_rubrique as id_type_rubrique,
     tr.libelle as libelle,
     tr.id_type_rubrique as id_type_rubrique,
     SUM(r.prix_unitaire * r.quantite) AS total_rubrique,
