@@ -39,4 +39,17 @@ public class Rubrique {
     private Exercice idExercice;
 
 
+    public void setPrixUnitaire(BigDecimal prixUnitaire) throws Exception {
+        if(prixUnitaire.compareTo(BigDecimal.ZERO)<=0){
+            throw new Exception("Prix unitaire invalide");
+        }
+        this.prixUnitaire = prixUnitaire;
+    }
+
+    public void setQuantite(BigDecimal quantite) throws Exception {
+        if(quantite.compareTo(BigDecimal.ZERO)<=0){
+            throw new Exception("Quantiter invalide");
+        }
+        this.quantite = quantite;
+    }
 }
