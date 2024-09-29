@@ -27,7 +27,7 @@ public class RubriqueController {
         @RequestParam("pu") Double pu,
         @RequestParam("qte") Double qte
 //        @RequestParam("date") LocalDate date
-        ) {
+        ) throws Exception {
 
         Rubrique rubrique = new Rubrique();
         rubrique.setIdTypeRubrique(tr);

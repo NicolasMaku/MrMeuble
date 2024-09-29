@@ -184,4 +184,6 @@ INSERT INTO rubrique (id_type_rubrique, prix_unitaire, quantite, id_exercice) va
 (3, 55000, 3, 2);
 
 insert into produit (libelle, quantite, id_centre, id_exercice, date_sortie) VALUES
-("")
+("");
+
+insert into utilisateur (username, password) values ('root','root');
