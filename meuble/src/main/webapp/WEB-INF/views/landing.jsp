@@ -47,7 +47,7 @@
 
     <div class="slogan relative z-2 top-32 flex justify-center items-center flex-col">
         <h1 class="font-sans text-8xl text-gray-700 font-bold">Mr. Meuble</h1>
-        <h1 class="font-sans">J'ai pas trouvé mieux comme illustration</h1>
+        <h1 class="font-sans">Bienvenu dans l'univers du bois.</h1>
     </div> 
 
     <div class="relative z-1">
@@ -100,14 +100,14 @@
                                         class="shrink-0 mt-1 border-gray-500 rounded-full" id="centre-direct"
                                         checked="">
                                     <label for="centre-direct"
-                                        class="text-sm text-gray-900 ms-2 dark:text-neutral-400">Direct</label>
+                                        class="text-sm text-gray-900 ms-2 dark:text-neutral-400">Direct (opérationnel)</label>
                                 </div>
 
                                 <div class="flex">
                                     <input type="radio" name="categorie" value="0"
                                         class="shrink-0 mt-1 border-gray-500 rounded-full" id="centre-indirect">
                                     <label for="centre-indirect"
-                                        class="text-sm text-gray-900 ms-2 dark:text-neutral-400">Indirect</label>
+                                        class="text-sm text-gray-900 ms-2 dark:text-neutral-400">Indirect (structure)</label>
                                 </div>
                             </div>
                         </div>
@@ -243,7 +243,7 @@
                                         class="shrink-0 mt-1 border-gray-500 rounded-full" id="type-rubrique-corporel"
                                         checked="">
                                     <label for="type-rubrique-corporel"
-                                        class="text-sm text-gray-900 ms-2 dark:text-neutral-400">Corporel</label>
+                                        class="text-sm text-gray-900 ms-2 dark:text-neutral-400">incorporable</label>
                                 </div>
 
                                 <div class="flex">
@@ -251,7 +251,15 @@
                                         class="shrink-0 mt-1 border-gray-500 rounded-full"
                                         id="type-rubrique-non-corporel">
                                     <label for="type-rubrique-non-corporel"
-                                        class="text-sm text-gray-900 ms-2 dark:text-neutral-400">Non corporel</label>
+                                        class="text-sm text-gray-900 ms-2 dark:text-neutral-400">non incorporable</label>
+                                </div>
+
+                                <div class="flex">
+                                    <input type="radio" name="incorporabilite" value="2"
+                                        class="shrink-0 mt-1 border-gray-500 rounded-full"
+                                        id="type-rubrique-non-corporel">
+                                    <label for="type-rubrique-non-corporel"
+                                        class="text-sm text-gray-900 ms-2 dark:text-neutral-400">supplétive</label>
                                 </div>
                             </div>
                         </div>

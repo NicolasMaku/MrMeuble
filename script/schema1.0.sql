@@ -28,8 +28,8 @@ create table centre (
 create table type_rubrique (
     id_type_rubrique serial PRIMARY KEY,
     libelle varchar(20),
-    nature int, -- 1 variable, 0 fixe , supplétive(Karaman'i DG)
-    incorporabilite int, -- 0 non incorporable, 1 incorporable
+    nature int, -- 1 variable, 0 fixe 
+    incorporabilite int, -- 0 non incorporable, 1 incorporable, 2 supplétive(Karaman'i DG)
     id_unite_oeuvre int,
     id_exercice int,
     foreign key (id_exercice) references exercice(id_exercice),
