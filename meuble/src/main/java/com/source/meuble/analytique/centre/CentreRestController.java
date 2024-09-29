@@ -59,7 +59,7 @@ public class CentreRestController {
         ids.add(2);
         ids.add(3);
 
-        Cout cout = adminCout.calculCout(1,"30","2");
+        Cout cout = adminCout.calculCout(1,"30","2", 1);
         return Double.toString(cout.getCout_total()) + " / " + Double.toString(cout.getQuantite());
     }
 }

@@ -27,9 +27,9 @@ public class AdminCout {
         return ids;
     }
 
-    public Cout calculCout(int idUniteOeuvre, String quantite, String id_centres) {
+    public Cout calculCout(int idUniteOeuvre, String quantite, String id_centres, int id_exercice) {
         Cout cout = new Cout();
-        List<Repartition> repartitionList = repartitionRepository.findAll();
+        List<Repartition> repartitionList = repartitionRepository.findByIdExercice(id_exercice);
 
         List<Integer> ids = split(id_centres);
 
