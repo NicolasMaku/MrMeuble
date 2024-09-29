@@ -20,11 +20,11 @@ public class AdminRepartition {
     @Autowired
     TotauxRepartitionRepository totauxRepartitionRepository;
 
-    public List<Repartition> getListeRepartition() {
-        return repartitionRepository.findAll();
+    public List<Repartition> getListeRepartition(int id_exercice) {
+        return repartitionRepository.findByIdExercice(id_exercice);
     }
 
-    public TotauxRepartition getTotal() {
-        return totauxRepartitionRepository.findAll().get(0);
+    public TotauxRepartition getTotal(int id_exercice) {
+        return totauxRepartitionRepository.findByIdExercice(id_exercice).get(0);
     }
 }

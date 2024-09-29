@@ -31,8 +31,6 @@ create table type_rubrique (
     nature int, -- 1 variable, 0 fixe , supplétive(Karaman'i DG)
     incorporabilite int, -- 0 non incorporable, 1 incorporable
     id_unite_oeuvre int,
-    id_exercice int,
-    foreign key (id_exercice) references exercice(id_exercice),
     foreign key (id_unite_oeuvre) references unite_oeuvre(id_unite_oeuvre)
 );
 
@@ -41,7 +39,6 @@ create table imputation (
     id_centre int,
     id_type_rubrique int,
     pourcentage decimal(5,2),
-    id_exercice int,
     foreign key (id_centre) references centre(id_centre),
     foreign key (id_type_rubrique) references type_rubrique(id_type_rubrique)
 );
@@ -52,6 +49,8 @@ create table rubrique(
     prix_unitaire decimal(11, 2),
     quantite decimal(17,2),
     date_achat date,
+    id_exercice int,
+    foreign key (id_exercice) references exercice(id_exercice),
     foreign key (id_type_rubrique) references type_rubrique(id_type_rubrique)
 );
 
@@ -120,28 +119,34 @@ group by imputation.id_centre, imputation.pourcentage, lg.libelle, lg.total_rubr
 
 
 create or replace view analyse_ensemble AS
-select rubrique.*,imputation.id_imputation,imputation.pourcentage,centre.*, (rubrique.prix_unitaire * rubrique.quantite) as montant ,(rubrique.prix_unitaire * rubrique.quantite)*(imputation.pourcentage/100) as reel
-from  rubrique join imputation on rubrique.id_type_rubrique = imputation.id_type_rubrique
-join centre on imputation.id_centre=centre.id_centre;
+select rubrique.*, type_rubrique.nature, type_rubrique.incorporabilite,
+       imputation.id_imputation,imputation.pourcentage,
+       centre.*, (rubrique.prix_unitaire * rubrique.quantite) as montant ,
+       (rubrique.prix_unitaire * rubrique.quantite)*(imputation.pourcentage/100) as reel
+from  rubrique
+          join type_rubrique on rubrique.id_type_rubrique = type_rubrique.id_type_rubrique
+          join imputation on rubrique.id_type_rubrique = imputation.id_type_rubrique
+          join centre on imputation.id_centre=centre.id_centre;
+
 
 create or replace view v_repartition as
 select row_number() over ()
-    ,by_centre.*, round((montant*100)/operationnel,2) as cle,
+        ,by_centre.*, round((montant*100)/operationnel,2) as cle,
        structure*round((montant*100)/operationnel,2)/100 as structure,
        (by_centre.montant + structure*round((montant*100)/operationnel,2)/100) as cout_total
 from
-    (select id_centre, nom,sum(reel) as montant,categorie
-     from analyse_ensemble GROUP BY id_centre,categorie, nom having categorie=1) as by_centre
+    (select id_centre,id_exercice,nom,sum(reel) as montant,categorie
+     from analyse_ensemble GROUP BY id_centre,id_exercice,categorie, nom having categorie=1) as by_centre
         join (select sum(reel) as operationnel from analyse_ensemble where categorie=1) as operationnel on True
         join (select sum(reel) as structure from analyse_ensemble where categorie=0) as structure on True
 ;
 
 create or replace view v_repartition_total as
-select row_number() over () as id,
+select row_number() over () as id, id_exercice,
         sum(montant) as s_direct,
        sum(structure) as s_structure ,
        sum(cout_total) as s_cout_total
-from v_repartition;
+from v_repartition group by id_exercice;
 
 
 
@@ -149,6 +154,7 @@ from v_repartition;
 
 -- test behhh
 INSERT INTO exercice( annee ,date_debut) VALUES (2024, '01/01/2024');
+INSERT INTO exercice( annee ,date_debut) VALUES (2025, '01/01/2025');
 
 INSERT INTO centre (nom, categorie) VALUES ('ADM/DIST', 0);
 INSERT INTO centre (nom, categorie) VALUES ('USINE', 1);
@@ -159,9 +165,9 @@ INSERT INTO unite_oeuvre(nom) VALUES
 ('Kwh'),
 ('L');
 
-INSERT INTO type_rubrique (libelle, nature, incorporabilite, id_unite_oeuvre, id_exercice) VALUES ('ACHAT SEMANCE', 1, 0, 1, 1);
-INSERT INTO type_rubrique (libelle, nature, incorporabilite, id_unite_oeuvre, id_exercice) VALUES ('ACHAT BOIS', 1, 1, 1, 1);
-INSERT INTO type_rubrique (libelle, nature, incorporabilite, id_unite_oeuvre, id_exercice) VALUES ('EAU ET ELECTRICITE', 1, 1, 1, 1);
+INSERT INTO type_rubrique (libelle, nature, incorporabilite, id_unite_oeuvre) VALUES ('ACHAT SEMANCE', 1, 0, 1);
+INSERT INTO type_rubrique (libelle, nature, incorporabilite, id_unite_oeuvre) VALUES ('ACHAT BOIS', 1, 1, 1);
+INSERT INTO type_rubrique (libelle, nature, incorporabilite, id_unite_oeuvre) VALUES ('EAU ET ELECTRICITE', 1, 1, 1);
 
 INSERT INTO imputation (id_centre, id_type_rubrique, pourcentage) VALUES (2, 1, 90);
 INSERT INTO imputation (id_centre, id_type_rubrique, pourcentage) VALUES (3, 1, 10);
@@ -171,11 +177,11 @@ INSERT INTO imputation (id_centre, id_type_rubrique, pourcentage) VALUES (1, 3, 
 INSERT INTO imputation (id_centre, id_type_rubrique, pourcentage) VALUES (2, 3, 50);
 INSERT INTO imputation (id_centre, id_type_rubrique, pourcentage) VALUES (3, 3, 30);
 
-INSERT INTO rubrique (id_type_rubrique, prix_unitaire, quantite) values
-(1, 25000, 2),
-(2,35000, 3),
-(1, 25000, 4),
-(3, 55000, 3);
+INSERT INTO rubrique (id_type_rubrique, prix_unitaire, quantite, id_exercice) values
+(1, 25000, 2, 1),
+(2,35000, 3, 1),
+(1, 25000, 4, 1),
+(3, 55000, 3, 2);
 
 insert into produit (libelle, quantite, id_centre, id_exercice, date_sortie) VALUES
 ("")

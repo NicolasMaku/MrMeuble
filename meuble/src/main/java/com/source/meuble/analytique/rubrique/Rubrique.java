@@ -1,11 +1,13 @@
 package com.source.meuble.analytique.rubrique;
 
+import com.source.meuble.analytique.exercice.Exercice;
 import com.source.meuble.analytique.typeRubrique.TypeRubrique;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -26,5 +28,12 @@ public class Rubrique {
 
     @Column(name = "quantite", precision = 17, scale = 2)
     private BigDecimal quantite;
+
+    @Column(name = "date_achat")
+    private LocalDate dateAchat;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_exercice")
+    private Exercice idExercice;
 
 }

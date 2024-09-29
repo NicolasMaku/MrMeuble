@@ -15,7 +15,7 @@ public class Centre {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_centre")
-    Long idCentre;
+    int idCentre;
 
     @Setter
     @Column(name = "nom")
@@ -49,12 +49,15 @@ public class Centre {
         this.categorie = categorie;
     }
 
-    public Long getIdCentre() {
+    public int getIdCentre() {
         return idCentre;
     }
 
-    public void setIdCentre(Long idCentre) {
+    public void setIdCentre(int idCentre) {
         this.idCentre = idCentre;
     }
 
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
 }

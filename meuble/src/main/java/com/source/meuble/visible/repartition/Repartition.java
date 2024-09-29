@@ -13,7 +13,6 @@ import java.math.BigDecimal;
 /**
  * Mapping for DB view
  */
-@Getter
 @Setter
 @Entity
 @Immutable
@@ -44,4 +43,51 @@ public class Repartition {
     @Column(name = "cout_total")
     private BigDecimal coutTotal;
 
+    @Column(name = "id_exercice")
+    private Integer idExercice;
+
+    public Integer getIdExercice() {
+        return idExercice;
+    }
+
+    public BigDecimal getCoutTotal_bigdecimal() {
+        return coutTotal;
+    }
+
+    public Double getCoutTotal() {
+        return coutTotal.doubleValue();
+    }
+
+
+    public void setCoutTotal(BigDecimal coutTotal) {
+        this.coutTotal = coutTotal;
+    }
+
+    public Long getRowNumber() {
+        return rowNumber;
+    }
+
+    public Integer getIdCentre() {
+        return idCentre;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public BigDecimal getMontant() {
+        return montant;
+    }
+
+    public Integer getCategorie() {
+        return categorie;
+    }
+
+    public BigDecimal getCle() {
+        return cle;
+    }
+
+    public BigDecimal getStructure() {
+        return structure;
+    }
 }

@@ -38,7 +38,7 @@ public class CentreService {
     }
 
     public Centre addCentre(Centre centre) {
-        return  centreRepository.save(centre);
+        return centreRepository.save(centre);
     }
 
     public List<Centre> getAllCentre() {

@@ -32,4 +32,7 @@ public class TotauxRepartition {
     @Column(name = "s_cout_total")
     private BigDecimal sCoutTotal;
 
+    @Column(name = "id_exercice")
+    private Integer idExercice;
+
 }
