@@ -8,6 +8,7 @@ import com.source.meuble.analytique.uniteOeuvre.UniteOeuvre;
 import com.source.meuble.analytique.uniteOeuvre.UniteOeuvreService;
 import com.source.meuble.util.Layout;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -31,6 +32,21 @@ public class HomeController {
     @GetMapping
     public ModelAndView showHome() {
         ModelAndView modelAndView = new ModelAndView("landing");
+
+        List<UniteOeuvre> uniteOeuvres = uniteOeuvreService.getAllUO();
+        List<Centre> centres = centreService.getAllCentre();
+        List<TypeRubrique> trs = typeRubriqueService.getAllTypeRubrique();
+
+        modelAndView.addObject("uos", uniteOeuvres);
+        modelAndView.addObject("centres", centres);
+        modelAndView.addObject("trs", trs);
+
+        return modelAndView;
+    }
+
+    @GetMapping("table")
+    public ModelAndView showTable(){
+        ModelAndView modelAndView = new ModelAndView("tableau");
 
         List<UniteOeuvre> uniteOeuvres = uniteOeuvreService.getAllUO();
         List<Centre> centres = centreService.getAllCentre();

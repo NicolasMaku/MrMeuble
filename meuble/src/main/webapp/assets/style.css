@@ -1,0 +1,12 @@
+.slogan,
+.bgs,
+.navbar,
+.list,
+.goToTable,
+.illustration {
+    visibility: hidden;
+}
+
+.percentage {
+    display: none;
+}

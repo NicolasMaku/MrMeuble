@@ -32,5 +32,10 @@ document.addEventListener("DOMContentLoaded", () => {
             each: 0.3,
             from: 'center'
         }
+    }),
+    gsap.from('.goToTable', {
+        opacity: 0,
+        delay: 1.5,
+        duration: 1
     })
 });
