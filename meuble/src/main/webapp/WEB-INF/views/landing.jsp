@@ -16,7 +16,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/output.css">
+    <link rel="stylesheet" href="/assets/output.css">
+    <link rel="stylesheet" href="/assets/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
@@ -32,7 +33,7 @@
     <div class="relative z-3 flex items-center justify-center">
         <nav class="relative navbar w-3/6 h-16 flex justify-around border-b-2">
             <div class="absolute left-0 h-[100%] flex items-center justify-center">
-                <span class="font-bold">Mr. Meuble</span>
+                <span class="font-bold"><a href="home">Mr. Meuble</a></span>
             </div>
             <div class="absolute right-0 h-[100%] flex items-center justify-center">
                 <ul class="flex items-center justify-center gap-10">
@@ -40,9 +41,14 @@
                     <li class="font-sans list cursor-pointer" aria-haspopup="dialog" aria-expanded="false" aria-controls="uo-modal" data-hs-overlay="#uo-modal">Unité d'oeuvre</li>
                     <li class="font-sans list cursor-pointer" aria-haspopup="dialog" aria-expanded="false" aria-controls="type-rubrique-modal" data-hs-overlay="#type-rubrique-modal">Type rubrique</li>
                     <li class="font-sans list cursor-pointer" aria-haspopup="dialog" aria-expanded="false" aria-controls="rubrique-modal" data-hs-overlay="#rubrique-modal">Rubrique</li>
+                    <li class="font-sans list cursor-pointer" aria-haspopup="dialog" aria-expanded="false" aria-controls="sortie-modal" data-hs-overlay="#sortie-modal">Sortie</li>
                 </ul>
             </div>
         </nav>
+    </div>
+
+    <div class="goToTable relative z-30 top-20 flex items-center justify-center">
+        <a href="home/table"><button class=" p-3 px-4 text-center text-gray-50 rounded-3xl bg-gray-500 hover:bg-gray-700 transition-all duration-300">Voir le tableau</button></a>
     </div>
 
     <div class="slogan relative z-2 top-32 flex justify-center items-center flex-col">
@@ -424,9 +430,76 @@
                 </div>
             </div>
         </div>
+
+        <div id="sortie-modal"
+            class="hs-overlay hidden size-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto pointer-events-none"
+            role="dialog" tabindex="-1" aria-labelledby="sortie-modal-label">
+            <div
+                class="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 mt-0 opacity-0 ease-out transition-all sm:max-w-lg sm:w-full m-3 sm:mx-auto min-h-[calc(100%-3.5rem)] flex items-center">
+                <div
+                    class="w-full flex flex-col bg-white border shadow-sm rounded-xl pointer-events-auto dark:bg-neutral-800 dark:border-neutral-700 dark:shadow-neutral-700/70">
+                    <div class="flex justify-between items-center py-3 px-4 border-b dark:border-neutral-700">
+                        <h3 id="sortie-modal-label" class="font-bold text-gray-800 dark:text-white">
+                            Sortie
+                        </h3>
+                        <button type="button"
+                            class="size-8 inline-flex justify-center items-center gap-x-2 rounded-full border border-transparent bg-gray-100 text-gray-800 hover:bg-gray-200 focus:outline-none focus:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-700 dark:hover:bg-neutral-600 dark:text-neutral-400 dark:focus:bg-neutral-600"
+                            aria-label="Close" data-hs-overlay="#sortie-modal">
+                            <span class="sr-only">Close</span>
+                            <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 6 6 18"></path>
+                                <path d="m6 6 12 12"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <form action="" method="POST">
+                        <div class="p-4 overflow-y-auto">
+                            <div class="flex items-center justify-center py-3 gap-2">
+                                <label for="unite-oeuvre-sortie" class="block text-sm font-medium mb-2 dark:text-white">Unite d'oeuvre:</label>
+                                <select id="unite-oeuvre-sortie" name="tr"
+                                        class="py-3 px-4 block w-2/3 border border-gray-500 rounded-lg text-sm"
+                                >
+                                    <%
+                                        for(TypeRubrique tr: trs)
+                                        {
+                                    %>
+                                    <option value="<%=tr.getId()%>"><%=tr.getLibelle()%> (<%=tr.getIdUniteOeuvre().getNom()%>)</option>
+                                    <%
+                                        }
+                                    %>
+                                </select>
+                                <label for="quantite-sortie" class="block text-sm font-medium mb-2 dark:text-white">Quantité produite:</label>
+                                <input type="number" id="quantite-sortie" name="qte"
+                                class="py-3 px-4 block w-1/3 border border-gray-500 rounded-lg text-sm">
+                            </div>
+                            <label class="block text-sm font-medium mb-2 dark:text-white">Centre:</label>
+                            <input type="checkbox" name=""
+                                   class="ckeckbox shrink-0 mt-1 border-gray-500 rounded-full" id="centre-sortie"
+                                   checked="">
+                            <label for="centre-sortie"
+                                   class="text-sm text-gray-900 ms-2 dark:text-neutral-400">ADM</label>
+                        </div>
+                        <div
+                            class="flex justify-center items-center gap-x-2 py-3 px-4 border-t dark:border-neutral-700">
+                            <button type="button"
+                                class="w-2/6 py-2 px-3 items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
+                                data-hs-overlay="#sortie-modal">
+                                Fermer
+                            </button>
+                            <button type="submit"
+                                class="w-2/6 py-2 px-3 items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-gray-600 text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 disabled:opacity-50 disabled:pointer-events-none">
+                                Valider
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <script src="./node_modules/preline/dist/preline.js"></script>
+    <script src="/node_modules/preline/dist/preline.js"></script>
     <script src="assets/js/gsap.min.js"></script>
     <script src="assets/js/script.js"></script>
 </body>
