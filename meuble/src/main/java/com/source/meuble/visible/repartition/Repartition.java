@@ -43,6 +43,13 @@ public class Repartition {
     @Column(name = "cout_total")
     private BigDecimal coutTotal;
 
+    @Column(name = "id_exercice")
+    private Integer idExercice;
+
+    public Integer getIdExercice() {
+        return idExercice;
+    }
+
     public BigDecimal getCoutTotal_bigdecimal() {
         return coutTotal;
     }
