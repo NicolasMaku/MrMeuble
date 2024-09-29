@@ -21,7 +21,7 @@ public class ListeAnalytiqueService {
         this.typeRubriqueRepository = typeRubriqueRepository;
     }
 
-    public ListeAnalytiqueRow[] getTableau() {
+    public ListeAnalytiqueTableau getTableau() {
         List<TypeRubrique> trs = typeRubriqueRepository.findAll();
         List<ListeAnalytiqueRow> rows = new LinkedList<>();
 
@@ -32,6 +32,6 @@ public class ListeAnalytiqueService {
 
         System.out.println(rows);
 
-        return rows.toArray(ListeAnalytiqueRow[]::new);
+        return new ListeAnalytiqueTableau(rows.toArray(ListeAnalytiqueRow[]::new));
     }
 }

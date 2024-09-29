@@ -4,6 +4,7 @@ import com.source.meuble.analytique.centre.Centre;
 import com.source.meuble.analytique.centre.CentreService;
 import com.source.meuble.analytique.listeAnalytique.ListeAnalytiqueRow;
 import com.source.meuble.analytique.listeAnalytique.ListeAnalytiqueService;
+import com.source.meuble.analytique.listeAnalytique.ListeAnalytiqueTableau;
 import com.source.meuble.analytique.typeRubrique.TypeRubrique;
 import com.source.meuble.analytique.typeRubrique.TypeRubriqueService;
 import com.source.meuble.analytique.uniteOeuvre.UniteOeuvre;
@@ -52,7 +53,7 @@ public class HomeController {
     public ModelAndView showTable(){
         ModelAndView modelAndView = new ModelAndView("tableau");
 
-        ListeAnalytiqueRow[] tableau = listeAnalytiqueService.getTableau();
+        ListeAnalytiqueTableau tableau = listeAnalytiqueService.getTableau();
 
         List<UniteOeuvre> uniteOeuvres = uniteOeuvreService.getAllUO();
         List<Centre> centres = centreService.getAllCentre();

@@ -28,7 +28,12 @@ public class RepartitionCentre {
             ", variable=" + variable +
             '}';
     }
-    
+
+    public Double getTotal() {
+        if(fixe != null) return fixe;
+        return variable;
+    }
+
     public String getFixeStr() {
         return fixe != null ? String.format("%.2f", fixe) : "-";
     }

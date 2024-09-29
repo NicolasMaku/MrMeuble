@@ -6,6 +6,7 @@
 <%@ page import="com.source.meuble.util.RequestAttribute" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="com.source.meuble.analytique.listeAnalytique.RepartitionCentre" %>
+<%@ page import="com.source.meuble.analytique.listeAnalytique.ListeAnalytiqueTableau" %>
 <%@page pageEncoding="UTF-8" %>
 
 <%
@@ -13,7 +14,8 @@
     List<UniteOeuvre> uos = ((List<UniteOeuvre>) request.getAttribute("uos"));
     List<Centre> centres = ((List<Centre>) request.getAttribute("centres"));
     List<TypeRubrique> trs = ((List<TypeRubrique>) request.getAttribute("trs"));
-    ListeAnalytiqueRow[] lars = requestAttribute.getObject("tableau", ListeAnalytiqueRow[].class, new ListeAnalytiqueRow[0]);
+    ListeAnalytiqueTableau tableau = requestAttribute.getObject("tableau", ListeAnalytiqueTableau.class, new ListeAnalytiqueTableau(new ListeAnalytiqueRow[0]));
+    ListeAnalytiqueRow[] lars = tableau.getTableau();
 %>
 
 <!DOCTYPE html>
@@ -107,7 +109,7 @@
                     {
                 %>
                     <tr>
-                        <td><%=row.getRubrique()%>/td>
+                        <td><%=row.getRubrique()%></td>
                         <td class="number text-right border border-r-black border-transparent"><%=row.getTotal()%></td>
                         <td class="text-center"><%=row.getUniteOeuvre()%></td>
                         <td class="text-center"><%=row.getNature().substring(0, 1).toUpperCase()%></td>
@@ -143,33 +145,52 @@
                     <tr>
                         <th class="text-black border border-r-black border-b-black" colspan="2"></th>
                         <th class="text-black border border-black border-t-transparent" colspan="2"></th>
+                        <%
+                            for(Centre centre: centres)
+                            {
+                                Double fixe = tableau.getTotalFixeParCentre().get(centre.getIdCentre());
+                                Double variable = tableau.getTotalVariableParCentre().get(centre.getIdCentre());
+                        %>
                         <th class="text-black text-right border border-black"></th>
-                        <th class="number text-black text-right border border-black">5648855</th>
-                        <th class="number text-black text-right border border-black">4515125</th>
-                        <th class="number text-black text-right border border-black"></th>
-                        <th class="number text-black text-right border border-black">487469651</th>
-                        <th class="number text-black text-right border border-black">9895614</th>
-                        <th class="number text-black text-right border border-black"></th>
-                        <th class="number text-black text-right border border-black">5487956</th>
-                        <th class="number text-black text-right border border-black">97996146</th>
-                        <th class="number text-black text-right border border-black border-r-transparent"></th>
-                        <th class="number text-black text-right border border-black border-l-transparent">7854219</th>
-                        <th class="number text-black text-right border border-black">6562315</th>
+                        <th class="number text-black text-right border border-black"><%=fixe != null ? fixe : "0.00"%></th>
+                        <th class="number text-black text-right border border-black"><%=variable != null ? variable : "0.00"%></th>
+
+                        <%
+                            }
+                        %>
+<%--                        <th class="number text-black text-right border border-black"></th>--%>
+<%--                        <th class="number text-black text-right border border-black">487469651</th>--%>
+<%--                        <th class="number text-black text-right border border-black">9895614</th>--%>
+<%--                        <th class="number text-black text-right border border-black"></th>--%>
+<%--                        <th class="number text-black text-right border border-black">5487956</th>--%>
+<%--                        <th class="number text-black text-right border border-black">97996146</th>--%>
+<%--                        <th class="number text-black text-right border border-black border-r-transparent"></th>--%>
+<%--                        <th class="number text-black text-right border border-black border-l-transparent">7854219</th>--%>
+<%--                        <th class="number text-black text-right border border-black">6562315</th>--%>
                     </tr>
                     <tr>
                         <th class="text-black">TOTAL</th>
-                        <th class="number text-black text-right border border-r-black border-transparent">561125500</th>
+                        <th class="number text-black text-right border border-r-black border-transparent"><%=tableau.getGrandTotal()%></th>
                         <th class="number text-black text-right" colspan="2"></th>
+                        <%
+                            for (Centre centre: centres)
+                            {
+                                Double totalParCentre = tableau.getTotalParCentre().get(centre.getIdCentre());
+                        %>
                         <th class="number text-black text-right border border-black border-b-transparent" colspan="3">
-                            126940445.00</th>
-                        <th class="number text-black text-right border border-black border-b-transparent" colspan="3">
-                            194690135.00</th>
-                        <th class="number text-black text-right border border-black border-b-transparent" colspan="3">
-                            225770320.00</th>
-                        <th class="number text-black text-right border border-t-black border-transparent"></th>
-                        <th class="number text-black text-right">179815100.00</th>
-                        <th class="number text-black text-right border border-black border-b-transparent border-r-transparent">
-                            367585800.00</th>
+                            <%=totalParCentre != null ? totalParCentre : "0.00"%>
+                        </th>
+                        <%
+                            }
+                        %>
+<%--                        <th class="number text-black text-right border border-black border-b-transparent" colspan="3">--%>
+<%--                            194690135.00</th>--%>
+<%--                        <th class="number text-black text-right border border-black border-b-transparent" colspan="3">--%>
+<%--                            225770320.00</th>--%>
+<%--                        <th class="number text-black text-right border border-t-black border-transparent"></th>--%>
+<%--                        <th class="number text-black text-right">179815100.00</th>--%>
+<%--                        <th class="number text-black text-right border border-black border-b-transparent border-r-transparent">--%>
+<%--                            367585800.00</th>--%>
                     </tr>
                 </tfoot>
             </table>
