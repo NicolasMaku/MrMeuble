@@ -9,9 +9,9 @@ public class RequestAttribute {
         this.request = request;
     }
 
-    public <T> T getObject(String key, Class<T> type) {
+    public <T> T getObject(String key, Class<T> type, T onNull) {
         Object obj = request.getAttribute(key);
-        if(obj == null) return null;
+        if(obj == null) return onNull;
         return type.cast(obj);
     }
 }

@@ -1,9 +1,8 @@
 package com.source.meuble.analytique.listeAnalytique;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.source.meuble.analytique.centre.Centre;
+import com.source.meuble.analytique.typeRubrique.TypeRubrique;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Immutable;
@@ -23,14 +22,16 @@ public class ListAnalytique {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "libelle", length = 20)
-    private String libelle;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_type_rubrique")
+    private TypeRubrique typeRubrique;
 
     @Column(name = "pourcentage", precision = 5, scale = 2)
     private BigDecimal pourcentage;
 
-    @Column(name = "id_centre")
-    private Integer idCentre;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_centre")
+    private Centre idCentre;
 
     @Column(name = "total_par_centre")
     private BigDecimal totalParCentre;

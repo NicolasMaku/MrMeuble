@@ -93,6 +93,7 @@ create or replace view liste_general AS
 SELECT
     row_number() over () as id,
     tr.id_exercice as id_exeercice,
+    tr.id_type_rubrique as id_type_rubrique,
     tr.libelle as libelle,
     tr.id_type_rubrique as id_type_rubrique,
     SUM(r.prix_unitaire * r.quantite) AS total_rubrique,
@@ -106,17 +107,17 @@ GROUP BY
 
 create or replace view list_analytique as
 select
-    row_number() over () as id,
-    lg.libelle,
-    imputation.pourcentage,
-    imputation.id_centre,
-    (lg.total_rubrique/100)*imputation.pourcentage as total_par_centre,
-    lg.incorporabilite as incorporabilite
+            row_number() over () as id,
+            lg.id_type_rubrique as id_type_rubrique,
+            imputation.pourcentage,
+            imputation.id_centre,
+            (lg.total_rubrique/100)*imputation.pourcentage as total_par_centre,
+            lg.incorporabilite as incorporabilite
 from
     imputation
-join
+        join
     liste_general lg on imputation.id_type_rubrique = lg.id_type_rubrique
-group by imputation.id_centre, imputation.pourcentage, lg.libelle, lg.total_rubrique, lg.incorporabilite;
+group by imputation.id_centre, imputation.pourcentage, lg.id_type_rubrique, lg.total_rubrique, lg.incorporabilite;
 
 
 create or replace view analyse_ensemble AS
