@@ -29,6 +29,4 @@ public class Imputation {
     @Column(name = "pourcentage", precision = 5, scale = 2)
     private BigDecimal pourcentage;
 
-    @Column(name = "id_exercice")
-    private Integer idExercice;
 }
