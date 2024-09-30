@@ -21,7 +21,7 @@ public class AdminRepartition {
     TotauxRepartitionRepository totauxRepartitionRepository;
 
     public List<Repartition> getListeRepartition(int id_exercice) {
-        return repartitionRepository.findByIdExercice(id_exercice);
+        return repartitionRepository.myFindByIdExercice(id_exercice);
     }
 
     public TotauxRepartition getTotal(int id_exercice) {

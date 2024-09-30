@@ -37,7 +37,7 @@
     <div class="relative z-3 flex items-center justify-center">
         <nav class="relative navbar w-3/6 h-16 flex justify-around border-b-2">
             <div class="absolute left-0 h-[100%] flex items-center justify-center">
-                <span class="font-bold"><a href="home">Mr. Meuble</a></span>
+                <span class="font-bold"><a href="${pageContext.request.contextPath}/home">Mr. Meuble</a></span>
             </div>
             <div class="absolute right-0 h-[100%] flex items-center justify-center">
                 <ul class="flex items-center justify-center gap-10">

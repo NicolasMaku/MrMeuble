@@ -13,7 +13,11 @@ import com.source.meuble.analytique.uniteOeuvre.UniteOeuvreService;
 import com.source.meuble.util.Layout;
 import com.source.meuble.visible.cout.AdminCout;
 import com.source.meuble.visible.cout.Cout;
+import com.source.meuble.visible.AdminRepartition;
+import com.source.meuble.visible.repartition.Repartition;
+import com.source.meuble.visible.repartition.TotauxRepartition;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,7 +38,12 @@ public class HomeController {
     private final HttpSession httpSession;
     private final AdminCout adminCout;
 
-    public HomeController(UniteOeuvreService uniteOeuvreService, CentreService centreService, TypeRubriqueService typeRubriqueService, ListeAnalytiqueService listeAnalytiqueService, HttpSession httpSession, AdminCout adminCout) {
+    @Autowired
+    AdminRepartition adminRepartition;
+
+    public HomeController(UniteOeuvreService uniteOeuvreService, CentreService centreService,
+            TypeRubriqueService typeRubriqueService, ListeAnalytiqueService listeAnalytiqueService,
+            HttpSession httpSession) {
         this.uniteOeuvreService = uniteOeuvreService;
         this.centreService = centreService;
         this.typeRubriqueService = typeRubriqueService;
@@ -56,14 +65,14 @@ public class HomeController {
         modelAndView.addObject("trs", trs);
         modelAndView.addObject("cos", centres.stream().filter(c -> c.getCategorie() == 1).toList());
 
-
         return modelAndView;
     }
 
     @GetMapping("table")
-    public ModelAndView showTable(){
+    public ModelAndView showTable() {
         Exercice myExo = ((Exercice) httpSession.getAttribute("exercice"));
-        if(myExo == null) return new ModelAndView("redirect:/exercice");
+        if (myExo == null)
+            return new ModelAndView("redirect:/exercice");
 
         ModelAndView modelAndView = new ModelAndView("tableau");
 
@@ -73,27 +82,31 @@ public class HomeController {
         List<Centre> centres = centreService.getAllCentre();
         List<TypeRubrique> trs = typeRubriqueService.getAllTypeRubrique();
 
+        List<Repartition> repartitions = adminRepartition.getListeRepartition(myExo.getId());
+        TotauxRepartition total = new TotauxRepartition(repartitions);
+
         modelAndView.addObject("uos", uniteOeuvres);
         modelAndView.addObject("centres", centres);
         modelAndView.addObject("trs", trs);
         modelAndView.addObject("tableau", tableau);
         modelAndView.addObject("hasSortie", false);
         modelAndView.addObject("cos", centres.stream().filter(c -> c.getCategorie() == 1).toList());
+        modelAndView.addObject("repartitions", repartitions);
+        modelAndView.addObject("totalRepa", total);
 
         return modelAndView;
     }
 
     @GetMapping("/table/sortie")
     public ModelAndView showTableWithSortie(
-        @RequestParam("libelle") String libelle,
-        @RequestParam("uo") UniteOeuvre uo,
-        @RequestParam("qte") Double qte,
-        @RequestParam("centre[]") List<Centre> centre
-    ) {
+            @RequestParam("libelle") String libelle,
+            @RequestParam("uo") UniteOeuvre uo,
+            @RequestParam("qte") Double qte,
+            @RequestParam("centre[]") List<Centre> centre) {
         Exercice myExo = ((Exercice) httpSession.getAttribute("exercice"));
         centre.forEach(System.out::println);
 
-        Cout cout = adminCout.calculCout(uo, qte,centre, myExo.getId(), libelle);
+        Cout cout = adminCout.calculCout(uo, qte, centre, myExo.getId(), libelle);
 
         ModelAndView modelAndView = showTable();
         modelAndView.addObject("hasSortie", true);
@@ -101,7 +114,7 @@ public class HomeController {
 
         return modelAndView;
 
-//        modelAndView.addObject();
+        // modelAndView.addObject();
     }
 
 }

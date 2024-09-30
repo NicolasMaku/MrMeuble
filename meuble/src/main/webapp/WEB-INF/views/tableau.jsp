@@ -3,6 +3,8 @@
 <%@ page import="com.source.meuble.analytique.centre.Centre" %>
 <%@ page import="com.source.meuble.analytique.typeRubrique.TypeRubrique" %>
 <%@ page import="com.source.meuble.analytique.listeAnalytique.ListeAnalytiqueRow" %>
+<%@ page import="com.source.meuble.visible.repartition.Repartition" %>
+<%@ page import="com.source.meuble.visible.repartition.TotauxRepartition" %>
 <%@ page import="com.source.meuble.util.RequestAttribute" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="com.source.meuble.analytique.listeAnalytique.RepartitionCentre" %>
@@ -20,6 +22,8 @@
     List<Centre> cos = ((List<Centre>) request.getAttribute("cos"));
     Boolean hasSortie = requestAttribute.getObject("hasSortie", Boolean.class, false);
     Cout cout = requestAttribute.getObject("cout", Cout.class, null);
+    List<Repartition> repartitions = ((List<Repartition>) request.getAttribute("repartitions") );
+    TotauxRepartition totalRepa = ((TotauxRepartition) request.getAttribute("totalRepa") );
 %>
 
 <!DOCTYPE html>
@@ -67,22 +71,22 @@
           fill="url(#eRYNvC8mAPq2-fill)" stroke-width="5.12"/>
 </svg>
 
-<div class="relative z-3 flex items-center justify-center">
-    <nav class="relative navbar w-3/6 h-16 flex justify-around border-b-2">
-        <div class="absolute left-0 h-[100%] flex items-center justify-center">
-            <span class="font-bold"><a href="">Mr. Meuble</a></span>
-        </div>
-        <div class="absolute right-0 h-[100%] flex items-center justify-center">
-            <ul class="flex items-center justify-center gap-10">
-                <li class="font-sans list cursor-pointer" aria-haspopup="dialog" aria-expanded="false" aria-controls="centre-modal" data-hs-overlay="#centre-modal">Centre</li>
-                <li class="font-sans list cursor-pointer" aria-haspopup="dialog" aria-expanded="false" aria-controls="uo-modal" data-hs-overlay="#uo-modal">Unité d'oeuvre</li>
-                <li class="font-sans list cursor-pointer" aria-haspopup="dialog" aria-expanded="false" aria-controls="type-rubrique-modal" data-hs-overlay="#type-rubrique-modal">Type rubrique</li>
-                <li class="font-sans list cursor-pointer" aria-haspopup="dialog" aria-expanded="false" aria-controls="rubrique-modal" data-hs-overlay="#rubrique-modal">Rubrique</li>
-                <li class="font-sans list cursor-pointer" aria-haspopup="dialog" aria-expanded="false" aria-controls="sortie-modal" data-hs-overlay="#sortie-modal">Sortie</li>
-            </ul>
-        </div>
-    </nav>
-</div>
+    <div class="relative z-3 flex items-center justify-center">
+        <nav class="relative navbar w-3/6 h-16 flex justify-around border-b-2">
+            <div class="absolute left-0 h-[100%] flex items-center justify-center">
+                <span class="font-bold"><a href="${pageContext.request.contextPath}/home">Mr. Meuble</a></span>
+            </div>
+            <div class="absolute right-0 h-[100%] flex items-center justify-center">
+                <ul class="flex items-center justify-center gap-10">
+                    <li class="font-sans list cursor-pointer" aria-haspopup="dialog" aria-expanded="false" aria-controls="centre-modal" data-hs-overlay="#centre-modal">Centre</li>
+                    <li class="font-sans list cursor-pointer" aria-haspopup="dialog" aria-expanded="false" aria-controls="uo-modal" data-hs-overlay="#uo-modal">Unité d'oeuvre</li>
+                    <li class="font-sans list cursor-pointer" aria-haspopup="dialog" aria-expanded="false" aria-controls="type-rubrique-modal" data-hs-overlay="#type-rubrique-modal">Type rubrique</li>
+                    <li class="font-sans list cursor-pointer" aria-haspopup="dialog" aria-expanded="false" aria-controls="rubrique-modal" data-hs-overlay="#rubrique-modal">Rubrique</li>
+                    <li class="font-sans list cursor-pointer" aria-haspopup="dialog" aria-expanded="false" aria-controls="sortie-modal" data-hs-overlay="#sortie-modal">Sortie</li>
+                </ul>
+            </div>
+        </nav>
+    </div>
 
 <button class="absolute top-10 left-20 p-2 px-3 rounded-3xl text-gray-50 bg-slate-500" id="generate">Generer PDF</button>
 <div
@@ -236,66 +240,61 @@
             </tfoot>
         </table>
     </div>
-</div>
-<div
-        class="overflow-x-auto m-8 bg-gray-500 rounded-md bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-10">
-    <h1 class="text-black p-2 font-bold underline">Tableau de répartition:</h1>
-    <div class="table-container relative max-h-[75dvh] overflow-y-auto">
-        <table class="table table-xs" id="table-2">
-            <thead>
-            <tr>
-                <th class="text-center text-black">REPARTITION ADM/DIST</th>
-                <th class="text-center text-black">Cout direct</th>
-                <th class="text-center text-black"></th>
-                <th class="text-center text-black">Clés (%)</th>
-                <th class="text-center text-black">ADM/DIST</th>
-                <th class="text-center text-black">Cout total</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>Total atelier</td>
-                <td class="number text-right">15555.54</td>
-                <td class="number text-right"></td>
-                <td class="number text-right">54%</td>
-                <td class="number text-right">15555.54</td>
-                <td class="number text-right">1555455.54</td>
-            </tr>
-            <tr>
-                <td>Total usine</td>
-                <td class="number text-right">15555.54</td>
-                <td class="number text-right"></td>
-                <td class="number text-right">46 %</td>
-                <td class="number text-right">15555.54</td>
-                <td class="number text-right">1555455.54</td>
-            </tr>
+    <div
+            class="overflow-x-auto m-8 bg-gray-500 rounded-md bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-10">
+        <h1 class="text-black p-2 font-bold underline">Tableau de répartition:</h1>
+        <div class="table-container relative max-h-[75dvh] overflow-y-auto">
+            <table class="table table-xs" id="table-2">
+                <thead>
+                    <tr>
+                        <th class="text-center text-black">REPARTITION CENTRE STRUCTURE</th>
+                        <th class="text-center text-black">Cout direct</th>
+                        <th class="text-center text-black"></th>
+                        <th class="text-center text-black">Clés (%)</th>
+                        <th class="text-center text-black">Structure</th>
+                        <th class="text-center text-black">Cout total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
 
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            </tbody>
-            <tfoot>
-            <tr>
-                <th class="text-black">Total générale</th>
-                <th class="number text-right text-black">15555.54</th>
-                <th class="number text-right text-black"></th>
-                <th class="number text-right text-black">46%</th>
-                <th class="number text-right text-black">15555.54</th>
-                <th class="number text-right text-black">1555455.54</th>
-            </tr>
-            </tfoot>
-        </table>
+                    <%
+                        for (Repartition repart : repartitions) { %>
+                            <tr>
+                                <td>Total <%= repart.getNom() %></td>
+                                <td class="number text-right"><%= repart.getMontant() %></td>
+                                <td class="number text-right"></td>
+                                <td class="number text-right"><%= repart.getCle() %> %</td>
+                                <td class="number text-right"><%= repart.getStructure() %></td>
+                                <td class="number text-right"><%= repart.getCoutTotal() %></td>
+                            </tr>
+                        <% } %>
+
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td></tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <th class="text-black">Total générale</th>
+                    <th class="number text-right text-black"><%= totalRepa.getSDirect() %>></th>
+                    <th class="number text-right text-black"></th>
+                    <th class="number text-right text-black">cle %</th>
+                    <th class="number text-right text-black"><%= totalRepa.getSStructure() %>></th>
+                    <th class="number text-right text-black"><%= totalRepa.getSCoutTotal() %>></th>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
     </div>
 </div>
 
