@@ -356,9 +356,6 @@
         </table>
     </div>
 </div>
-<%
-    }
-%>
 
 <div
         class="overflow-x-auto w-1/3 m-8 bg-gray-500 rounded-md bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-10">
@@ -459,6 +456,11 @@
         </div>
     </div>
 </div>
+
+<%
+    }
+%>
+
 
 <div class="relative z-1">
     <div id="centre-modal"

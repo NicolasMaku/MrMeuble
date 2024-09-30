@@ -108,6 +108,8 @@ public class HomeController {
 
         Cout cout = adminCout.calculCout(uo, qte, centre, myExo.getId(), libelle);
 
+
+
         ModelAndView modelAndView = showTable();
         modelAndView.addObject("hasSortie", true);
         modelAndView.addObject("cout", cout);
