@@ -8,5 +8,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TypeRubriqueRepository extends JpaRepository<TypeRubrique, Integer> {
 
-
 }

@@ -1,6 +1,5 @@
 package com.source.meuble.analytique.listeAnalytique;
 
-
 import com.source.meuble.analytique.exercice.Exercice;
 import com.source.meuble.analytique.exercice.ExerciceRepository;
 import com.source.meuble.analytique.rubrique.Rubrique;
@@ -24,7 +23,8 @@ public class ListeAnalytiqueService {
     @Autowired
     private RubriqueRepository rubriqueRepository;
 
-    public ListeAnalytiqueService(ListAnalytiqueRepository listAnalytiqueRepository, TypeRubriqueRepository typeRubriqueRepository, ExerciceRepository exerciceRepositoiry) {
+    public ListeAnalytiqueService(ListAnalytiqueRepository listAnalytiqueRepository,
+            TypeRubriqueRepository typeRubriqueRepository, ExerciceRepository exerciceRepositoiry) {
         this.listAnalytiqueRepository = listAnalytiqueRepository;
         this.typeRubriqueRepository = typeRubriqueRepository;
     }

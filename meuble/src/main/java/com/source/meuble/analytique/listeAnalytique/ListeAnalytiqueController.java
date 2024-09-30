@@ -19,7 +19,7 @@ public class ListeAnalytiqueController {
     @GetMapping()
     public ModelAndView showResultat() {
         ModelAndView modelAndView = new ModelAndView("tableau");
-//        listeAnalytiqueService.getTableau();
+        listeAnalytiqueService.getTableau();
         return modelAndView;
     }
 
