@@ -52,7 +52,7 @@
     </div>
 
     <div class="goToTable relative z-30 top-20 flex items-center justify-center">
-        <a href="home/table"><button class=" p-3 px-4 text-center text-gray-50 rounded-3xl bg-gray-500 hover:bg-gray-700 transition-all duration-300">Voir le tableau</button></a>
+        <a href="home/table"><button class="btnGoToTable p-3 px-4 text-center text-gray-50 rounded-3xl bg-gray-500 hover:bg-gray-700 transition-all duration-300">Voir les tableaux</button></a>
     </div>
 
     <div class="slogan relative z-2 top-32 flex justify-center items-center flex-col">
