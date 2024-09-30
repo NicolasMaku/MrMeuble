@@ -43,7 +43,7 @@ public class HomeController {
 
     public HomeController(UniteOeuvreService uniteOeuvreService, CentreService centreService,
             TypeRubriqueService typeRubriqueService, ListeAnalytiqueService listeAnalytiqueService,
-            HttpSession httpSession) {
+            HttpSession httpSession, AdminCout adminCout) {
         this.uniteOeuvreService = uniteOeuvreService;
         this.centreService = centreService;
         this.typeRubriqueService = typeRubriqueService;
