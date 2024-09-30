@@ -17,8 +17,6 @@ public class ListeAnalytiqueRow {
     private String uniteOeuvre;
     private String nature;
     private Map<Integer, RepartitionCentre> repartition;
-    private Double totalFixe;
-    private Double totalVariable;
 
     public ListeAnalytiqueRow(){}
 
@@ -29,22 +27,13 @@ public class ListeAnalytiqueRow {
         Set<ListAnalytique> las = tr.getListAnalytiques();
         this.repartition = new HashMap<>();
 
-        setTotalFixe(0.00);
-        setTotalVariable(0.00);
-
         Double[] sum = new Double[1];
         sum[0] = 0.00;
 
         las.forEach((la) -> {
-            Boolean isFixed = (tr.getNature() == 0);
-            RepartitionCentre rc = new RepartitionCentre(la.getTotalParCentre().doubleValue(), la.getPourcentage().doubleValue(), isFixed);
+            RepartitionCentre rc = new RepartitionCentre(la.getTotalParCentre().doubleValue(), la.getPourcentage().doubleValue(), tr.getNature() == 0);
             sum[0] += la.getTotalParCentre().doubleValue();
             repartition.put(la.getIdCentre().getIdCentre(), rc);
-            if(isFixed) {
-                totalFixe += rc.getFixe();
-            } else {
-                totalVariable += rc.getVariable();
-            }
         });
 
         this.setTotal(sum[0]);
