@@ -242,6 +242,63 @@
             </table>
         </div>
     </div>
+
+    <div
+            class="overflow-x-auto w-1/3 m-8 bg-gray-500 rounded-md bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-10">
+    <h1 class="text-black p-2 font-bold underline">Seuil de rentabilité:</h1>
+        <div class="table-container relative max-h-[75dvh] overflow-y-auto">
+            <div class="flex items-center justify-center gap-2">
+                <div class="py-2 px-4 w-3/6">
+                    <p>CA:</p>
+                </div>
+                <div class="py-2 px-4 w-3/6">
+                    <p class="number text-right text-black font-bold">6466</p>
+                </div>
+            </div>
+            <div class="flex items-center justify-center gap-2">
+                <div class="py-2 px-4 w-3/6">
+                    <p>CV:</p>
+                </div>
+                <div class="py-2 px-4 w-3/6">
+                    <p class="number text-right text-black font-bold">6466</p>
+                </div>
+            </div>
+            <div class="flex items-center justify-center gap-2">
+                <div class="py-2 px-4 w-3/6">
+                    <p>CF:</p>
+                </div>
+                <div class="py-2 px-4 w-3/6">
+                    <p class="number text-right text-black font-bold">6466</p>
+                </div>
+            </div>
+            <div class="flex items-center justify-center gap-2">
+                <div class="py-2 px-4 w-3/6">
+                    <p>MCV:</p>
+                </div>
+                <div class="py-2 px-4 w-3/6">
+                    <p class="number text-right text-black font-bold">6466</p>
+                </div>
+            </div>
+            <div class="flex items-center justify-center gap-2">
+                <div class="py-2 px-4 w-3/6">
+                    <p>CA-CV:</p>
+                </div>
+                <div class="py-2 px-4 w-3/6">
+                    <p class="number text-right text-black font-bold">6466</p>
+                </div>
+            </div>
+            <div class="flex items-center justify-center gap-2">
+                <div class="flex items-center gap-4 py-2 px-4 w-3/6">
+                    <p>Seuil:</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="85.256px" height="38.896px" viewBox="0 -1381 4710.4 2149" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style=""><defs><path id="MJX-5-TEX-I-1D436" d="M50 252Q50 367 117 473T286 641T490 704Q580 704 633 653Q642 643 648 636T656 626L657 623Q660 623 684 649Q691 655 699 663T715 679T725 690L740 705H746Q760 705 760 698Q760 694 728 561Q692 422 692 421Q690 416 687 415T669 413H653Q647 419 647 422Q647 423 648 429T650 449T651 481Q651 552 619 605T510 659Q484 659 454 652T382 628T299 572T226 479Q194 422 175 346T156 222Q156 108 232 58Q280 24 350 24Q441 24 512 92T606 240Q610 253 612 255T628 257Q648 257 648 248Q648 243 647 239Q618 132 523 55T319 -22Q206 -22 128 53T50 252Z"></path><path id="MJX-5-TEX-I-1D439" d="M48 1Q31 1 31 11Q31 13 34 25Q38 41 42 43T65 46Q92 46 125 49Q139 52 144 61Q146 66 215 342T285 622Q285 629 281 629Q273 632 228 634H197Q191 640 191 642T193 659Q197 676 203 680H742Q749 676 749 669Q749 664 736 557T722 447Q720 440 702 440H690Q683 445 683 453Q683 454 686 477T689 530Q689 560 682 579T663 610T626 626T575 633T503 634H480Q398 633 393 631Q388 629 386 623Q385 622 352 492L320 363H375Q378 363 398 363T426 364T448 367T472 374T489 386Q502 398 511 419T524 457T529 475Q532 480 548 480H560Q567 475 567 470Q567 467 536 339T502 207Q500 200 482 200H470Q463 206 463 212Q463 215 468 234T473 274Q473 303 453 310T364 317H309L277 190Q245 66 245 60Q245 46 334 46H359Q365 40 365 39T363 19Q359 6 353 0H336Q295 2 185 2Q120 2 86 2T48 1Z"></path><path id="MJX-5-TEX-I-1D445" d="M230 637Q203 637 198 638T193 649Q193 676 204 682Q206 683 378 683Q550 682 564 680Q620 672 658 652T712 606T733 563T739 529Q739 484 710 445T643 385T576 351T538 338L545 333Q612 295 612 223Q612 212 607 162T602 80V71Q602 53 603 43T614 25T640 16Q668 16 686 38T712 85Q717 99 720 102T735 105Q755 105 755 93Q755 75 731 36Q693 -21 641 -21H632Q571 -21 531 4T487 82Q487 109 502 166T517 239Q517 290 474 313Q459 320 449 321T378 323H309L277 193Q244 61 244 59Q244 55 245 54T252 50T269 48T302 46H333Q339 38 339 37T336 19Q332 6 326 0H311Q275 2 180 2Q146 2 117 2T71 2T50 1Q33 1 33 10Q33 12 36 24Q41 43 46 45Q50 46 61 46H67Q94 46 127 49Q141 52 146 61Q149 65 218 339T287 628Q287 635 230 637ZM630 554Q630 586 609 608T523 636Q521 636 500 636T462 637H440Q393 637 386 627Q385 624 352 494T319 361Q319 360 388 360Q466 361 492 367Q556 377 592 426Q608 449 619 486T630 554Z"></path><path id="MJX-5-TEX-N-2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path><path id="MJX-5-TEX-I-1D449" d="M52 648Q52 670 65 683H76Q118 680 181 680Q299 680 320 683H330Q336 677 336 674T334 656Q329 641 325 637H304Q282 635 274 635Q245 630 242 620Q242 618 271 369T301 118L374 235Q447 352 520 471T595 594Q599 601 599 609Q599 633 555 637Q537 637 537 648Q537 649 539 661Q542 675 545 679T558 683Q560 683 570 683T604 682T668 681Q737 681 755 683H762Q769 676 769 672Q769 655 760 640Q757 637 743 637Q730 636 719 635T698 630T682 623T670 615T660 608T652 599T645 592L452 282Q272 -9 266 -16Q263 -18 259 -21L241 -22H234Q216 -22 216 -15Q213 -9 177 305Q139 623 138 626Q133 637 76 637H59Q52 642 52 648Z"></path></defs><g stroke="#000000" fill="#000000" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mfrac"><g data-mml-node="mrow" transform="translate(1600.7,676)"><g data-mml-node="mi"><use data-c="1D436" xlink:href="#MJX-5-TEX-I-1D436"></use></g><g data-mml-node="mi" transform="translate(760,0)"><use data-c="1D439" xlink:href="#MJX-5-TEX-I-1D439"></use></g></g><g data-mml-node="mrow" transform="translate(220,-686)"><g data-mml-node="mi"><use data-c="1D436" xlink:href="#MJX-5-TEX-I-1D436"></use></g><g data-mml-node="mi" transform="translate(760,0)"><use data-c="1D445" xlink:href="#MJX-5-TEX-I-1D445"></use></g><g data-mml-node="mo" transform="translate(1741.2,0)"><use data-c="2212" xlink:href="#MJX-5-TEX-N-2212"></use></g><g data-mml-node="mi" transform="translate(2741.4,0)"><use data-c="1D436" xlink:href="#MJX-5-TEX-I-1D436"></use></g><g data-mml-node="mi" transform="translate(3501.4,0)"><use data-c="1D449" xlink:href="#MJX-5-TEX-I-1D449"></use></g></g><rect width="4470.4" height="60" x="120" y="220"></rect></g></g></g></svg>
+                </div>
+                <div class="py-2 px-4 w-3/6">
+                    <p class="number text-right text-black font-bold">6466</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="relative z-1">
         <div id="centre-modal"
              class="hs-overlay hidden size-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto pointer-events-none"
