@@ -22,11 +22,39 @@ public class ListeAnalytiqueRow {
 
     public ListeAnalytiqueRow(){}
 
-    public ListeAnalytiqueRow(TypeRubrique tr) {
-        this.setRubrique(tr.getLibelle());
-        this.setUniteOeuvre(tr.getIdUniteOeuvre().getNom());
-        this.setNature(tr.getNature() == 0 ? "fixe" : "variable");
-        Set<ListAnalytique> las = tr.getListAnalytiques();
+//    public ListeAnalytiqueRow(TypeRubrique tr) {
+//        this.setRubrique(tr.getLibelle());
+//        this.setUniteOeuvre(tr.getIdUniteOeuvre().getNom());
+//        this.setNature(tr.getNature() == 0 ? "fixe" : "variable");
+//        Set<ListAnalytique> las = tr.getListAnalytiques();
+//        this.repartition = new HashMap<>();
+//
+//        setTotalFixe(0.00);
+//        setTotalVariable(0.00);
+//
+//        Double[] sum = new Double[1];
+//        sum[0] = 0.00;
+//
+//        las.forEach((la) -> {
+//            Boolean isFixed = (tr.getNature() == 0);
+//            RepartitionCentre rc = new RepartitionCentre(la.getTotalParCentre().doubleValue(), la.getPourcentage().doubleValue(), isFixed);
+//            sum[0] += la.getTotalParCentre().doubleValue();
+//            repartition.put(la.getIdCentre().getIdCentre(), rc);
+//            if(isFixed) {
+//                totalFixe += rc.getFixe();
+//            } else {
+//                totalVariable += rc.getVariable();
+//            }
+//        });
+//
+//        this.setTotal(sum[0]);
+//    }
+
+    public ListeAnalytiqueRow(Rubrique rubrique) {
+        this.setRubrique(rubrique.getIdTypeRubrique().getLibelle());
+        this.setUniteOeuvre(rubrique.getIdTypeRubrique().getIdUniteOeuvre().getNom());
+        this.setNature(rubrique.getIdTypeRubrique().getNature() == 0 ? "fixe" : "variable");
+        Set<ListAnalytique> las = rubrique.getIdTypeRubrique().getListAnalytiques();
         this.repartition = new HashMap<>();
 
         setTotalFixe(0.00);
@@ -36,7 +64,7 @@ public class ListeAnalytiqueRow {
         sum[0] = 0.00;
 
         las.forEach((la) -> {
-            Boolean isFixed = (tr.getNature() == 0);
+            Boolean isFixed = (rubrique.getIdTypeRubrique().getNature() == 0);
             RepartitionCentre rc = new RepartitionCentre(la.getTotalParCentre().doubleValue(), la.getPourcentage().doubleValue(), isFixed);
             sum[0] += la.getTotalParCentre().doubleValue();
             repartition.put(la.getIdCentre().getIdCentre(), rc);

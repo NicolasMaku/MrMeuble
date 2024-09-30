@@ -6,10 +6,10 @@ import java.util.List;
 
 @Service
 public class ExerciceService {
-    public final ExerciceRepositoiry exerciceRepositoiry;
+    public final ExerciceRepository exerciceRepositoiry;
 
 
-    public ExerciceService(ExerciceRepositoiry exerciceRepositoiry) {
+    public ExerciceService(ExerciceRepository exerciceRepositoiry) {
         this.exerciceRepositoiry = exerciceRepositoiry;
     }
 
