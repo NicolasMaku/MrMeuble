@@ -91,7 +91,7 @@ create trigger verify before INSERT ON imputation for each row execute function 
 create or replace view liste_general AS
 SELECT
     row_number() over () as id,
-    tr.id_exercice as id_exeercice,
+    r.id_exercice as id_exeercice,
     tr.libelle as libelle,
     tr.id_type_rubrique as id_type_rubrique,
     SUM(r.prix_unitaire * r.quantite) AS total_rubrique,
@@ -101,21 +101,21 @@ FROM
 JOIN
     type_rubrique tr ON r.id_type_rubrique = tr.id_type_rubrique
 GROUP BY
-    tr.id_exercice, tr.libelle, tr.id_type_rubrique;
+    r.id_exercice, tr.libelle, tr.id_type_rubrique;
 
 create or replace view list_analytique as
 select
     row_number() over () as id,
-    lg.libelle,
+    lg.id_type_rubrique as id_type_rubrique,
     imputation.pourcentage,
     imputation.id_centre,
     (lg.total_rubrique/100)*imputation.pourcentage as total_par_centre,
     lg.incorporabilite as incorporabilite
 from
     imputation
-join
+        join
     liste_general lg on imputation.id_type_rubrique = lg.id_type_rubrique
-group by imputation.id_centre, imputation.pourcentage, lg.libelle, lg.total_rubrique, lg.incorporabilite;
+group by imputation.id_centre, imputation.pourcentage, lg.id_type_rubrique, lg.total_rubrique, lg.incorporabilite;
 
 
 create or replace view analyse_ensemble AS
@@ -184,4 +184,6 @@ INSERT INTO rubrique (id_type_rubrique, prix_unitaire, quantite, id_exercice) va
 (3, 55000, 3, 2);
 
 insert into produit (libelle, quantite, id_centre, id_exercice, date_sortie) VALUES
-("")
+("");
+
+insert into utilisateur (username, password) values ('root','root');

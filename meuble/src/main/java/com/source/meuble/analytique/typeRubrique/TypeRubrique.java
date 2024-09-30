@@ -32,10 +32,7 @@ public class TypeRubrique {
     @JoinColumn(name = "id_unite_oeuvre")
     private UniteOeuvre idUniteOeuvre;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_exercice")
-    private Exercice idExercice;
-
     @OneToMany(mappedBy = "typeRubrique", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<ListAnalytique> listAnalytiques;
+
 }
