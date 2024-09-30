@@ -11,7 +11,11 @@ import com.source.meuble.analytique.typeRubrique.TypeRubriqueService;
 import com.source.meuble.analytique.uniteOeuvre.UniteOeuvre;
 import com.source.meuble.analytique.uniteOeuvre.UniteOeuvreService;
 import com.source.meuble.util.Layout;
+import com.source.meuble.visible.AdminRepartition;
+import com.source.meuble.visible.repartition.Repartition;
+import com.source.meuble.visible.repartition.TotauxRepartition;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +33,9 @@ public class HomeController {
     private final TypeRubriqueService typeRubriqueService;
     private final ListeAnalytiqueService listeAnalytiqueService;
     private final HttpSession httpSession;
+
+    @Autowired
+    AdminRepartition adminRepartition;
 
     public HomeController(UniteOeuvreService uniteOeuvreService, CentreService centreService, TypeRubriqueService typeRubriqueService, ListeAnalytiqueService listeAnalytiqueService, HttpSession httpSession) {
         this.uniteOeuvreService = uniteOeuvreService;
@@ -66,10 +73,15 @@ public class HomeController {
         List<Centre> centres = centreService.getAllCentre();
         List<TypeRubrique> trs = typeRubriqueService.getAllTypeRubrique();
 
+        List<Repartition> repartitions = adminRepartition.getListeRepartition(myExo.getId());
+        TotauxRepartition total = new TotauxRepartition(repartitions);
+
         modelAndView.addObject("uos", uniteOeuvres);
         modelAndView.addObject("centres", centres);
         modelAndView.addObject("trs", trs);
         modelAndView.addObject("tableau", tableau);
+        modelAndView.addObject("repartitions", repartitions);
+        modelAndView.addObject("totalRepa", total);
 
         return modelAndView;
     }

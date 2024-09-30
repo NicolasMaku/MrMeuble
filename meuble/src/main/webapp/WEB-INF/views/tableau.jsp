@@ -3,6 +3,8 @@
 <%@ page import="com.source.meuble.analytique.centre.Centre" %>
 <%@ page import="com.source.meuble.analytique.typeRubrique.TypeRubrique" %>
 <%@ page import="com.source.meuble.analytique.listeAnalytique.ListeAnalytiqueRow" %>
+<%@ page import="com.source.meuble.visible.repartition.Repartition" %>
+<%@ page import="com.source.meuble.visible.repartition.TotauxRepartition" %>
 <%@ page import="com.source.meuble.util.RequestAttribute" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="com.source.meuble.analytique.listeAnalytique.RepartitionCentre" %>
@@ -16,6 +18,8 @@
     List<TypeRubrique> trs = ((List<TypeRubrique>) request.getAttribute("trs"));
     ListeAnalytiqueTableau tableau = requestAttribute.getObject("tableau", ListeAnalytiqueTableau.class, new ListeAnalytiqueTableau(new ListeAnalytiqueRow[0]));
     ListeAnalytiqueRow[] lars = tableau.getTableau();
+    List<Repartition> repartitions = ((List<Repartition>) request.getAttribute("repartitions") );
+    TotauxRepartition totalRepa = ((TotauxRepartition) request.getAttribute("totalRepa") );
 %>
 
 <!DOCTYPE html>
@@ -204,11 +208,11 @@
             <table class="table table-xs" id="table-2">
                 <thead>
                     <tr>
-                        <th class="text-center text-black">REPARTITION ADM/DIST</th>
+                        <th class="text-center text-black">REPARTITION CENTRE STRUCTURE</th>
                         <th class="text-center text-black">Cout direct</th>
                         <th class="text-center text-black"></th>
                         <th class="text-center text-black">Clés (%)</th>
-                        <th class="text-center text-black">ADM/DIST</th>
+                        <th class="text-center text-black">Structure</th>
                         <th class="text-center text-black">Cout total</th>
                     </tr>
                 </thead>
@@ -220,22 +224,18 @@
                         <td></td>
                         <td></td>
                     </tr>
-                    <tr>
-                        <td>Total atelier</td>
-                        <td class="number text-right">15555.54</td>
-                        <td class="number text-right"></td>
-                        <td class="number text-right">54%</td>
-                        <td class="number text-right">15555.54</td>
-                        <td class="number text-right">1555455.54</td>
-                    </tr>
-                    <tr>
-                        <td>Total usine</td>
-                        <td class="number text-right">15555.54</td>
-                        <td class="number text-right"></td>
-                        <td class="number text-right">46 %</td>
-                        <td class="number text-right">15555.54</td>
-                        <td class="number text-right">1555455.54</td>
-                    </tr>
+
+                    <%
+                        for (Repartition repart : repartitions) { %>
+                            <tr>
+                                <td>Total <%= repart.getNom() %></td>
+                                <td class="number text-right"><%= repart.getMontant() %></td>
+                                <td class="number text-right"></td>
+                                <td class="number text-right"><%= repart.getCle() %> %</td>
+                                <td class="number text-right"><%= repart.getStructure() %></td>
+                                <td class="number text-right"><%= repart.getCoutTotal() %></td>
+                            </tr>
+                        <% } %>
 
                     <tr>
                         <td></td>
@@ -247,11 +247,11 @@
                 <tfoot>
                 <tr>
                     <th class="text-black">Total générale</th>
-                    <th class="number text-right text-black">15555.54</th>
+                    <th class="number text-right text-black"><%= totalRepa.getSDirect() %>></th>
                     <th class="number text-right text-black"></th>
-                    <th class="number text-right text-black">46%</th>
-                    <th class="number text-right text-black">15555.54</th>
-                    <th class="number text-right text-black">1555455.54</th>
+                    <th class="number text-right text-black">cle %</th>
+                    <th class="number text-right text-black"><%= totalRepa.getSStructure() %>></th>
+                    <th class="number text-right text-black"><%= totalRepa.getSCoutTotal() %>></th>
                 </tr>
                 </tfoot>
             </table>
