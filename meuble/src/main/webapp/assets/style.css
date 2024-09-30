@@ -10,3 +10,16 @@
 .percentage {
     display: none;
 }
+
+.goToTable {
+    position: relative;
+    z-index: 30;
+    top: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btnGoToTable {
+    background-color: rgb(55, 65, 81 );
+}
