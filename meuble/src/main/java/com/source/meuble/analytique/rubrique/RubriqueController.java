@@ -23,12 +23,11 @@ public class RubriqueController {
 
     @PostMapping("/save")
     public String save(
-        @RequestParam("tr") TypeRubrique tr,
-        @RequestParam("pu") Double pu,
-        @RequestParam("qte") Double qte
+            @RequestParam("tr") TypeRubrique tr,
+            @RequestParam("pu") Double pu,
+            @RequestParam("qte") Double qte
 //        @RequestParam("date") LocalDate date
         ) throws Exception {
-
         Rubrique rubrique = new Rubrique();
         rubrique.setIdTypeRubrique(tr);
         rubrique.setPrixUnitaire(BigDecimal.valueOf(pu));

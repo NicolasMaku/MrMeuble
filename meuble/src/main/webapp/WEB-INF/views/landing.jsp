@@ -2,12 +2,16 @@
 <%@ page import="com.source.meuble.analytique.uniteOeuvre.UniteOeuvre" %>
 <%@ page import="com.source.meuble.analytique.centre.Centre" %>
 <%@ page import="com.source.meuble.analytique.typeRubrique.TypeRubrique" %>
+<%@ page import="com.source.meuble.util.RequestAttribute" %>
 <%@page pageEncoding="UTF-8" %>
 
 <%
+    RequestAttribute requestAttribute = new RequestAttribute(request);
     List<UniteOeuvre> uos = ((List<UniteOeuvre>) request.getAttribute("uos"));
     List<Centre> centres = ((List<Centre>) request.getAttribute("centres"));
     List<TypeRubrique> trs = ((List<TypeRubrique>) request.getAttribute("trs"));
+    List<Centre> cos = ((List<Centre>) request.getAttribute("cos"));
+
 %>
 
 <!DOCTYPE html>
@@ -462,18 +466,26 @@
                             </svg>
                         </button>
                     </div>
-                    <form action="" method="POST">
+
+                    <form action="home/table/sortie" method="GET">
                         <div class="p-4 overflow-y-auto">
+                            <div class="flex items-center">
+                                <label for="sortie-libelle" class="block text-sm font-medium mb-2 dark:text-white">Libelle:</label>
+                                <input type="text" id="sortie-libelle" name="libelle"
+                                       class="py-3 px-4 block w-1/3 border border-gray-500 rounded-lg text-sm">
+                            </div>
+
                             <div class="flex items-center justify-center py-3 gap-2">
+
                                 <label for="unite-oeuvre-sortie" class="block text-sm font-medium mb-2 dark:text-white">Unite d'oeuvre:</label>
-                                <select id="unite-oeuvre-sortie" name="tr"
+                                <select id="unite-oeuvre-sortie" name="uo"
                                         class="py-3 px-4 block w-2/3 border border-gray-500 rounded-lg text-sm"
                                 >
                                     <%
-                                        for(TypeRubrique tr: trs)
+                                        for(UniteOeuvre uo: uos)
                                         {
                                     %>
-                                    <option value="<%=tr.getId()%>"><%=tr.getLibelle()%> (<%=tr.getIdUniteOeuvre().getNom()%>)</option>
+                                    <option value="<%=uo.getIdUniteOeuvre()%>"><%=uo.getNom()%> </option>
                                     <%
                                         }
                                     %>
@@ -483,11 +495,18 @@
                                 class="py-3 px-4 block w-1/3 border border-gray-500 rounded-lg text-sm">
                             </div>
                             <label class="block text-sm font-medium mb-2 dark:text-white">Centre:</label>
-                            <input type="checkbox" name=""
-                                   class="ckeckbox shrink-0 mt-1 border-gray-500 rounded-full" id="centre-sortie"
-                                   checked="">
-                            <label for="centre-sortie"
-                                   class="text-sm text-gray-900 ms-2 dark:text-neutral-400">ADM</label>
+                            <%
+                                for(Centre centre: cos)
+                                {
+                            %>
+                            <input type="checkbox" name="centre[]"
+                                   class="ckeckbox shrink-0 mt-1 border-gray-500 rounded-full" id="centre-sortie<%=centre.getIdCentre()%>"
+                                   value="<%=centre.getIdCentre()%>">
+                            <label for="centre-sortie<%=centre.getIdCentre()%>"
+                                   class="text-sm text-gray-900 ms-2 dark:text-neutral-400"><%=centre.getNom()%></label>
+                            <%
+                                }
+                            %>
                         </div>
                         <div
                             class="flex justify-center items-center gap-x-2 py-3 px-4 border-t dark:border-neutral-700">

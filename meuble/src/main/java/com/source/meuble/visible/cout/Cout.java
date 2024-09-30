@@ -6,14 +6,17 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.Map;
 
 @Getter
 @Setter
 public class Cout {
 
+    String libelle;
     UniteOeuvre uniteOeuvre;
     double quantite;
-    List<Centre> centres;
+//    List<Centre> centres;
+    Map<Centre, Double> coutParCentre;
     double cout_total;
 
     public double getCoutRevient() {

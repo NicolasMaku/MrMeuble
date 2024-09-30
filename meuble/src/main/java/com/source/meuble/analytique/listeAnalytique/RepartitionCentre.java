@@ -29,6 +29,7 @@ public class RepartitionCentre {
             '}';
     }
 
+
     public Double getTotal() {
         if(fixe != null) return fixe;
         return variable;

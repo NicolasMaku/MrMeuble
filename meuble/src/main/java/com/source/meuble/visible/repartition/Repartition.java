@@ -1,9 +1,8 @@
 package com.source.meuble.visible.repartition;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.source.meuble.analytique.centre.Centre;
+import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Immutable;
@@ -13,7 +12,7 @@ import java.math.BigDecimal;
 /**
  * Mapping for DB view
  */
-@Setter
+@Data
 @Entity
 @Immutable
 @Table(name = "v_repartition")
@@ -22,8 +21,9 @@ public class Repartition {
     @Column(name = "row_number")
     private Long rowNumber;
 
-    @Column(name = "id_centre")
-    private Integer idCentre;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_centre")
+    private Centre idCentre;
 
     @Column(name = "nom", length = 50)
     private String nom;
@@ -46,48 +46,8 @@ public class Repartition {
     @Column(name = "id_exercice")
     private Integer idExercice;
 
-    public Integer getIdExercice() {
-        return idExercice;
-    }
-
-    public BigDecimal getCoutTotal_bigdecimal() {
-        return coutTotal;
-    }
 
     public Double getCoutTotal() {
         return coutTotal.doubleValue();
-    }
-
-
-    public void setCoutTotal(BigDecimal coutTotal) {
-        this.coutTotal = coutTotal;
-    }
-
-    public Long getRowNumber() {
-        return rowNumber;
-    }
-
-    public Integer getIdCentre() {
-        return idCentre;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public BigDecimal getMontant() {
-        return montant;
-    }
-
-    public Integer getCategorie() {
-        return categorie;
-    }
-
-    public BigDecimal getCle() {
-        return cle;
-    }
-
-    public BigDecimal getStructure() {
-        return structure;
     }
 }

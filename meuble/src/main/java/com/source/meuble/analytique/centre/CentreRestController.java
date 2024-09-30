@@ -53,13 +53,13 @@ public class CentreRestController {
         return repa;
     }
 
-    @GetMapping("/cout")
-    public String cout() {
-        List<Integer> ids = new ArrayList<>();
-        ids.add(2);
-        ids.add(3);
-
-        Cout cout = adminCout.calculCout(1,"30","2", 1);
-        return Double.toString(cout.getCout_total()) + " / " + Double.toString(cout.getQuantite());
-    }
+//    @GetMapping("/cout")
+//    public String cout() {
+//        List<Integer> ids = new ArrayList<>();
+//        ids.add(2);
+//        ids.add(3);
+//
+//        Cout cout = adminCout.calculCout(1,"30","2", 1);
+//        return Double.toString(cout.getCout_total()) + " / " + Double.toString(cout.getQuantite());
+//    }
 }
