@@ -34,5 +34,4 @@ public class TypeRubrique {
 
     @OneToMany(mappedBy = "typeRubrique", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<ListAnalytique> listAnalytiques;
-
 }
