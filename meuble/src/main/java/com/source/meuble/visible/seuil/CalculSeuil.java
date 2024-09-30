@@ -8,42 +8,30 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CalculSeuil {
-    private double chiffreAffaire;
-
-    private double coutVariable;
-    private double coutFixe;
-    private double margeCoutVariable;
-    private double seuil;
-
-    public int id_exercice;
 
     @Autowired
     private VariableFixeRepository variableFixeRepository;
 
-    public double getChiffreAffaire(Cout cout) {
-        chiffreAffaire = cout.getQuantite()*cout.getCoutRevient();
-        return chiffreAffaire;
+    public Seuil getSeuil(Cout cout, int id_exercice) {
+        Double chiffreAffaire = cout.getQuantite()*cout.getCoutRevient();
+
+        double coutVariable = variableFixeRepository.findByNatureAndIdExercice(1, id_exercice ).get(0).getValeur().doubleValue();
+        double coutFixe = variableFixeRepository.findByNatureAndIdExercice(0, id_exercice).get(0).getValeur().doubleValue();
+        double margeCoutVariable = chiffreAffaire - coutVariable;
+
+        double numerateur = coutFixe * chiffreAffaire;
+        double denominateur = chiffreAffaire - coutVariable;
+
+        double seuil = numerateur/denominateur;
+
+        Seuil seuilObject = new Seuil();
+        seuilObject.setChiffreAffaire(chiffreAffaire);
+        seuilObject.setCoutVariable(coutVariable);
+        seuilObject.setCoutFixe(coutFixe);
+        seuilObject.setMargeCoutVariable(margeCoutVariable);
+        seuilObject.setSeuil(seuil);
+
+        return seuilObject;
     }
 
-    public double getCoutVariable(int id) {
-        coutVariable = variableFixeRepository.findByNatureAndIdExercice(1, id_exercice ).get(0).getValeur().doubleValue();
-        return coutVariable;
-    }
-
-    public double getCoutFixe() {
-        coutFixe = variableFixeRepository.findByNatureAndIdExercice(1, id_exercice).get(1).getValeur().doubleValue();
-        return coutFixe;
-    }
-
-    public double getMargeCoutVariable() {
-        margeCoutVariable = chiffreAffaire - coutVariable;;
-        return margeCoutVariable;
-    }
-
-    public double getseuil() {
-        double numerateur = coutFixe;
-        double denominateur = margeCoutVariable;
-
-        return numerateur/denominateur;
-    }
 }

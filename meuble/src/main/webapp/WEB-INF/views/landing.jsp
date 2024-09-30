@@ -52,7 +52,7 @@
     </div>
 
     <div class="goToTable relative z-30 top-20 flex items-center justify-center">
-        <a href="home/table"><button class=" p-3 px-4 text-center text-gray-50 rounded-3xl bg-gray-500 hover:bg-gray-700 transition-all duration-300">Voir le tableau</button></a>
+        <a href="home/table"><button class="btnGoToTable p-3 px-4 text-center text-gray-50 rounded-3xl bg-gray-500 hover:bg-gray-700 transition-all duration-300">Voir le tableau</button></a>
     </div>
 
     <div class="slogan relative z-2 top-32 flex justify-center items-center flex-col">
@@ -216,7 +216,7 @@
                                 class="py-3 px-4 block w-full border border-gray-500 rounded-lg text-sm">
                             <label for="uo-type-rubrique"
                                 class="block text-sm font-medium my-2 dark:text-white">Unité d'oeuvre:</label>
-                            <select name="uo-type-rubrique" id="uo-type-rubrique" name="uo"
+                            <select  id="uo-type-rubrique" name="uo"
                                 class="py-3 px-4 block w-full border border-gray-500 rounded-lg text-sm"
                             >
                                 <%
@@ -264,15 +264,40 @@
                                         class="text-sm text-gray-900 ms-2 dark:text-neutral-400">non incorporable</label>
                                 </div>
 
-                                <div class="flex">
-                                    <input type="radio" name="incorporabilite" value="2"
-                                        class="shrink-0 mt-1 border-gray-500 rounded-full"
-                                        id="type-rubrique-non-corporel">
-                                    <label for="type-rubrique-non-corporel"
-                                        class="text-sm text-gray-900 ms-2 dark:text-neutral-400">supplétive</label>
-                                </div>
+<%--                                <div class="flex">--%>
+<%--                                    <input type="radio" name="incorporabilite" value="2"--%>
+<%--                                        class="shrink-0 mt-1 border-gray-500 rounded-full"--%>
+<%--                                        id="type-rubrique-non-corporel">--%>
+<%--                                    <label for="type-rubrique-non-corporel"--%>
+<%--                                        class="text-sm text-gray-900 ms-2 dark:text-neutral-400">supplétive</label>--%>
+<%--                                </div>--%>
                             </div>
-                        </div>
+                            <div class="flex flex-col gap-x-12 gap-y-2">
+                                <%
+                                    for(Centre centre: centres)
+                                    {
+                                %>
+                                <div class="w-2/3 relative flex justify-evenly items-center mb-3">
+                                    <div class="relative left-0 flex items-center">
+                                        <input type="checkbox" name=""
+                                               class="ckeckbox shrink-0 mt-1 border-gray-500 rounded-full" id="centre<%=centre.getIdCentre()%>-cb"
+                                               checked="">
+                                        <label for="centre<%=centre.getIdCentre()%>-cb"
+                                               class="text-sm text-gray-900 ms-2 dark:text-neutral-400"><%=centre.getNom()%></label>
+                                    </div>
+                                    <div class="percentage relative right-0 flex justify-end items-center">
+                                        <input type="hidden" name="centre[]" value="<%=centre.getIdCentre()%>" />
+                                        <input type="number" value="0" name="pourcentage[]"
+                                               class="py-3 px-3 block w-2/6 border border-gray-500 rounded-lg text-sm" id="centre<%=centre.getIdCentre()%>-cb">
+                                        <label for="centre<%=centre.getIdCentre()%>-cb"
+                                               class="text-sm text-gray-900 ms-2 dark:text-neutral-400">%</label>
+                                    </div>
+                                </div>
+                                <%
+                                    }
+                                %>
+
+                            </div>
                         <div
                             class="flex justify-center items-center gap-x-2 py-3 px-4 border-t dark:border-neutral-700">
                             <button type="button"
@@ -280,8 +305,8 @@
                                 data-hs-overlay="#type-rubrique-modal">
                                 Fermer
                             </button>
-                            <button type="button"
-                                class="w-2/6 py-2 px-3 items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-gray-600 text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 disabled:opacity-50 disabled:pointer-events-none" aria-haspopup="dialog" aria-expanded="false" aria-controls="imputation-modal" data-hs-overlay="#imputation-modal">
+                            <button type="submit"
+                                class="w-2/6 py-2 px-3 items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-gray-600 text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 disabled:opacity-50 disabled:pointer-events-none" >
                                 Valider
                             </button>
                         </div>
@@ -291,88 +316,6 @@
         </div>
 
 
-        <div id="imputation-modal"
-            class="hs-overlay hidden size-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto pointer-events-none"
-            role="dialog" tabindex="-1" aria-labelledby="imputation-modal-label">
-            <div
-                class="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 mt-0 opacity-0 ease-out transition-all sm:max-w-lg sm:w-full m-3 sm:mx-auto min-h-[calc(100%-3.5rem)] flex items-center">
-                <div
-                    class="w-full flex flex-col bg-white border shadow-sm rounded-xl pointer-events-auto dark:bg-neutral-800 dark:border-neutral-700 dark:shadow-neutral-700/70">
-                    <div class="flex justify-between items-center py-3 px-4 border-b dark:border-neutral-700">
-                        <h3 id="imputation-modal-label" class="font-bold text-gray-800 dark:text-white">
-                            Config imputation
-                        </h3>
-                        <button type="button"
-                            class="size-8 inline-flex justify-center items-center gap-x-2 rounded-full border border-transparent bg-gray-100 text-gray-800 hover:bg-gray-200 focus:outline-none focus:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-700 dark:hover:bg-neutral-600 dark:text-neutral-400 dark:focus:bg-neutral-600"
-                            aria-label="Close" data-hs-overlay="#type-rubrique-modal">
-                            <span class="sr-only">Close</span>
-                            <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M18 6 6 18"></path>
-                                <path d="m6 6 12 12"></path>
-                            </svg>
-                        </button>
-                    </div>
-                    <form action="#">
-                        <div class="p-4 overflow-y-auto">
-                            <label for="" class="block text-sm font-medium my-2 dark:text-white">Pourcentage par centre:</label>
-                            <div class="flex flex-col gap-x-12 gap-y-2">
-                                <%
-                                    for(Centre centre: centres)
-                                    {
-                                %>
-                                    <div class="w-2/3 relative flex justify-evenly items-center mb-3">
-                                        <div class="relative left-0 flex items-center">
-                                            <input type="checkbox" name=""
-                                                class="ckeckbox shrink-0 mt-1 border-gray-500 rounded-full" id="centre<%=centre.getIdCentre()%>-cb"
-                                                checked="">
-                                            <label for="centre<%=centre.getIdCentre()%>-cb"
-                                                class="text-sm text-gray-900 ms-2 dark:text-neutral-400"><%=centre.getNom()%></label>
-                                        </div>
-                                        <div class="percentage relative right-0 flex justify-end items-center">
-                                            <input type="number" name=""
-                                            class="py-3 px-3 block w-2/6 border border-gray-500 rounded-lg text-sm" id="centre<%=centre.getIdCentre()%>-cb">
-                                            <label for="centre<%=centre.getIdCentre()%>-cb"
-                                            class="text-sm text-gray-900 ms-2 dark:text-neutral-400">%</label>
-                                        </div>
-                                    </div>
-                                <%
-                                    }
-                                %>
-<%--                                <div class="w-2/3 relative flex justify-evenly items-center my-3">--%>
-<%--                                    <div class="relative left-0 flex items-center">--%>
-<%--                                        <input type="checkbox" name=""--%>
-<%--                                            class="checkbox shrink-0 mt-1 border-gray-500 rounded-full" id="adm"--%>
-<%--                                            checked="">--%>
-<%--                                        <label for="adm"--%>
-<%--                                            class="text-sm text-gray-900 ms-2 dark:text-neutral-400">ADM/DIST</label>--%>
-<%--                                    </div>--%>
-<%--                                    <div class="percentage relative right-0 flex justify-end items-center">--%>
-<%--                                        <input type="number" name=""--%>
-<%--                                        class="py-3 px-3 block w-2/6 border border-gray-500 rounded-lg text-sm" id="adm-perc">--%>
-<%--                                        <label for="adm-perc"--%>
-<%--                                        class="text-sm text-gray-900 ms-2 dark:text-neutral-400">%</label>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-
-                            </div>
-                        </div>
-                        <div
-                            class="flex justify-center items-center gap-x-2 py-3 px-4 border-t dark:border-neutral-700">
-                            <button type="button"
-                                class="w-2/6 py-2 px-3 items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
-                                data-hs-overlay="#type-rubrique-modal">
-                                Fermer
-                            </button>
-                            <button type="submit"
-                                class="w-2/6 py-2 px-3 items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-gray-600 text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 disabled:opacity-50 disabled:pointer-events-none">
-                                Valider
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
         </div>
 
         <div id="rubrique-modal"
@@ -472,6 +415,12 @@
                             <div class="flex items-center">
                                 <label for="sortie-libelle" class="block text-sm font-medium mb-2 dark:text-white">Libelle:</label>
                                 <input type="text" id="sortie-libelle" name="libelle"
+                                       class="py-3 px-4 block w-1/3 border border-gray-500 rounded-lg text-sm">
+                            </div>
+
+                            <div class="flex items-center">
+                                <label for="pv-libelle" class="block text-sm font-medium mb-2 dark:text-white">Prix de Vente:</label>
+                                <input type="number" id="pv-libelle" name="pv" step="0.01"
                                        class="py-3 px-4 block w-1/3 border border-gray-500 rounded-lg text-sm">
                             </div>
 
