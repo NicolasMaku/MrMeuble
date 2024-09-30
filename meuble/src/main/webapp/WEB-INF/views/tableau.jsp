@@ -78,8 +78,8 @@
                             }
                         %>
 
-                        <th class="text-black text-center border border-black border-t-transparent border-r-transparent"
-                            colspan="3">TOTAL</th>
+<%--                        <th class="text-black text-center border border-black border-t-transparent border-r-transparent"--%>
+<%--                            colspan="3">TOTAL</th>--%>
                     </tr>
                     <tr>
                         <%
@@ -92,9 +92,9 @@
                         <%
                             }
                         %>
-                        <th class="text-black text-center border border-l-black border-transparent">%</th>
-                        <th class="text-black text-center border border-l-black border-transparent">FIXE</th>
-                        <th class="text-black text-center">VARIABLE</th>
+<%--                        <th class="text-black text-center border border-l-black border-transparent">%</th>--%>
+<%--                        <th class="text-black text-center">FIXE</th>--%>
+<%--                        <th class="text-black text-center">VARIABLE</th>--%>
 <%--                        <th class="text-black text-center border border-l-black border-transparent">%</th>--%>
 <%--                        <th class="text-black text-center">FIXE</th>--%>
 <%--                        <th class="text-black text-center">VARIABLE</th>--%>
@@ -119,7 +119,7 @@
                             {
                                 RepartitionCentre rc = row.getRepartition().get(centre.getIdCentre());
                         %>
-                        <td class="text-center border border-l-black border-transparent"><%=rc != null ? rc.getPourcentage() + "%" : "-"%></td>
+                        <td class="text-center border border-l-black border-transparent"><%=rc != null ? rc.getPourcentage(): "-"%></td>
                         <td class="number text-center"><%=rc != null ? rc.getFixeStr(): "-"%></td>
                         <td class="number text-center"><%=rc != null ? rc.getVariableStr() : "-"%></td>
                         <%
@@ -127,9 +127,9 @@
                         %>
 
 
-                        <td class="text-center border border-l-black border-transparent">100.00%</td>
-                        <td class="number text-center "><%=row.getTotalFixe()%></td>
-                        <td class="number text-center"><%=row.getTotalVariable()%></td>
+<%--                        <td class="text-center border border-l-black border-transparent">0.00%</td>--%>
+<%--                        <td class="number text-center">-</td>--%>
+<%--                        <td class="number text-center">-</td>--%>
 <%--                        <td class="text-center border border-l-black border-transparent">100%</td>--%>
 <%--                        <td class="number text-center">-</td>--%>
 <%--                        <td class="number text-center">4321600</td>--%>
@@ -158,15 +158,15 @@
                         <%
                             }
                         %>
-                        <th class="number text-black text-right border border-black"></th>
-                        <th class="number text-black text-right border border-black"><%=tableau.getTotalFixe()%></th>
-                        <th class="number text-black text-right border border-black"><%=tableau.getTotalVariable()%></th>
+<%--                        <th class="number text-black text-right border border-black"></th>--%>
+<%--                        <th class="number text-black text-right border border-black">487469651</th>--%>
+<%--                        <th class="number text-black text-right border border-black">9895614</th>--%>
 <%--                        <th class="number text-black text-right border border-black"></th>--%>
 <%--                        <th class="number text-black text-right border border-black">5487956</th>--%>
 <%--                        <th class="number text-black text-right border border-black">97996146</th>--%>
 <%--                        <th class="number text-black text-right border border-black border-r-transparent"></th>--%>
-<%--                        <th class="number text-black text-right border border-black"></th>--%>
-<%--                        <th class="number text-black text-right border border-black"></th>--%>
+<%--                        <th class="number text-black text-right border border-black border-l-transparent">7854219</th>--%>
+<%--                        <th class="number text-black text-right border border-black">6562315</th>--%>
                     </tr>
                     <tr>
                         <th class="text-black">TOTAL</th>
@@ -183,10 +183,9 @@
                         <%
                             }
                         %>
-                        <th class="number text-black text-right border border-black border-b-transparent" colspan="3">
-                            <%=tableau.getGrandTotal()%>
-                        </th>
-<%--                        <th class="number text-black text-right border border-black border-b-transparent" colspan="1">--%>
+<%--                        <th class="number text-black text-right border border-black border-b-transparent" colspan="3">--%>
+<%--                            194690135.00</th>--%>
+<%--                        <th class="number text-black text-right border border-black border-b-transparent" colspan="3">--%>
 <%--                            225770320.00</th>--%>
 <%--                        <th class="number text-black text-right border border-t-black border-transparent"></th>--%>
 <%--                        <th class="number text-black text-right">179815100.00</th>--%>
