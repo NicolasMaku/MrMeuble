@@ -16,11 +16,11 @@ public class ListeAnalytiqueController {
         this.listeAnalytiqueService = listeAnalytiqueService;
     }
 
-    @GetMapping()
-    public ModelAndView showResultat() {
-        ModelAndView modelAndView = new ModelAndView("tableau");
-        listeAnalytiqueService.getTableau();
-        return modelAndView;
-    }
+//    @GetMapping()
+//    public ModelAndView showResultat() {
+//        ModelAndView modelAndView = new ModelAndView("tableau");
+//        listeAnalytiqueService.getTableau();
+//        return modelAndView;
+//    }
 
 }
