@@ -16,6 +16,8 @@ import com.source.meuble.visible.cout.Cout;
 import com.source.meuble.visible.AdminRepartition;
 import com.source.meuble.visible.repartition.Repartition;
 import com.source.meuble.visible.repartition.TotauxRepartition;
+import com.source.meuble.visible.seuil.CalculSeuil;
+import com.source.meuble.visible.seuil.Seuil;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,6 +42,9 @@ public class HomeController {
 
     @Autowired
     AdminRepartition adminRepartition;
+
+    @Autowired
+    CalculSeuil calculSeuil;
 
     public HomeController(UniteOeuvreService uniteOeuvreService, CentreService centreService,
             TypeRubriqueService typeRubriqueService, ListeAnalytiqueService listeAnalytiqueService,
@@ -100,17 +105,34 @@ public class HomeController {
     @GetMapping("/table/sortie")
     public ModelAndView showTableWithSortie(
             @RequestParam("libelle") String libelle,
+            @RequestParam("pv") Double pv,
             @RequestParam("uo") UniteOeuvre uo,
             @RequestParam("qte") Double qte,
             @RequestParam("centre[]") List<Centre> centre) {
         Exercice myExo = ((Exercice) httpSession.getAttribute("exercice"));
         centre.forEach(System.out::println);
+        ListeAnalytiqueTableau tableau = listeAnalytiqueService.getTableau(myExo.getId());
+
+        if(centre.isEmpty()) return new ModelAndView("redirect:/home");
 
         Cout cout = adminCout.calculCout(uo, qte, centre, myExo.getId(), libelle);
+
+        double chiffreAffaire = cout.getQuantite()*pv;
+        Seuil seuil = calculSeuil.getSeuil(cout, myExo.getId());
+        seuil.setCoutVariable(tableau.getTotalVariable());
+        seuil.setCoutFixe(tableau.getTotalFixe());
+
+        double numerateur = seuil.getCoutFixe() * chiffreAffaire;
+        double denominateur = chiffreAffaire - seuil.getCoutVariable();
+        double seuilValue = numerateur/denominateur;
+
+        seuil.setSeuil(seuilValue);
+        seuil.setChiffreAffaire(chiffreAffaire);
 
         ModelAndView modelAndView = showTable();
         modelAndView.addObject("hasSortie", true);
         modelAndView.addObject("cout", cout);
+        modelAndView.addObject("seuil", seuil);
 
         return modelAndView;
 

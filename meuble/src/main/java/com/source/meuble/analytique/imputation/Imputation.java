@@ -29,12 +29,12 @@ public class Imputation {
     @Column(name = "pourcentage", precision = 5, scale = 2)
     private BigDecimal pourcentage;
 
-    public void setPourcentage(BigDecimal pourcentage) throws Exception {
-        BigDecimal limite = new BigDecimal("100");
-        // Comparer à 100
-        if(pourcentage.compareTo(BigDecimal.ZERO)<0 && pourcentage.compareTo(limite) < 0){
-            throw new Exception(" Pourcentage invalide");
-        }
-        this.pourcentage = pourcentage;
-    }
+//    public void setPourcentage(BigDecimal pourcentage) throws Exception {
+//        BigDecimal limite = new BigDecimal("100");
+//        // Comparer à 100
+//        if(pourcentage.compareTo(BigDecimal.ZERO)<0 && pourcentage.compareTo(limite) < 0){
+//            throw new Exception(" Pourcentage invalide");
+//        }
+//        this.pourcentage = pourcentage;
+//    }
 }

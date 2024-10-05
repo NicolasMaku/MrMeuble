@@ -149,7 +149,11 @@ select row_number() over () as id, id_exercice,
 from v_repartition group by id_exercice;
 
 
-
+create or replace view v_variable_fixe as
+select row_number() over (),
+    rubrique.id_exercice, type_rubrique.nature, sum(prix_unitaire*quantite) as valeur from rubrique
+join type_rubrique on rubrique.id_type_rubrique = type_rubrique.id_type_rubrique
+group by rubrique.id_exercice, type_rubrique.nature;
 
 
 -- test behhh
@@ -168,6 +172,7 @@ INSERT INTO unite_oeuvre(nom) VALUES
 INSERT INTO type_rubrique (libelle, nature, incorporabilite, id_unite_oeuvre) VALUES ('ACHAT SEMANCE', 1, 0, 1);
 INSERT INTO type_rubrique (libelle, nature, incorporabilite, id_unite_oeuvre) VALUES ('ACHAT BOIS', 1, 1, 1);
 INSERT INTO type_rubrique (libelle, nature, incorporabilite, id_unite_oeuvre) VALUES ('EAU ET ELECTRICITE', 1, 1, 1);
+INSERT INTO type_rubrique (libelle, nature, incorporabilite, id_unite_oeuvre) VALUES ('Loyer', 0, 0, 1);
 
 INSERT INTO imputation (id_centre, id_type_rubrique, pourcentage) VALUES (2, 1, 90);
 INSERT INTO imputation (id_centre, id_type_rubrique, pourcentage) VALUES (3, 1, 10);
@@ -177,11 +182,16 @@ INSERT INTO imputation (id_centre, id_type_rubrique, pourcentage) VALUES (1, 3, 
 INSERT INTO imputation (id_centre, id_type_rubrique, pourcentage) VALUES (2, 3, 50);
 INSERT INTO imputation (id_centre, id_type_rubrique, pourcentage) VALUES (3, 3, 30);
 
+INSERT INTO imputation (id_centre, id_type_rubrique, pourcentage) VALUES (1, 4, 0);
+INSERT INTO imputation (id_centre, id_type_rubrique, pourcentage) VALUES (2, 4, 0);
+INSERT INTO imputation (id_centre, id_type_rubrique, pourcentage) VALUES (3, 4, 0);
+
 INSERT INTO rubrique (id_type_rubrique, prix_unitaire, quantite, id_exercice) values
 (1, 25000, 2, 1),
 (2,35000, 3, 1),
 (1, 25000, 4, 1),
-(3, 55000, 3, 2);
+(3, 55000, 3, 2),
+(4, 24000, 4, 1);
 
 insert into produit (libelle, quantite, id_centre, id_exercice, date_sortie) VALUES
 ("");
