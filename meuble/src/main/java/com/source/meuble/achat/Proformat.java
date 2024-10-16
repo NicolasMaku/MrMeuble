@@ -30,12 +30,12 @@ public class Proformat extends Etat {
     private LocalDate daty;
 
     @Override
-    public EtatCPL transferer() {
+    public EtatCPL transferer(Etat etat) {
         return null;
     }
 
     @Override
-    public List<Object> getFille() {
+    public List<ProformatFille> getFille() {
         return null;
     }
 }

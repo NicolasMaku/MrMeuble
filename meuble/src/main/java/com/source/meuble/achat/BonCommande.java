@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -26,12 +27,29 @@ public class BonCommande extends Etat {
     private LocalDate dateLivraison;
 
     @Override
-    public EtatCPL transferer() {
-        return null;
+    public EtatCPL transferer(Etat etat) {
+        BonCommande bc = (BonCommande) etat;
+        BonReception br = new BonReception();
+        br.setIdBc(bc);
+
+        List<BonCommandeFille> bcfs = bc.getFille();
+        List<BonReceptionFille> br_filles = new ArrayList<>();
+
+        for (BonCommandeFille bcf : bcfs) {
+            BonReceptionFille brf = new BonReceptionFille();
+            brf.setIdMarchandise(bcf.getIdMarchandise());
+            br_filles.add(brf);
+        }
+
+        EtatCPL cpl = new EtatCPL();
+        cpl.setMere(br);
+        cpl.setFilles(br_filles);
+
+        return cpl;
     }
 
     @Override
-    public List<Object> getFille() {
+    public List<BonCommandeFille> getFille() {
         return null;
     }
 }

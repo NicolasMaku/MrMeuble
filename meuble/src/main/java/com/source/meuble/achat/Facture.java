@@ -38,12 +38,12 @@ public class Facture extends Etat {
     private Client idClient;
 
     @Override
-    public EtatCPL transferer() {
+    public EtatCPL transferer(Etat etat) {
         return null;
     }
 
     @Override
-    public List<Object> getFille() {
+    public List<FactureFille> getFille() {
         return null;
     }
 }

@@ -36,7 +36,7 @@ public class Besoin extends Etat {
 
 
     @Override
-    public EtatCPL transferer() {
+    public EtatCPL transferer(Etat etat) {
         return null;
     }
 

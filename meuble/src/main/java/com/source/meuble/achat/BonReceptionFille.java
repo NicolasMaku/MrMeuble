@@ -26,4 +26,8 @@ public class BonReceptionFille {
     @Column(name = "prix", precision = 18, scale = 2)
     private BigDecimal prix;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_marchandise")
+    private Marchandise idMarchandise;
+
 }

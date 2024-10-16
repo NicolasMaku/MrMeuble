@@ -13,7 +13,7 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "proformat_fille")
-public class ProformatFille extends Etat {
+public class ProformatFille {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_proformat_fille", nullable = false)
@@ -28,13 +28,4 @@ public class ProformatFille extends Etat {
     @Column(name = "prix", precision = 18, scale = 2)
     private BigDecimal prix;
 
-    @Override
-    public EtatCPL transferer() {
-        return null;
-    }
-
-    @Override
-    public List<Object> getFille() {
-        return null;
-    }
 }

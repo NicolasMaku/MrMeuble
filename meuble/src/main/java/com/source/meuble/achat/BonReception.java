@@ -27,7 +27,7 @@ public class BonReception extends Etat {
     private LocalDate dateReception;
 
     @Override
-    public EtatCPL transferer() {
+    public EtatCPL transferer(Etat etat) {
         return null;
     }
 
