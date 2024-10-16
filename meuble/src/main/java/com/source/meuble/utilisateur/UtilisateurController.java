@@ -1,6 +1,5 @@
 package com.source.meuble.utilisateur;
 
-import com.source.meuble.util.Layout;
 import com.source.meuble.util.Redirection;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
@@ -26,7 +25,7 @@ public class UtilisateurController {
 
     @GetMapping
     public ModelAndView showLoginViewl(Model model) {
-        ModelAndView modelAndView = new ModelAndView("login");
+        ModelAndView modelAndView = new ModelAndView("login.html");
         modelAndView.addObject("error", model.getAttribute("error"));
         return modelAndView;
     }

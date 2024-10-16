@@ -7,7 +7,7 @@
     display: -ms-flexbox;
     display: flex;
     overflow: hidden;
-    width: 135px;
+    width: 180px;
     height: 360px;
     padding-top: 16px;
     padding-bottom: 4px;
@@ -21,7 +21,6 @@
     -ms-flex-pack: justify;
     justify-content: space-between;
     border-radius: 10px;
-    background-color: #618dea;
     box-shadow: 0 0 24px 0 rgba(0, 0, 0, .18);
 }
 
@@ -31,6 +30,7 @@
     margin-bottom: 8px;
     border-left: 3px solid transparent;
     color: hsla(0, 0%, 100%, .69);
+    width: 180px;
     line-height: 16px;
     font-weight: 500;
     text-decoration: none;

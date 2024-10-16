@@ -7,7 +7,6 @@
     String sidebar = "";
     if(request.getAttribute("sidebar") != null) {
         sidebar += (String) request.getAttribute("sidebar");
-        out.println(sidebar);
     }
 %>
 

@@ -3,14 +3,12 @@ package com.source.meuble.home;
 import com.source.meuble.analytique.centre.Centre;
 import com.source.meuble.analytique.centre.CentreService;
 import com.source.meuble.analytique.exercice.Exercice;
-import com.source.meuble.analytique.listeAnalytique.ListeAnalytiqueRow;
 import com.source.meuble.analytique.listeAnalytique.ListeAnalytiqueService;
 import com.source.meuble.analytique.listeAnalytique.ListeAnalytiqueTableau;
 import com.source.meuble.analytique.typeRubrique.TypeRubrique;
 import com.source.meuble.analytique.typeRubrique.TypeRubriqueService;
 import com.source.meuble.analytique.uniteOeuvre.UniteOeuvre;
 import com.source.meuble.analytique.uniteOeuvre.UniteOeuvreService;
-import com.source.meuble.util.Layout;
 import com.source.meuble.visible.cout.AdminCout;
 import com.source.meuble.visible.cout.Cout;
 import com.source.meuble.visible.AdminRepartition;
@@ -21,7 +19,6 @@ import com.source.meuble.visible.seuil.Seuil;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -59,7 +56,7 @@ public class HomeController {
 
     @GetMapping
     public ModelAndView showHome() {
-        ModelAndView modelAndView = new ModelAndView("template");
+        ModelAndView modelAndView = new ModelAndView("template.html");
 
 //        modelAndView.addObject("header", "WEB-INF/views/template/header.jsp");
 //        modelAndView.addObject("header", "WEB-INF/views/template/footer.jsp");
@@ -71,7 +68,7 @@ public class HomeController {
 
     @GetMapping("ca")
     public ModelAndView showCa(){
-        ModelAndView modelAndView = new ModelAndView("template");
+        ModelAndView modelAndView = new ModelAndView("template.html");
 
         List<UniteOeuvre> uniteOeuvres = uniteOeuvreService.getAllUO();
         List<Centre> centres = centreService.getAllCentre();
@@ -95,7 +92,7 @@ public class HomeController {
         if (myExo == null)
             return new ModelAndView("redirect:/exercice");
 
-        ModelAndView modelAndView = new ModelAndView("tableau");
+        ModelAndView modelAndView = new ModelAndView("tableau.html");
 
         ListeAnalytiqueTableau tableau = listeAnalytiqueService.getTableau(myExo.getId());
 
