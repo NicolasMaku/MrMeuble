@@ -83,3 +83,26 @@ create table bon_reception_fille(
     foreign key (id_br) references bon_reception(id_br),
     foreign key (id_marchandise) references marchandise(id_marchandise)
 );
+
+create table facture(
+    id_facture serial primary key,
+    id_bc int,
+    id_br int,
+    date_facture int,
+    id_fournisseur int,
+    id_client int,
+    foreign key (id_bc) references bon_commande(id_bc),
+    foreign key (id_br) references bon_reception(id_br),
+    foreign key (id_fournisseur) references fournisseur(id_fournisseur),
+    foreign key (id_client) references client(id_client)
+);
+
+create table facture_fille(
+    id_facture_fille serial primary key ,
+    id_facture int,
+    id_marchandise int,
+    quantite numeric(10,2),
+    prix numeric(18,2),
+    foreign key (id_facture) references facture(id_facture),
+    foreign key (id_marchandise) references marchandise(id_marchandise)
+);

@@ -5,12 +5,13 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "proformat_fille")
-public class ProformatFille {
+public class ProformatFille extends Etat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_proformat_fille", nullable = false)
@@ -25,4 +26,13 @@ public class ProformatFille {
     @Column(name = "prix", precision = 18, scale = 2)
     private BigDecimal prix;
 
+    @Override
+    public Object transferer() {
+        return null;
+    }
+
+    @Override
+    public List<Object> getFille() {
+        return null;
+    }
 }

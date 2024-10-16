@@ -4,28 +4,36 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "proformat")
-public class Proformat extends Etat {
+@Table(name = "facture")
+public class Facture extends Etat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_proformat", nullable = false)
+    @Column(name = "id_facture", nullable = false)
     private Integer id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_bc")
+    private BonCommande idBc;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_br")
+    private BonReception idBr;
+
+    @Column(name = "date_facture")
+    private Integer dateFacture;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_fournisseur")
     private Fournisseur idFournisseur;
 
-    @Column(name = "id_client")
-    private Integer idClient;
-
-    @Column(name = "daty")
-    private LocalDate daty;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_client")
+    private Client idClient;
 
     @Override
     public Object transferer() {

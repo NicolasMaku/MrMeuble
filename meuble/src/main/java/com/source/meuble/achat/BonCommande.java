@@ -5,12 +5,13 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "bon_commande")
-public class BonCommande {
+public class BonCommande extends Etat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_bc", nullable = false)
@@ -22,4 +23,13 @@ public class BonCommande {
     @Column(name = "date_livraison")
     private LocalDate dateLivraison;
 
+    @Override
+    public Object transferer() {
+        return null;
+    }
+
+    @Override
+    public List<Object> getFille() {
+        return null;
+    }
 }
