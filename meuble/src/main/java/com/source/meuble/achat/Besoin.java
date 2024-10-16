@@ -34,10 +34,20 @@ public class Besoin extends Etat {
     @Column(name = "daty")
     private LocalDate daty;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_marchandise")
+    private Marchandise idMarchandise;
+
 
     @Override
     public EtatCPL transferer(Etat etat) {
         return null;
+    }
+
+    public EtatCPL demandeProformat(List<Marchandise> marchandises) {
+        EtatCPL cpl = new EtatCPL();
+
+        return cpl;
     }
 
     @Override
