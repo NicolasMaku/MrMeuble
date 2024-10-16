@@ -9,6 +9,7 @@ import lombok.Setter;
 import org.hibernate.annotations.Immutable;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * Mapping for DB view
@@ -31,5 +32,35 @@ public class TotauxRepartition {
 
     @Column(name = "s_cout_total")
     private BigDecimal sCoutTotal;
+
+    @Column(name = "id_exercice")
+    private Integer idExercice;
+
+    private double scle;
+
+    public TotauxRepartition() {
+    }
+
+    public TotauxRepartition(List<Repartition> repartition) {
+        double tsDirect = 0;
+        double tsStructure = 0;
+        double tsCoutTotal = 0;
+        double tsCle = 0;
+
+
+        for (Repartition repart : repartition) {
+            tsDirect += repart.getMontant().doubleValue();
+            tsStructure += repart.getStructure().doubleValue();
+            tsCoutTotal += repart.getCoutTotal();
+            tsCle += repart.getCle().doubleValue();
+        }
+
+        sDirect = BigDecimal.valueOf(tsDirect);
+        sStructure = BigDecimal.valueOf(tsStructure);
+        sCoutTotal = BigDecimal.valueOf(tsCoutTotal);
+        scle = tsCle;
+
+    }
+
 
 }

@@ -36,7 +36,6 @@ public class ImputationService {
 
         for(int i = 0; i < size; ++i) {
             Imputation imputation = new Imputation();
-            imputation.setIdExercice(exercice.getId());
             imputation.setIdTypeRubrique(typeRubrique);
             imputation.setIdCentre(centres.get(i));
             imputation.setPourcentage(BigDecimal.valueOf(percentages.get(i)));

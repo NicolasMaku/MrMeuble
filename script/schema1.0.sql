@@ -28,8 +28,8 @@ create table centre (
 create table type_rubrique (
     id_type_rubrique serial PRIMARY KEY,
     libelle varchar(20),
-    nature int, -- 1 variable, 0 fixe , supplétive(Karaman'i DG)
-    incorporabilite int, -- 0 non incorporable, 1 incorporable
+    nature int, -- 1 variable, 0 fixe 
+    incorporabilite int, -- 0 non incorporable, 1 incorporable, 2 supplétive(Karaman'i DG)
     id_unite_oeuvre int,
     id_exercice int,
     foreign key (id_exercice) references exercice(id_exercice),
@@ -51,9 +51,20 @@ create table rubrique(
     id_type_rubrique int,
     prix_unitaire decimal(11, 2),
     quantite decimal(17,2),
+    date_achat date,
     foreign key (id_type_rubrique) references type_rubrique(id_type_rubrique)
 );
 
+create table produit(
+    id_produit serial PRIMARY KEY ,
+    libelle varchar(30),
+    quantite decimal(11,2),
+    id_centre int,
+    id_exercice int,
+    date_sortie date,
+    foreign key (id_exercice) references exercice(id_exercice),
+    foreign key (id_centre) references centre(id_centre)
+);
 
 create or replace function check_percentage()
 returns trigger as $$
@@ -82,6 +93,7 @@ create or replace view liste_general AS
 SELECT
     row_number() over () as id,
     tr.id_exercice as id_exeercice,
+    tr.id_type_rubrique as id_type_rubrique,
     tr.libelle as libelle,
     tr.id_type_rubrique as id_type_rubrique,
     SUM(r.prix_unitaire * r.quantite) AS total_rubrique,
@@ -95,17 +107,17 @@ GROUP BY
 
 create or replace view list_analytique as
 select
-    row_number() over () as id,
-    lg.libelle,
-    imputation.pourcentage,
-    imputation.id_centre,
-    (lg.total_rubrique/100)*imputation.pourcentage as total_par_centre,
-    lg.incorporabilite as incorporabilite
+            row_number() over () as id,
+            lg.id_type_rubrique as id_type_rubrique,
+            imputation.pourcentage,
+            imputation.id_centre,
+            (lg.total_rubrique/100)*imputation.pourcentage as total_par_centre,
+            lg.incorporabilite as incorporabilite
 from
     imputation
-join
+        join
     liste_general lg on imputation.id_type_rubrique = lg.id_type_rubrique
-group by imputation.id_centre, imputation.pourcentage, lg.libelle, lg.total_rubrique, lg.incorporabilite;
+group by imputation.id_centre, imputation.pourcentage, lg.id_type_rubrique, lg.total_rubrique, lg.incorporabilite;
 
 
 create or replace view analyse_ensemble AS
@@ -165,3 +177,6 @@ INSERT INTO rubrique (id_type_rubrique, prix_unitaire, quantite) values
 (2,35000, 3),
 (1, 25000, 4),
 (3, 55000, 3);
+
+insert into produit (libelle, quantite, id_centre, id_exercice, date_sortie) VALUES
+("")

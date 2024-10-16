@@ -1,9 +1,8 @@
 package com.source.meuble.visible.repartition;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.source.meuble.analytique.centre.Centre;
+import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Immutable;
@@ -13,8 +12,7 @@ import java.math.BigDecimal;
 /**
  * Mapping for DB view
  */
-@Getter
-@Setter
+@Data
 @Entity
 @Immutable
 @Table(name = "v_repartition")
@@ -23,8 +21,9 @@ public class Repartition {
     @Column(name = "row_number")
     private Long rowNumber;
 
-    @Column(name = "id_centre")
-    private Integer idCentre;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_centre")
+    private Centre idCentre;
 
     @Column(name = "nom", length = 50)
     private String nom;
@@ -44,4 +43,11 @@ public class Repartition {
     @Column(name = "cout_total")
     private BigDecimal coutTotal;
 
+    @Column(name = "id_exercice")
+    private Integer idExercice;
+
+
+    public Double getCoutTotal() {
+        return coutTotal.doubleValue();
+    }
 }

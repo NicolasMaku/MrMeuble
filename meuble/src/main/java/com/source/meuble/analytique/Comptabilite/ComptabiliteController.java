@@ -2,6 +2,7 @@ package com.source.meuble.analytique.Comptabilite;
 
 import java.util.List;
 
+import com.source.meuble.visible.cout.AdminCout;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,9 @@ public class ComptabiliteController {
 
     @Autowired
     CentreRepository centreRepository;
+
+    @Autowired
+    AdminCout adminCout;
 
     @GetMapping("/accueil")
     public ModelAndView repartition() {

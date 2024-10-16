@@ -1,13 +1,11 @@
 package com.source.meuble.analytique.centre;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.source.meuble.visible.repartition.Repartition;
+import jakarta.persistence.*;
 import jdk.jfr.Category;
 import lombok.Setter;
+
+import java.util.Set;
 
 @Entity
 @Table(name = "centre")
@@ -15,7 +13,7 @@ public class Centre {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_centre")
-    Long idCentre;
+    int idCentre;
 
     @Setter
     @Column(name = "nom")
@@ -23,6 +21,9 @@ public class Centre {
 
     @Column(name = "categorie")
     int categorie;
+
+    @OneToMany(mappedBy = "idCentre", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    Set<Repartition> repartitions;
 
     public Centre() {
 
@@ -49,12 +50,15 @@ public class Centre {
         this.categorie = categorie;
     }
 
-    public Long getIdCentre() {
+    public int getIdCentre() {
         return idCentre;
     }
 
-    public void setIdCentre(Long idCentre) {
+    public void setIdCentre(int idCentre) {
         this.idCentre = idCentre;
     }
 
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
 }
