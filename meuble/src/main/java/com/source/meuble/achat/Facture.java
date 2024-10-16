@@ -1,5 +1,7 @@
 package com.source.meuble.achat;
 
+import com.source.meuble.pieces.Etat;
+import com.source.meuble.pieces.EtatCPL;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -36,7 +38,7 @@ public class Facture extends Etat {
     private Client idClient;
 
     @Override
-    public Object transferer() {
+    public EtatCPL transferer() {
         return null;
     }
 
