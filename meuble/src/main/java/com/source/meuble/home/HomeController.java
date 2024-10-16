@@ -31,7 +31,19 @@ public class HomeController {
 
     @GetMapping
     public ModelAndView showHome() {
-        ModelAndView modelAndView = new ModelAndView("landing");
+        ModelAndView modelAndView = new ModelAndView("template");
+
+//        modelAndView.addObject("header", "WEB-INF/views/template/header.jsp");
+//        modelAndView.addObject("header", "WEB-INF/views/template/footer.jsp");
+        String content = "landing.jsp";
+        modelAndView.addObject("content", content);
+
+        return modelAndView;
+    }
+
+    @GetMapping("ca")
+    public ModelAndView showCa(){
+        ModelAndView modelAndView = new ModelAndView("template");
 
         List<UniteOeuvre> uniteOeuvres = uniteOeuvreService.getAllUO();
         List<Centre> centres = centreService.getAllCentre();
@@ -40,7 +52,12 @@ public class HomeController {
         modelAndView.addObject("uos", uniteOeuvres);
         modelAndView.addObject("centres", centres);
         modelAndView.addObject("trs", trs);
+        modelAndView.addObject("cos", centres.stream().filter(c -> c.getCategorie() == 1).toList());
 
+        String content = "landingCa.jsp";
+        String sidebar = "template/floating-sidebar-ca.jsp";
+        modelAndView.addObject("content", content);
+        modelAndView.addObject("sidebar", sidebar);
         return modelAndView;
     }
 

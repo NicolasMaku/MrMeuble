@@ -1,0 +1,68 @@
+.sidebar {
+    position: fixed;
+    left: 45px;
+    top: 45px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    overflow: hidden;
+    width: 135px;
+    height: 360px;
+    padding-top: 16px;
+    padding-bottom: 4px;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    border-radius: 10px;
+    background-color: #618dea;
+    box-shadow: 0 0 24px 0 rgba(0, 0, 0, .18);
+}
+
+.link {
+    display: block;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    border-left: 3px solid transparent;
+    color: hsla(0, 0%, 100%, .69);
+    line-height: 16px;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+
+.link.w--current {
+    border-left-style: solid;
+    border-left-color: #fff;
+    color: #fff;
+}
+
+.hr {
+    height: 1px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    background-color: rgba(80, 124, 227, .45);
+}
+
+.icon {
+    margin-right: 14px;
+    font-family: 'Fa solid 900', sans-serif;
+}
+
+
+.flex {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    margin-right: 8px;
+    margin-left: 4px;
+    padding: 6px 16px 6px 8px;
+    border-radius: 8px;
+}
