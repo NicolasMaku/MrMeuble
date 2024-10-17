@@ -125,6 +125,7 @@ create table bon_commande(
          id_proformat int,
          id_fournisseur int,
          id_client int,
+         etat int,
          date_commande date,
          date_livraison date,
          foreign key (id_fournisseur) references fournisseur(id_fournisseur),
