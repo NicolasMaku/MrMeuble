@@ -22,6 +22,7 @@ public class BesoinService {
     public void validerBesoin(Besoin besoin) {
         if (besoin.getEtat() < 2)
             besoin.setEtat(besoin.getEtat() + 1);
+        besoinRepository.save(besoin);
     }
 
     public List<Besoin> getBesoins(Integer etat) {
