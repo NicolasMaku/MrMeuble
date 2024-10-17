@@ -1,44 +1,48 @@
-package com.source.meuble.achat.proformat;
+package com.source.meuble.achat.Proformat;
 
-import com.source.meuble.achat.Fournisseur;
-import com.source.meuble.achat.besoin.Besoin;
+import com.source.meuble.achat.Marchandise;
+import com.source.meuble.achat.proformat.Proformat;
 import com.source.meuble.achat.proformatFille.ProformatFille;
 import com.source.meuble.achat.proformatFille.ProformatFilleRepository;
-import jakarta.transaction.Transactional;
+import com.source.meuble.achat.proformatFille.ProformatFilleService;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.math.BigDecimal;
+import java.util.*;
 
 @Service
 public class ProformatService {
 
-    private final ProformatRepository proformatRepository;
+
     private final ProformatFilleRepository proformatFilleRepository;
 
-    public ProformatService(ProformatRepository proformatRepository,
-                            ProformatFilleRepository proformatFilleRepository) {
-        this.proformatRepository = proformatRepository;
+    public ProformatService(ProformatFilleRepository proformatFilleRepository) {
         this.proformatFilleRepository = proformatFilleRepository;
     }
 
-    @Transactional
-    public Proformat demanderProformat(Besoin[] besoins, Fournisseur fournisseur) {
-        Proformat proformat = new Proformat();
-        proformat.setDaty(LocalDate.now());
-        proformat.setIdFournisseur(fournisseur);
-        proformatRepository.save(proformat);
+    public Proformat ajouterPrixProformat(ProformatFille[] proformatFilles, Double[] listePrix)
+            throws Exception {
+        if(proformatFilles.length == 0) {
+            throw new Exception("Le nombre de PF doit etre superieur a 0");
+        }
+
+        if(proformatFilles.length != listePrix.length) {
+            throw new Exception("Nombre de PF doit etre egal au nombre de Liste des Prix: " + proformatFilles.length + " =/= " + listePrix.length);
+        }
 
         List<ProformatFille> pfs = new ArrayList<>();
-        for (Besoin besoin : besoins) {
-            ProformatFille pf = new ProformatFille();
-            pf.setIdMarchandise(besoin.getIdMarchandise());
-            pf.setIdMarchandise(besoin.getIdMarchandise());
-            pf.setIdProformat(proformat.getId());
+        for(int i = 0; i < proformatFilles.length; i++) {
+            proformatFilles[i].setPrix(BigDecimal.valueOf(listePrix[i]));
         }
 
         proformatFilleRepository.saveAll(pfs);
-        return proformat;
+        return proformatFilles[0].getIdProformat();
     }
+
+//    public Map<Marchandise, Double> getPrixMarchandise(Proformat proformat) {
+//        Map<Marchandise, Double> map = new HashMap<>();
+//        proformat.getFilles().forEach((fille) -> {
+//            map.put(fille.ge)
+//        });
+//    }
 }
