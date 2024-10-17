@@ -1,4 +1,4 @@
-package com.source.meuble.achat;
+package com.source.meuble.achat.ProformatFille;
 
 import com.source.meuble.pieces.Etat;
 import com.source.meuble.pieces.EtatCPL;
