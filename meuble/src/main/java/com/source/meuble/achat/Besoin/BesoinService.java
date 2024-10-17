@@ -37,7 +37,7 @@ public class BesoinService {
         List<ProformatFille> pfs = new ArrayList<>();
         for (Besoin besoin : besoins) {
             ProformatFille pf = new ProformatFille();
-            pf.setIdProduit(besoin.);
+            pf.setIdProduit(besoin.j);
         }
     }
 }

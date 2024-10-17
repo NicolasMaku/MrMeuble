@@ -7,6 +7,7 @@ import com.source.meuble.pieces.EtatCPL;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.mapping.Set;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -30,6 +31,9 @@ public class Proformat extends Etat {
 
     @Column(name = "daty")
     private LocalDate daty;
+
+    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<ProformatFille> filles;
 
     @Override
     public EtatCPL transferer(Etat etat) {
