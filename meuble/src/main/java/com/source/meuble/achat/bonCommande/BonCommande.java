@@ -1,5 +1,8 @@
-package com.source.meuble.achat;
+package com.source.meuble.achat.bonCommande;
 
+import com.source.meuble.achat.bonCommandeFille.BonCommandeFille;
+import com.source.meuble.achat.BonReception;
+import com.source.meuble.achat.BonReceptionFille;
 import com.source.meuble.pieces.Etat;
 import com.source.meuble.pieces.EtatCPL;
 import jakarta.persistence.*;
@@ -25,6 +28,9 @@ public class BonCommande extends Etat {
 
     @Column(name = "date_livraison")
     private LocalDate dateLivraison;
+
+    @Column(name = "etat")
+    private Integer etat;
 
     @Override
     public EtatCPL transferer(Etat etat) {
