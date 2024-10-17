@@ -1,13 +1,10 @@
-package com.source.meuble.achat;
+package com.source.meuble.achat.proformatFille;
 
-import com.source.meuble.pieces.Etat;
-import com.source.meuble.pieces.EtatCPL;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 @Getter
 @Setter
