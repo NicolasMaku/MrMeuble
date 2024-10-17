@@ -1,8 +1,8 @@
-package com.source.meuble.achat.Besoin;
+package com.source.meuble.achat.besoin;
 
 import com.source.meuble.achat.Fournisseur;
-import com.source.meuble.achat.Proformat.Proformat;
-import com.source.meuble.achat.ProformatFille.ProformatFille;
+import com.source.meuble.achat.proformat.Proformat;
+import com.source.meuble.achat.proformatFille.ProformatFille;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -28,18 +28,4 @@ public class BesoinService {
         return besoinRepository.findAllByEtat(etat);
     }
 
-    @Transactional
-    public Proformat demanderProformat(Besoin[] besoins, Fournisseur fournisseur) {
-        Proformat proformat = new Proformat();
-        proformat.setDaty(LocalDate.now());
-        proformat.setIdFournisseur(fournisseur);
-
-        List<ProformatFille> pfs = new ArrayList<>();
-        for (Besoin besoin : besoins) {
-            ProformatFille pf = new ProformatFille();
-            pf.setIdMarchandise(besoin.getIdMarchandise());
-        }
-
-        return proformat;
-    }
 }

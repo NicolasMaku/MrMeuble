@@ -61,8 +61,10 @@ create table produit(
     id_centre int,
     id_exercice int,
     date_sortie date,
+    id_unite_oeuvre int,
     foreign key (id_exercice) references exercice(id_exercice),
-    foreign key (id_centre) references centre(id_centre)
+    foreign key (id_centre) references centre(id_centre),
+    foreign key (id_unite_oeuvre) references unite_oeuvre(id_unite_oeuvre)
 );
 
 
@@ -103,7 +105,8 @@ CREATE TABLE proformat(
       id_fournisseur int,
       id_client int,
       daty date,
-      foreign key (id_fournisseur) references fournisseur(id_fournisseur)
+      foreign key (id_fournisseur) references fournisseur(id_fournisseur),
+    foreign key (id_client) references client(id_client)
 );
 
 CREATE TABLE proformat_fille(
@@ -112,6 +115,7 @@ CREATE TABLE proformat_fille(
     id_produit int,
     id_marchandise int,
     prix decimal(18,2),
+    foreign key (id_proformat) references proformat(id_proformat),
     foreign key (id_produit) references produit(id_produit),
     foreign key (id_marchandise) references marchandise(id_marchandise)
 );

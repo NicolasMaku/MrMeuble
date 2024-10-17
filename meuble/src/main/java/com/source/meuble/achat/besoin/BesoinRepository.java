@@ -1,4 +1,4 @@
-package com.source.meuble.achat.Besoin;
+package com.source.meuble.achat.besoin;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

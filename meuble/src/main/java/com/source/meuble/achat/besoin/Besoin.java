@@ -1,4 +1,4 @@
-package com.source.meuble.achat.Besoin;
+package com.source.meuble.achat.besoin;
 
 import com.source.meuble.achat.Marchandise;
 import com.source.meuble.analytique.centre.Centre;

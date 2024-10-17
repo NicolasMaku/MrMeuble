@@ -1,4 +1,4 @@
-package com.source.meuble.achat.Proformat;
+package com.source.meuble.achat.proformat;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
