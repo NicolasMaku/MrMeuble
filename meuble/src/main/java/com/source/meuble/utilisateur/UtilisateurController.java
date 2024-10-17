@@ -1,6 +1,5 @@
 package com.source.meuble.utilisateur;
 
-import com.source.meuble.util.Layout;
 import com.source.meuble.util.Redirection;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;

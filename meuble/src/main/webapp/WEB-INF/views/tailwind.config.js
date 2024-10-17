@@ -1,19 +1,22 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "*.jsp",
-    'node_modules/preline/dist/*.js',
+    "./*.jsp",
+    "./template/*.jsp",
+    "./accueil/*.jsp",
+    "./login/*.jsp",
+    "./achat/*.jsp",
+    '../../node_modules/preline/dist/*.js'
   ],
   theme: {
     extend: {
       fontFamily: {
-        'sans': ['Quicksand']
-      }
+        'sans': ['Quicksand'],
+      },
     },
   },
   plugins: [
     require('preline/plugin'),
-    require('daisyui')
+    require('daisyui'),
   ],
 }
-

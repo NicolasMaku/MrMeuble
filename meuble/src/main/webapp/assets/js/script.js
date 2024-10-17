@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
         opacity: 0,
         duration: 1,
         delay: 1,
-    })
+    })           
     gsap.from(".bgs", {
          y: 800,
          duration: 1.2
