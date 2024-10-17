@@ -21,10 +21,10 @@ public class BonCommandeFille {
     private BonCommande idBc;
 
     @Column(name = "prix", precision = 18, scale = 2)
-    private BigDecimal prix;
+    private double prix;
 
     @Column(name = "quantite", precision = 10, scale = 2)
-    private BigDecimal quantite;
+    private double quantite;
 
 
     @ManyToOne(fetch = FetchType.LAZY)
