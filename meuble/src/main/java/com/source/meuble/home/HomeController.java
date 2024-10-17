@@ -132,6 +132,46 @@ public class HomeController {
         return modelAndView;
     }
 
+    @GetMapping("achat/creation-bon-reception")
+    public ModelAndView showAchatCreationBonReception(){
+        ModelAndView modelAndView = new ModelAndView("template");
+
+        String content = "landingAchat.jsp";
+        String sidebar = "template/floating-sidebar-achat.jsp";
+        String validation = "achat/creation-bon-reception.jsp";
+        modelAndView.addObject("content", content);
+        modelAndView.addObject("sidebar", sidebar);
+        modelAndView.addObject("insideContent", validation);
+        return modelAndView;
+    }
+
+    @GetMapping("achat/validation-facture")
+    public ModelAndView showAchatValidationFacture(){
+        ModelAndView modelAndView = new ModelAndView("template");
+
+        String content = "landingAchat.jsp";
+        String sidebar = "template/floating-sidebar-achat.jsp";
+        String validation = "achat/validation-facture.jsp";
+        modelAndView.addObject("content", content);
+        modelAndView.addObject("sidebar", sidebar);
+        modelAndView.addObject("insideContent", validation);
+        return modelAndView;
+    }
+
+    @GetMapping("achat/proformat")
+    public ModelAndView showAchatProformat(){
+        ModelAndView modelAndView = new ModelAndView("template");
+
+        String content = "landingAchat.jsp";
+        String sidebar = "template/floating-sidebar-achat.jsp";
+        String validation = "achat/proformat.jsp";
+        modelAndView.addObject("content", content);
+        modelAndView.addObject("sidebar", sidebar);
+        modelAndView.addObject("insideContent", validation);
+        return modelAndView;
+    }
+
+
     @GetMapping("table")
     public ModelAndView showTable() {
         Exercice myExo = ((Exercice) httpSession.getAttribute("exercice"));

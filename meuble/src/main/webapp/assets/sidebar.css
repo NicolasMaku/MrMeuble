@@ -37,13 +37,6 @@
     text-decoration: none;
 }
 
-
-.link.w--current {
-    border-left-style: solid;
-    border-left-color: #fff;
-    color: #fff;
-}
-
 .hr {
     height: 1px;
     margin-top: 16px;
