@@ -119,6 +119,19 @@ public class HomeController {
         return modelAndView;
     }
 
+    @GetMapping("achat/validation-bon-commande")
+    public ModelAndView showAchatValidationBonCommande(){
+        ModelAndView modelAndView = new ModelAndView("template");
+
+        String content = "landingAchat.jsp";
+        String sidebar = "template/floating-sidebar-achat.jsp";
+        String validation = "achat/validation-bon-commande.jsp";
+        modelAndView.addObject("content", content);
+        modelAndView.addObject("sidebar", sidebar);
+        modelAndView.addObject("insideContent", validation);
+        return modelAndView;
+    }
+
     @GetMapping("table")
     public ModelAndView showTable() {
         Exercice myExo = ((Exercice) httpSession.getAttribute("exercice"));

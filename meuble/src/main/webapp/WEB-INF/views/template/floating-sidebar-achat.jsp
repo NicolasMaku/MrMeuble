@@ -40,7 +40,7 @@
                 </div>
             </div>
         </a>
-        <a class="link hover:bg-slate-700 transition duration-300" href="#">
+        <a class="link hover:bg-slate-700 transition duration-300" href="/home/achat/validation-bon-commande">
             <div class="flex">
                 <div class="icon"></div>
                 <div class="miafina" >Valider bon de commande
