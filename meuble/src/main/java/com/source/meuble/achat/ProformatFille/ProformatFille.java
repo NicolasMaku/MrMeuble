@@ -1,5 +1,7 @@
-package com.source.meuble.achat.proformatFille;
+package com.source.meuble.achat.ProformatFille;
 
+import com.source.meuble.achat.Marchandise;
+import com.source.meuble.analytique.produit.Produit;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,10 +21,16 @@ public class ProformatFille {
     @Column(name = "id_proformat")
     private Integer idProformat;
 
-    @Column(name = "id_produit")
-    private Integer idProduit;
 
     @Column(name = "prix", precision = 18, scale = 2)
     private BigDecimal prix;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_marchandise")
+    private Marchandise idMarchandise;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_produit")
+    private Produit idProduit;
 
 }
