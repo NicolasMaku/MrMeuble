@@ -13,13 +13,13 @@
 
 <div class="sidebar bg-slate-600 transition-all duration-500">
     <div><a class="link hover:bg-slate-700 transition duration-300" href="#">
-        <div class="flex">
+        <div class="flex" aria-haspopup="dialog" aria-expanded="false" aria-controls="besoin-modal"
+             data-hs-overlay="#besoin-modal">
             <div class="icon"></div>
-            <div class="miafina" aria-haspopup="dialog" aria-expanded="false" aria-controls="besoin-modal"
-                 data-hs-overlay="#besoin-modal">Besoin
+            <div class="miafina">Besoin
             </div>
         </div>
-    </a><a class="link hover:bg-slate-700 transition duration-300" href="#">
+    </a><a class="link hover:bg-slate-700 transition duration-300" href="/home/achat/validation-besoin">
         <div class="flex">
             <div class="icon"></div>
             <div class="miafina">Validation besoin

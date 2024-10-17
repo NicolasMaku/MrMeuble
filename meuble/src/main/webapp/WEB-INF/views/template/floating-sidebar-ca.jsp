@@ -22,40 +22,40 @@
 
 <div class="sidebar bg-slate-600 transition-all duration-500">
     <div><a class="link hover:bg-slate-700 transition duration-300" href="#">
-            <div class="flex">
+            <div class="flex" aria-haspopup="dialog" aria-expanded="false" aria-controls="centre-modal"
+                 data-hs-overlay="#centre-modal">
                 <div class="icon"></div>
-                <div class="miafina" aria-haspopup="dialog" aria-expanded="false" aria-controls="centre-modal"
-                    data-hs-overlay="#centre-modal">Centre
+                <div class="miafina">Centre
                 </div>
             </div>
         </a><a class="link hover:bg-slate-700 transition duration-300" href="#">
-            <div class="flex">
+            <div class="flex" aria-haspopup="dialog" aria-expanded="false" aria-controls="uo-modal"
+                 data-hs-overlay="#uo-modal">
                 <div class="icon"></div>
-                <div class="miafina" aria-haspopup="dialog" aria-expanded="false" aria-controls="uo-modal"
-                    data-hs-overlay="#uo-modal">Unité d'oeuvre
+                <div class="miafina" >Unité d'oeuvre
                 </div>
             </div>
         </a><a class="link hover:bg-slate-700 transition duration-300" href="#">
-            <div class="flex">
+            <div class="flex"aria-haspopup="dialog" aria-expanded="false" aria-controls="type-rubrique-modal"
+                 data-hs-overlay="#type-rubrique-modal">
                 <div class="icon"></div>
-                <div class="miafina" aria-haspopup="dialog" aria-expanded="false" aria-controls="type-rubrique-modal"
-                    data-hs-overlay="#type-rubrique-modal">Type rubrique
+                <div class="miafina" >Type rubrique
                 </div>
             </div>
         </a>
         <a class="link hover:bg-slate-700 transition duration-300" href="#">
-            <div class="flex">
+            <div class="flex" aria-haspopup="dialog" aria-expanded="false" aria-controls="rubrique-modal"
+                 data-hs-overlay="#rubrique-modal">
                 <div class="icon"></div>
-                <div class="miafina" aria-haspopup="dialog" aria-expanded="false" aria-controls="rubrique-modal"
-                    data-hs-overlay="#rubrique-modal">Rubrique
+                <div class="miafina">Rubrique
                 </div>
             </div>
         </a>
         <a class="link hover:bg-slate-700 transition duration-300" href="#">
-            <div class="flex">
+            <div class="flex" aria-haspopup="dialog" aria-expanded="false" aria-controls="sortie-modal"
+                 data-hs-overlay="#sortie-modal">
                 <div class="icon"></div>
-                <div class="miafina" aria-haspopup="dialog" aria-expanded="false" aria-controls="sortie-modal"
-                    data-hs-overlay="#sortie-modal">Sortie
+                <div class="miafina">Sortie
                 </div>
             </div>
         </a>

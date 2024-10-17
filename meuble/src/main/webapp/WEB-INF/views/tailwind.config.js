@@ -5,6 +5,7 @@ module.exports = {
     "./template/*.jsp",
     "./accueil/*.jsp",
     "./login/*.jsp",
+    "./achat/*.jsp",
     '../../node_modules/preline/dist/*.js'
   ],
   theme: {

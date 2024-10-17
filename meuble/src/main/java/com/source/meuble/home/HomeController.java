@@ -93,6 +93,32 @@ public class HomeController {
         return modelAndView;
     }
 
+    @GetMapping("achat/validation-besoin")
+    public ModelAndView showAchatValidationBesoin(){
+        ModelAndView modelAndView = new ModelAndView("template");
+
+        String content = "landingAchat.jsp";
+        String sidebar = "template/floating-sidebar-achat.jsp";
+        String validation = "achat/validation-besoin.jsp";
+        modelAndView.addObject("content", content);
+        modelAndView.addObject("sidebar", sidebar);
+        modelAndView.addObject("insideContent", validation);
+        return modelAndView;
+    }
+
+    @GetMapping("achat/bon-commande")
+    public ModelAndView showAchatBonCommande(){
+        ModelAndView modelAndView = new ModelAndView("template");
+
+        String content = "landingAchat.jsp";
+        String sidebar = "template/floating-sidebar-achat.jsp";
+        String validation = "achat/bon-commande.jsp";
+        modelAndView.addObject("content", content);
+        modelAndView.addObject("sidebar", sidebar);
+        modelAndView.addObject("insideContent", validation);
+        return modelAndView;
+    }
+
     @GetMapping("table")
     public ModelAndView showTable() {
         Exercice myExo = ((Exercice) httpSession.getAttribute("exercice"));
