@@ -14,6 +14,7 @@ public class Centre {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_centre")
     int idCentre;
+
     @Setter
     @Column(name = "nom")
     String nom;
@@ -45,6 +46,7 @@ public class Centre {
         if (categorie != 0 && categorie != 1) {
             throw new Exception("Categorie inconnue");
         }
+
         this.categorie = categorie;
     }
 
