@@ -1,7 +1,7 @@
-package com.source.meuble.achat.Proformat;
+package com.source.meuble.achat.proformat;
 
 import com.source.meuble.achat.Fournisseur;
-import com.source.meuble.achat.ProformatFille.ProformatFille;
+import com.source.meuble.achat.proformatFille.ProformatFille;
 import com.source.meuble.pieces.Etat;
 import com.source.meuble.pieces.EtatCPL;
 import jakarta.persistence.*;
