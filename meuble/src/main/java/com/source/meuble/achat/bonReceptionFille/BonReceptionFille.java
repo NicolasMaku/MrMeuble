@@ -1,5 +1,7 @@
-package com.source.meuble.achat;
+package com.source.meuble.achat.bonReceptionFille;
 
+import com.source.meuble.achat.Marchandise;
+import com.source.meuble.achat.bonReception.BonReception;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

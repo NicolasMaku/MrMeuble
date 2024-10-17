@@ -1,5 +1,6 @@
-package com.source.meuble.achat;
+package com.source.meuble.achat.bonReception;
 
+import com.source.meuble.achat.BonCommande;
 import com.source.meuble.pieces.Etat;
 import com.source.meuble.pieces.EtatCPL;
 import jakarta.persistence.*;
