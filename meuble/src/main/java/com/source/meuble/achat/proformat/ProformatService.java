@@ -1,4 +1,4 @@
-package com.source.meuble.achat.Proformat;
+package com.source.meuble.achat.proformat;
 
 import com.source.meuble.achat.Marchandise;
 import com.source.meuble.achat.proformat.Proformat;
@@ -21,7 +21,7 @@ public class ProformatService {
     }
 
     public Proformat ajouterPrixProformat(ProformatFille[] proformatFilles, Double[] listePrix)
-            throws Exception {
+        throws Exception {
         if(proformatFilles.length == 0) {
             throw new Exception("Le nombre de PF doit etre superieur a 0");
         }
@@ -39,10 +39,11 @@ public class ProformatService {
         return proformatFilles[0].getIdProformat();
     }
 
-//    public Map<Marchandise, Double> getPrixMarchandise(Proformat proformat) {
-//        Map<Marchandise, Double> map = new HashMap<>();
-//        proformat.getFilles().forEach((fille) -> {
-//            map.put(fille.ge)
-//        });
-//    }
+    public Map<Marchandise, Double> getPrixMarchandise(Proformat proformat) {
+        Map<Marchandise, Double> map = new HashMap<>();
+        proformat.getFilles().forEach((fille) -> {
+            map.put(fille.getIdMarchandise(), fille.getPrix().doubleValue());
+        });
+        return map;
+    }
 }
