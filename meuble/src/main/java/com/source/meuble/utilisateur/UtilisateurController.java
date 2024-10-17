@@ -25,7 +25,7 @@ public class UtilisateurController {
 
     @GetMapping
     public ModelAndView showLoginViewl(Model model) {
-        ModelAndView modelAndView = new ModelAndView("login.html");
+        ModelAndView modelAndView = new ModelAndView("login");
         modelAndView.addObject("error", model.getAttribute("error"));
         return modelAndView;
     }

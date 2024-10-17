@@ -21,7 +21,7 @@
 %>
 
 <div class="sidebar bg-slate-600 transition-all duration-500">
-    <div><a class="link w--current hover:bg-slate-700 transition duration-300" href="#">
+    <div><a class="link hover:bg-slate-700 transition duration-300" href="#">
             <div class="flex">
                 <div class="icon"></div>
                 <div class="miafina" aria-haspopup="dialog" aria-expanded="false" aria-controls="centre-modal"
@@ -71,8 +71,8 @@
 
 <div class="relative z-1">
     <div id="centre-modal"
-        class="hs-overlay hidden size-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto pointer-events-none"
-        role="dialog" tabindex="-1" aria-labelledby="centre-modal-label">
+         class="hs-overlay hidden size-full fixed top-0 start-0 z-[80] flex justify-center items-center overflow-x-hidden overflow-y-auto pointer-events-none"
+         role="dialog" tabindex="-1" aria-labelledby="centre-modal-label">
         <div
             class="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 mt-0 opacity-0 ease-out transition-all sm:max-w-lg sm:w-full m-3 sm:mx-auto min-h-[calc(100%-3.5rem)] flex items-center">
             <div
@@ -134,7 +134,7 @@
     </div>
 
     <div id="uo-modal"
-        class="hs-overlay hidden size-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto pointer-events-none"
+        class="hs-overlay hidden size-full fixed top-0 start-0 z-[80]  flex justify-center items-center overflow-x-hidden overflow-y-auto pointer-events-none"
         role="dialog" tabindex="-1" aria-labelledby="uo-modal-label">
         <div
             class="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 mt-0 opacity-0 ease-out transition-all sm:max-w-lg sm:w-full m-3 sm:mx-auto min-h-[calc(100%-3.5rem)] flex items-center">
@@ -180,7 +180,7 @@
     </div>
 
     <div id="type-rubrique-modal"
-        class="hs-overlay hidden size-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto pointer-events-none"
+        class="hs-overlay hidden size-full fixed top-0 start-0 z-[80]  flex justify-center items-center overflow-x-hidden overflow-y-auto pointer-events-none"
         role="dialog" tabindex="-1" aria-labelledby="type-rubrique-modal-label">
         <div
             class="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 mt-0 opacity-0 ease-out transition-all sm:max-w-lg sm:w-full m-3 sm:mx-auto min-h-[calc(100%-3.5rem)] flex items-center">
@@ -302,14 +302,14 @@
     </div>
 
     <div id="rubrique-modal"
-        class="hs-overlay hidden size-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto pointer-events-none"
+        class="hs-overlay hidden size-full fixed top-0 start-0 z-[80]  flex justify-center items-center overflow-x-hidden overflow-y-auto pointer-events-none"
         role="dialog" tabindex="-1" aria-labelledby="rubrique-modal-label">
         <div
             class="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 mt-0 opacity-0 ease-out transition-all sm:max-w-lg sm:w-full m-3 sm:mx-auto min-h-[calc(100%-3.5rem)] flex items-center">
             <div
                 class="w-full flex flex-col bg-white border shadow-sm rounded-xl pointer-events-auto dark:bg-neutral-800 dark:border-neutral-700 dark:shadow-neutral-700/70">
                 <div class="flex justify-between items-center py-3 px-4 border-b dark:border-neutral-700">
-                    <h3 id="type-rubrique-modal-label" class="font-bold text-gray-800 dark:text-white">
+                    <h3 id="rubrique-modal-label" class="font-bold text-gray-800 dark:text-white">
                         Config rubrique
                     </h3>
                     <button type="button"
@@ -355,7 +355,7 @@
                     <div class="flex justify-center items-center gap-x-2 py-3 px-4 border-t dark:border-neutral-700">
                         <button type="button"
                             class="w-2/6 py-2 px-3 items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
-                            data-hs-overlay="#type-rubrique-modal">
+                            data-hs-overlay="#rubrique-modal">
                             Fermer
                         </button>
                         <button type="submit"
@@ -369,7 +369,7 @@
     </div>
 
     <div id="sortie-modal"
-        class="hs-overlay hidden size-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto pointer-events-none"
+        class="hs-overlay hidden size-full fixed top-0 start-0 z-[80]  flex justify-center items-center overflow-x-hidden overflow-y-auto pointer-events-none"
         role="dialog" tabindex="-1" aria-labelledby="sortie-modal-label">
         <div
             class="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 mt-0 opacity-0 ease-out transition-all sm:max-w-lg sm:w-full m-3 sm:mx-auto min-h-[calc(100%-3.5rem)] flex items-center">

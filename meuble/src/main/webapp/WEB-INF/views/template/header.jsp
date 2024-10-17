@@ -14,13 +14,8 @@
         </div>
         <div class="absolute right-0 h-[100%] flex items-center justify-center">
             <ul class="flex items-center justify-center gap-10">
-<%--                <li class="font-sans list cursor-pointer" aria-haspopup="dialog" aria-expanded="false" aria-controls="centre-modal" data-hs-overlay="#centre-modal">Centre</li>--%>
-<%--                <li class="font-sans list cursor-pointer" aria-haspopup="dialog" aria-expanded="false" aria-controls="uo-modal" data-hs-overlay="#uo-modal">Unité d'oeuvre</li>--%>
-<%--                <li class="font-sans list cursor-pointer" aria-haspopup="dialog" aria-expanded="false" aria-controls="type-rubrique-modal" data-hs-overlay="#type-rubrique-modal">Type rubrique</li>--%>
-<%--                <li class="font-sans list cursor-pointer" aria-haspopup="dialog" aria-expanded="false" aria-controls="rubrique-modal" data-hs-overlay="#rubrique-modal">Rubrique</li>--%>
-<%--                <li class="font-sans list cursor-pointer" aria-haspopup="dialog" aria-expanded="false" aria-controls="sortie-modal" data-hs-overlay="#sortie-modal">Sortie</li>--%>
-                <li class="font-sans list cursor-pointer"><a href="home/ca">Comptabilité analytique</a></li>
-                <li class="font-sans list cursor-pointer">Achat</li>
+                <li class="font-sans list cursor-pointer"><a href="/home/ca">Comptabilité analytique</a></li>
+                <li class="font-sans list cursor-pointer"><a href="/home/achat">Achat</a></li>
                 <li class="font-sans list cursor-pointer">Stock</li>
             </ul>
         </div>

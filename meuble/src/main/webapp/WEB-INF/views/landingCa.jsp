@@ -7,4 +7,17 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<h1>BVN CA</h1>
+<%
+    String tableau = "";
+    if(request.getAttribute("tableauCa") != null) {
+        tableau += (String) request.getAttribute("tableauCa");
+    }
+%>
+
+<div class="w-[89%] min-h-[80dvh] mx-32 my-10">
+    <% if(tableau.equals("")) { %>
+        <div class="flex justify-center items-center object-cover"><img class="h-[70dvh]" src="/assets/img/ca.png" alt="sary itako fotsiny"></div>
+    <% } else { %>
+        <jsp:include page="<%=tableau%>" />
+    <% } %>
+</div>

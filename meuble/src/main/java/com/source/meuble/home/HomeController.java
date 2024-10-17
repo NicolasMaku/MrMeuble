@@ -56,19 +56,15 @@ public class HomeController {
 
     @GetMapping
     public ModelAndView showHome() {
-        ModelAndView modelAndView = new ModelAndView("template.html");
-
-//        modelAndView.addObject("header", "WEB-INF/views/template/header.jsp");
-//        modelAndView.addObject("header", "WEB-INF/views/template/footer.jsp");
+        ModelAndView modelAndView = new ModelAndView("template");
         String content = "landing.jsp";
         modelAndView.addObject("content", content);
-
         return modelAndView;
     }
 
     @GetMapping("ca")
     public ModelAndView showCa(){
-        ModelAndView modelAndView = new ModelAndView("template.html");
+        ModelAndView modelAndView = new ModelAndView("template");
 
         List<UniteOeuvre> uniteOeuvres = uniteOeuvreService.getAllUO();
         List<Centre> centres = centreService.getAllCentre();
@@ -86,13 +82,24 @@ public class HomeController {
         return modelAndView;
     }
 
+    @GetMapping("achat")
+    public ModelAndView showAchat(){
+        ModelAndView modelAndView = new ModelAndView("template");
+
+        String content = "landingAchat.jsp";
+        String sidebar = "template/floating-sidebar-achat.jsp";
+        modelAndView.addObject("content", content);
+        modelAndView.addObject("sidebar", sidebar);
+        return modelAndView;
+    }
+
     @GetMapping("table")
     public ModelAndView showTable() {
         Exercice myExo = ((Exercice) httpSession.getAttribute("exercice"));
         if (myExo == null)
             return new ModelAndView("redirect:/exercice");
 
-        ModelAndView modelAndView = new ModelAndView("tableau.html");
+        ModelAndView modelAndView = new ModelAndView("template");
 
         ListeAnalytiqueTableau tableau = listeAnalytiqueService.getTableau(myExo.getId());
 
@@ -112,6 +119,12 @@ public class HomeController {
         modelAndView.addObject("repartitions", repartitions);
         modelAndView.addObject("totalRepa", total);
 
+        String content = "landingCa.jsp";
+        String sidebar = "template/floating-sidebar-ca.jsp";
+        String tableauCa = "tableau.jsp";
+        modelAndView.addObject("content", content);
+        modelAndView.addObject("sidebar", sidebar);
+        modelAndView.addObject("tableauCa", tableauCa);
         return modelAndView;
     }
 

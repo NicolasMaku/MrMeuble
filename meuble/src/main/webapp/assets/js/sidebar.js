@@ -7,7 +7,7 @@ sideBar.addEventListener('mouseover', (e) => {
         firstTime = false;
         return;
     }
-    sideBar.style.width = "180px";
+    sideBar.style.width = "260px";
         miafina.forEach(elem => {
             elem.style.display = "block";
             // elem.style.transition = "all 0.5s ease"

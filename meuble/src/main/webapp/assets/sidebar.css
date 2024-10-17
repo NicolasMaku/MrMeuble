@@ -1,5 +1,6 @@
 .sidebar {
     position: fixed;
+    z-index: 10;
     left: 45px;
     top: 45px;
     display: -webkit-box;
@@ -7,7 +8,7 @@
     display: -ms-flexbox;
     display: flex;
     overflow: hidden;
-    width: 180px;
+    width: 260px;
     height: 360px;
     padding-top: 16px;
     padding-bottom: 4px;
@@ -30,7 +31,7 @@
     margin-bottom: 8px;
     border-left: 3px solid transparent;
     color: hsla(0, 0%, 100%, .69);
-    width: 180px;
+    width: 260px;
     line-height: 16px;
     font-weight: 500;
     text-decoration: none;

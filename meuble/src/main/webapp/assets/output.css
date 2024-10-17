@@ -2665,12 +2665,16 @@ details.collapse summary::-webkit-details-marker {
   top: 100%;
 }
 
-.z-0 {
-  z-index: 0;
+.right-20 {
+  right: 5rem;
 }
 
-.z-10 {
-  z-index: 10;
+.top-\[-10\%\] {
+  top: -10%;
+}
+
+.z-0 {
+  z-index: 0;
 }
 
 .z-30 {
@@ -2687,6 +2691,10 @@ details.collapse summary::-webkit-details-marker {
 
 .m-8 {
   margin: 2rem;
+}
+
+.m-10 {
+  margin: 2.5rem;
 }
 
 .mx-4 {
@@ -2712,6 +2720,26 @@ details.collapse summary::-webkit-details-marker {
 .my-4 {
   margin-top: 1rem;
   margin-bottom: 1rem;
+}
+
+.mx-16 {
+  margin-left: 4rem;
+  margin-right: 4rem;
+}
+
+.mx-24 {
+  margin-left: 6rem;
+  margin-right: 6rem;
+}
+
+.mx-32 {
+  margin-left: 8rem;
+  margin-right: 8rem;
+}
+
+.my-10 {
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
 }
 
 .\!me-1 {
@@ -2880,6 +2908,14 @@ details.collapse summary::-webkit-details-marker {
   height: 100%;
 }
 
+.h-\[80dvh\] {
+  height: 80dvh;
+}
+
+.h-\[70dvh\] {
+  height: 70dvh;
+}
+
 .max-h-\[75dvh\] {
   max-height: 75dvh;
 }
@@ -2890,6 +2926,10 @@ details.collapse summary::-webkit-details-marker {
 
 .min-h-\[calc\(100\%-3\.5rem\)\] {
   min-height: calc(100% - 3.5rem);
+}
+
+.min-h-\[80dvh\] {
+  min-height: 80dvh;
 }
 
 .\!w-2\.5 {
@@ -2946,6 +2986,26 @@ details.collapse summary::-webkit-details-marker {
 
 .w-full {
   width: 100%;
+}
+
+.w-5\/6 {
+  width: 83.333333%;
+}
+
+.w-\[90\%\] {
+  width: 90%;
+}
+
+.w-\[85\%\] {
+  width: 85%;
+}
+
+.w-\[87\%\] {
+  width: 87%;
+}
+
+.w-\[89\%\] {
+  width: 89%;
 }
 
 .max-w-\[300px\] {
@@ -3273,6 +3333,11 @@ details.collapse summary::-webkit-details-marker {
   background-color: rgb(17 24 39 / var(--tw-bg-opacity));
 }
 
+.bg-red-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(220 38 38 / var(--tw-bg-opacity));
+}
+
 .bg-slate-200 {
   --tw-bg-opacity: 1;
   background-color: rgb(226 232 240 / var(--tw-bg-opacity));
@@ -3311,6 +3376,11 @@ details.collapse summary::-webkit-details-marker {
 
 .fill-black {
   fill: #000;
+}
+
+.object-cover {
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .p-2 {

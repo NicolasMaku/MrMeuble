@@ -1,26 +1,5 @@
 <%@page pageEncoding="UTF-8" %>
 
-<%--    <div class="relative z-3 flex items-center justify-center">--%>
-<%--        <nav class="relative navbar w-3/6 h-16 flex justify-around border-b-2">--%>
-<%--            <div class="absolute left-0 h-[100%] flex items-center justify-center">--%>
-<%--                <span class="font-bold"><a href="${pageContext.request.contextPath}/home">Mr. Meuble</a></span>--%>
-<%--            </div>--%>
-<%--            <div class="absolute right-0 h-[100%] flex items-center justify-center">--%>
-<%--                <ul class="flex items-center justify-center gap-10">--%>
-<%--                    <li class="font-sans list cursor-pointer" aria-haspopup="dialog" aria-expanded="false" aria-controls="centre-modal" data-hs-overlay="#centre-modal">Centre</li>--%>
-<%--                    <li class="font-sans list cursor-pointer" aria-haspopup="dialog" aria-expanded="false" aria-controls="uo-modal" data-hs-overlay="#uo-modal">Unité d'oeuvre</li>--%>
-<%--                    <li class="font-sans list cursor-pointer" aria-haspopup="dialog" aria-expanded="false" aria-controls="type-rubrique-modal" data-hs-overlay="#type-rubrique-modal">Type rubrique</li>--%>
-<%--                    <li class="font-sans list cursor-pointer" aria-haspopup="dialog" aria-expanded="false" aria-controls="rubrique-modal" data-hs-overlay="#rubrique-modal">Rubrique</li>--%>
-<%--                    <li class="font-sans list cursor-pointer" aria-haspopup="dialog" aria-expanded="false" aria-controls="sortie-modal" data-hs-overlay="#sortie-modal">Sortie</li>--%>
-<%--                </ul>--%>
-<%--            </div>--%>
-<%--        </nav>--%>
-<%--    </div>--%>
-
-    <div class="goToTable relative z-30 top-20 flex items-center justify-center">
-        <a href="home/table"><button class="btnGoToTable p-3 px-4 text-center text-gray-50 rounded-3xl bg-gray-500 hover:bg-gray-700 transition-all duration-300">Voir le tableau</button></a>
-    </div>
-
     <div class="slogan relative z-2 top-32 flex justify-center items-center flex-col">
         <h1 class="font-sans text-8xl text-gray-700 font-bold">Mr. Meuble</h1>
         <h1 class="font-sans">Bienvenu dans l'univers du bois.</h1>
