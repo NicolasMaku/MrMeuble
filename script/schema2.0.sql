@@ -110,7 +110,10 @@ CREATE TABLE proformat_fille(
     id_proformat_fille serial primary key,
     id_proformat int,
     id_produit int,
-    prix decimal(18,2)
+    id_marchandise int,
+    prix decimal(18,2),
+    foreign key (id_produit) references produit(id_produit),
+    foreign key (id_marchandise) references marchandise(id_marchandise)
 );
 
 create table bon_commande(
