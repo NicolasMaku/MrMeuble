@@ -1,6 +1,6 @@
 package com.source.meuble.achat.proformat;
 
-import com.source.meuble.achat.Marchandise;
+import com.source.meuble.achat.marchandise.Marchandise;
 import com.source.meuble.achat.proformat.Proformat;
 import com.source.meuble.achat.proformatFille.ProformatFille;
 import com.source.meuble.achat.proformatFille.ProformatFilleRepository;
