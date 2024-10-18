@@ -75,6 +75,40 @@ CREATE TABLE marchandise(
         foreign key (id_unite_oeuvre) references unite_oeuvre(id_unite_oeuvre)
 );
 
+create table produit_finit(
+  id_produit_finit serial primary key,
+  nom varchar(50)
+);
+
+create table mouvement_stock(
+    id_mouvement_stock serial primary key,
+    id_marchandise int,
+    date_enregistrement date,
+    quantite int,
+    prix_unitaire decimal(11,2),
+    nature int,
+    foreign key (id_marchandise) references marchandise(id_marchandise)
+);
+-- 0 pour l'achat et 1 pour le vente
+
+create table etat_stock(
+   id_etat_stock serial primary key,
+   id_marchandise int,
+   date_enregistrement date,
+   quantite int,
+   prix_unitaire decimal(11,2),
+   foreign key (id_marchandise) references marchandise(id_marchandise)
+);
+
+create table produit_marchandise(
+    id_produit_marchandise serial primary key,
+    id_produit_finit int,
+    id_marchandise int,
+    quantite int,
+    foreign key (id_marchandise) references marchandise(id_marchandise),
+    foreign key (id_produit_finit) references produit_finit(id_produit_finit)
+);
+
 CREATE TABLE besoin(
    id_besoin serial primary key,
    id_marchandise int,
@@ -285,7 +319,9 @@ INSERT INTO centre (nom, categorie) VALUES ('ATELIER', 1);
 INSERT INTO unite_oeuvre(nom) VALUES
 ('KG'),
 ('Kwh'),
-('L');
+('L'),
+('M'),
+('Unite');
 
 INSERT INTO type_rubrique (libelle, nature, incorporabilite, id_unite_oeuvre) VALUES ('ACHAT SEMANCE', 1, 0, 1);
 INSERT INTO type_rubrique (libelle, nature, incorporabilite, id_unite_oeuvre) VALUES ('ACHAT BOIS', 1, 1, 1);
@@ -315,3 +351,25 @@ insert into produit (libelle, quantite, id_centre, id_exercice, date_sortie) VAL
 ("");
 
 insert into utilisateur (username, password) values ('root','root');
+
+insert into produit_finit(id_produit_finit, nom) values (default, 'Chaise');
+insert into produit_finit(id_produit_finit, nom) values (default, 'Lit');
+insert into produit_finit(id_produit_finit, nom) values (default, 'Armoire');
+insert into produit_finit(id_produit_finit, nom) values (default, 'Table');
+
+insert into marchandise(id_marchandise, nom, id_unite_oeuvre) values
+    (default, 'Bois', 4),
+    (default, 'Vis', 5),
+    (default, 'Metal', 5);
+
+INSERT INTO produit_marchandise (id_produit_finit, id_marchandise, quantite) VALUES
+     (1, 1, 4),
+     (1, 2, 10),
+     (2, 1, 6),
+     (2, 2, 20),
+     (2, 3, 4),
+     (3, 1, 8),
+     (3, 2, 15),
+     (4, 1, 10),
+     (4, 2, 12),
+     (4, 3, 6);
