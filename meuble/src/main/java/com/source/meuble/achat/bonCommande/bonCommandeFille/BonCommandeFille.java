@@ -1,4 +1,4 @@
-package com.source.meuble.achat.bonCommandeFille;
+package com.source.meuble.achat.bonCommande.bonCommandeFille;
 
 import com.source.meuble.achat.marchandise.Marchandise;
 import com.source.meuble.achat.bonCommande.BonCommande;

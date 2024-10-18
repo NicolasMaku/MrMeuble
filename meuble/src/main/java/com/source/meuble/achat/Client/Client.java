@@ -1,4 +1,4 @@
-package com.source.meuble.achat;
+package com.source.meuble.achat.Client;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -9,11 +9,11 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Entity
-@Table(name = "fournisseur")
-public class Fournisseur {
+@Table(name = "client")
+public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_fournisseur", nullable = false)
+    @Column(name = "id_client", nullable = false)
     private Integer id;
 
     @Column(name = "nom", length = 50)

@@ -1,8 +1,11 @@
 package com.source.meuble.achat.bonCommande;
 
-import com.source.meuble.achat.bonCommandeFille.BonCommandeFille;
-import com.source.meuble.achat.BonReception;
-import com.source.meuble.achat.BonReceptionFille;
+import com.source.meuble.achat.Client.Client;
+import com.source.meuble.achat.Fornisseur.Fournisseur;
+import com.source.meuble.achat.bonCommande.bonCommandeFille.BonCommandeFille;
+import com.source.meuble.achat.BonReception.BonReception;
+import com.source.meuble.achat.BonReception.BonReceptionFille.BonReceptionFille;
+import com.source.meuble.achat.proformat.Proformat;
 import com.source.meuble.pieces.Etat;
 import com.source.meuble.pieces.EtatCPL;
 import jakarta.persistence.*;
@@ -31,6 +34,18 @@ public class BonCommande extends Etat {
 
     @Column(name = "etat")
     private Integer etat;
+
+    @ManyToOne
+    @JoinColumn(name = "id_proformat", nullable = false)
+    private Proformat idProformat;
+
+    @ManyToOne
+    @JoinColumn(name = "id_fournisseur", nullable = false)
+    private Fournisseur idFournisseur;
+
+    @ManyToOne
+    @JoinColumn(name = "id_client", nullable = false)
+    private Client idClient;
 
     @Override
     public EtatCPL transferer(Etat etat) {

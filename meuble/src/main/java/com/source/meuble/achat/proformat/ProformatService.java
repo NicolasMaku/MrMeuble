@@ -1,10 +1,8 @@
 package com.source.meuble.achat.proformat;
 
 import com.source.meuble.achat.marchandise.Marchandise;
-import com.source.meuble.achat.proformat.Proformat;
-import com.source.meuble.achat.proformatFille.ProformatFille;
-import com.source.meuble.achat.proformatFille.ProformatFilleRepository;
-import com.source.meuble.achat.proformatFille.ProformatFilleService;
+import com.source.meuble.achat.proformat.proformatFille.ProformatFille;
+import com.source.meuble.achat.proformat.proformatFille.ProformatFilleRepository;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;

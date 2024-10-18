@@ -198,7 +198,7 @@ create table facture(
     id_facture serial primary key,
     id_bc int,
     id_br int,
-    date_facture int,
+    date_facture date,
     id_fournisseur int,
     id_client int,
     foreign key (id_bc) references bon_commande(id_bc),
