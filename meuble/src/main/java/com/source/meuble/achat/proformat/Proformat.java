@@ -1,13 +1,12 @@
 package com.source.meuble.achat.proformat;
 
-import com.source.meuble.achat.Fournisseur;
-import com.source.meuble.achat.proformatFille.ProformatFille;
+import com.source.meuble.achat.Fornisseur.Fournisseur;
+import com.source.meuble.achat.proformat.proformatFille.ProformatFille;
 import com.source.meuble.pieces.Etat;
 import com.source.meuble.pieces.EtatCPL;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.mapping.Set;
 
 import java.time.LocalDate;
 import java.util.List;

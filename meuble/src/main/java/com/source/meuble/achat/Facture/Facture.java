@@ -1,5 +1,9 @@
-package com.source.meuble.achat;
+package com.source.meuble.achat.Facture;
 
+import com.source.meuble.achat.BonReception.BonReception;
+import com.source.meuble.achat.Client.Client;
+import com.source.meuble.achat.Facture.FactureFille.FactureFille;
+import com.source.meuble.achat.Fornisseur.Fournisseur;
 import com.source.meuble.achat.bonCommande.BonCommande;
 import com.source.meuble.pieces.Etat;
 import com.source.meuble.pieces.EtatCPL;
@@ -7,6 +11,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Getter
@@ -28,7 +33,7 @@ public class Facture extends Etat {
     private BonReception idBr;
 
     @Column(name = "date_facture")
-    private Integer dateFacture;
+    private LocalDate dateFacture;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_fournisseur")

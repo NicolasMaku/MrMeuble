@@ -1,4 +1,4 @@
-package com.source.meuble.achat.proformatFille;
+package com.source.meuble.achat.proformat.proformatFille;
 
 import com.source.meuble.achat.marchandise.Marchandise;
 import com.source.meuble.analytique.produit.Produit;

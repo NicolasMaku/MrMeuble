@@ -1,7 +1,7 @@
 package com.source.meuble.achat.bonCommande;
 
-import com.source.meuble.achat.bonCommandeFille.BonCommandeFille;
-import com.source.meuble.achat.bonCommandeFille.BonCommandeFilleRepository;
+import com.source.meuble.achat.bonCommande.bonCommandeFille.BonCommandeFille;
+import com.source.meuble.achat.bonCommande.bonCommandeFille.BonCommandeFilleRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 

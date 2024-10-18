@@ -1,4 +1,4 @@
-package com.source.meuble.achat.proformatFille;
+package com.source.meuble.achat.proformat.proformatFille;
 
 import org.springframework.stereotype.Service;
 
