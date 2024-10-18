@@ -1,5 +1,6 @@
 package com.source.meuble.achat;
 
+import com.source.meuble.achat.marchandise.Marchandise;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

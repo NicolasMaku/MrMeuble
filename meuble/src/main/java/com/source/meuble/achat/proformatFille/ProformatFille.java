@@ -1,6 +1,6 @@
 package com.source.meuble.achat.proformatFille;
 
-import com.source.meuble.achat.Marchandise;
+import com.source.meuble.achat.marchandise.Marchandise;
 import com.source.meuble.analytique.produit.Produit;
 import com.source.meuble.achat.proformat.Proformat;
 import jakarta.persistence.*;
