@@ -1,4 +1,4 @@
-package com.source.meuble.achat;
+package com.source.meuble.achat.BonReception;
 
 import com.source.meuble.achat.bonCommande.BonCommande;
 import com.source.meuble.pieces.Etat;

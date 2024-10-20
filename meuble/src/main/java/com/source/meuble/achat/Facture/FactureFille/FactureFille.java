@@ -1,5 +1,7 @@
-package com.source.meuble.achat;
+package com.source.meuble.achat.Facture.FactureFille;
 
+import com.source.meuble.achat.Facture.Facture;
+import com.source.meuble.achat.marchandise.Marchandise;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
