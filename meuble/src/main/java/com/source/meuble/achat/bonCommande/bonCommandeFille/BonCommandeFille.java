@@ -20,11 +20,11 @@ public class BonCommandeFille {
     @JoinColumn(name = "id_bc")
     private BonCommande idBc;
 
-    @Column(name = "prix")
-    private Double prix;
+    @Column(name = "prix", precision = 18, scale = 2)
+    private double prix;
 
-    @Column(name = "quantite")
-    private Double quantite;
+    @Column(name = "quantite", precision = 10, scale = 2)
+    private double quantite;
 
 
     @ManyToOne(fetch = FetchType.LAZY)
