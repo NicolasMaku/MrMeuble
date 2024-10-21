@@ -1,5 +1,6 @@
 package com.source.meuble.achat.besoin;
 
+//import com.source.meuble.achat.marchandise.Marchandise;
 import com.source.meuble.achat.marchandise.Marchandise;
 import com.source.meuble.analytique.centre.Centre;
 import com.source.meuble.pieces.Etat;

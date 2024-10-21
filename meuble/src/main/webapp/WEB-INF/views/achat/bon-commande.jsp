@@ -1,4 +1,5 @@
-<%--
+<%@ page import="com.source.meuble.achat.marchandise.Marchandise" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: Miarantsoa
   Date: 17/10/2024
@@ -7,6 +8,10 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
+<%
+    List<Marchandise> marchandises = ((List<Marchandise>) request.getAttribute("produits"));
+%>
+
 <div class="relative z-1 flex items-center justify-center">
     <div class="w-1/2">
         <form action="" method="POST">
@@ -14,8 +19,15 @@
                 <div class="flex items-center justify-center py-3 gap-2">
                     <label for="produit-bc"
                            class="block text-sm font-medium mb-2 dark:text-white">Produit:</label>
-                    <select id="produit-bc" name="produit-bc"
+                    <select id="produit-bc" name="produit"
                             class="py-3 px-4 block w-2/3 border border-gray-500 rounded-lg text-sm">
+                        <%
+                            for(Marchandise marchandise: marchandises){
+                        %>
+                            <option value="<%=marchandise.getIdMarchandise()%>">PRD00<%=marchandise.getIdMarchandise()%> - <%=marchandise.getNom()%></option>
+                        <%
+                            }
+                        %>
                     </select>
                     <label for="quantite-bc" class="block text-sm font-medium mb-2 dark:text-white">Quantité:</label>
                     <input type="number" id="quantite-bc" name="qte"

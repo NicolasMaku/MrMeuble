@@ -73,6 +73,19 @@
 
     <jsp:include page="<%=footer%>" />
 
+    <script>
+        function confirmSubmission(event, text) {
+            // Display a confirmation dialog
+            let confirmAction = confirm(text);
+
+            // If the user clicks "Cancel", prevent form submission
+            if (!confirmAction) {
+                event.preventDefault();
+            }
+        }
+    </script>
+
+
     <script src="/node_modules/preline/dist/preline.js"></script>
     <script src="/assets/js/gsap.min.js"></script>
     <script src="/assets/js/script.js"></script>
