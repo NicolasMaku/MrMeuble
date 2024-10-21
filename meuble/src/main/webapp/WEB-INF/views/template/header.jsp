@@ -16,7 +16,7 @@
             <ul class="flex items-center justify-center gap-10">
                 <li class="font-sans list cursor-pointer"><a href="/home/ca">Comptabilité analytique</a></li>
                 <li class="font-sans list cursor-pointer"><a href="/home/achat">Achat</a></li>
-                <li class="font-sans list cursor-pointer">Stock</li>
+                <li class="font-sans list cursor-pointer"><a href="/home/stock">Stock</a></li>
             </ul>
         </div>
     </nav>

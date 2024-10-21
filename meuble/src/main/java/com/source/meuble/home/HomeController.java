@@ -93,6 +93,17 @@ public class HomeController {
         return modelAndView;
     }
 
+    @GetMapping("stock")
+    public ModelAndView showStock(){
+        ModelAndView modelAndView = new ModelAndView("template");
+
+        String content = "landingStock.jsp";
+        String sidebar = "template/floating-sidebar-stock.jsp";
+        modelAndView.addObject("content", content);
+        modelAndView.addObject("sidebar", sidebar);
+        return modelAndView;
+    }
+
     @GetMapping("achat/validation-besoin")
     public ModelAndView showAchatValidationBesoin(){
         ModelAndView modelAndView = new ModelAndView("template");

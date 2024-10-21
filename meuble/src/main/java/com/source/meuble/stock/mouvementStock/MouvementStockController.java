@@ -10,10 +10,8 @@ import com.source.meuble.util.Redirection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -126,5 +124,22 @@ public class MouvementStockController {
 
         Redirection redirection = new Redirection("/home");
         return redirection.getUrl();
+    }
+
+    @GetMapping("stock/mouvementStock")
+    public ModelAndView allMouvementStock(){
+        ModelAndView modelAndView = new ModelAndView("template");
+
+        List<MouvementStock> mouvementStocks = mouvementStockService.findAllMouvement();
+        modelAndView.addObject("mouvement", mouvementStocks);
+
+        String content = "landingStock.jsp";
+        String sidebar = "template/floating-sidebar-stock.jsp";
+        String validation = "stock/mouvementStock.jsp";
+        modelAndView.addObject("content", content);
+        modelAndView.addObject("sidebar", sidebar);
+        modelAndView.addObject("insideContent", validation);
+
+        return modelAndView;
     }
 }

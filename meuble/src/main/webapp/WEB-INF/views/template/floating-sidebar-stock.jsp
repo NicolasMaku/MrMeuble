@@ -5,12 +5,21 @@
   Time: 14:27
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
+<%@page pageEncoding="UTF-8" %>
 
-</body>
-</html>
+<div class="sidebar bg-slate-600 transition-all duration-500">
+    <div>
+        <a class="link hover:bg-slate-700 transition duration-300" href="/etatStock/stock/etatStock">
+            <div class="flex">
+                <div class="icon"></div>
+                <div class="miafina">Etat de Stock</div>
+            </div>
+        </a>
+        <a class="link hover:bg-slate-700 transition duration-300" href="/mouvementStock/stock/mouvementStock">
+            <div class="flex">
+                <div class="icon"></div>
+                <div class="miafina">Mouvement Stock</div>
+            </div>
+        </a>
+    </div>
+</div>
