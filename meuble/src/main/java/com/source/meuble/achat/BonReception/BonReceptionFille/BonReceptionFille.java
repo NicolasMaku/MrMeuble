@@ -23,10 +23,10 @@ public class BonReceptionFille {
     private BonReception idBr;
 
     @Column(name = "quantite", precision = 10, scale = 2)
-    private BigDecimal quantite;
+    private Double quantite;
 
     @Column(name = "prix", precision = 18, scale = 2)
-    private BigDecimal prix;
+    private Double prix;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_marchandise")

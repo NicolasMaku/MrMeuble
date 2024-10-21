@@ -24,6 +24,9 @@ public class BonReceptionFilleService {
         return bonReceptionFilleRepository.findById(id);
     }
 
+
+
+
     public BonReceptionFille save(BonReceptionFille bonReceptionFille) {
         return bonReceptionFilleRepository.save(bonReceptionFille);
     }
