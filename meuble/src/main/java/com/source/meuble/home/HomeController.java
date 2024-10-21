@@ -3,6 +3,7 @@ package com.source.meuble.home;
 import com.source.meuble.achat.Fornisseur.FournisseurService;
 import com.source.meuble.achat.besoin.BesoinService;
 import com.source.meuble.achat.marchandise.MarchandiseService;
+import com.source.meuble.achat.proformat.ProformatService;
 import com.source.meuble.analytique.centre.Centre;
 import com.source.meuble.analytique.centre.CentreRepository;
 import com.source.meuble.analytique.centre.CentreService;
@@ -61,6 +62,8 @@ public class HomeController {
     private BesoinService besoinService;
     @Autowired
     private FournisseurService fournisseurService;
+    @Autowired
+    private ProformatService proformatService;
 
     public HomeController(UniteOeuvreService uniteOeuvreService, CentreService centreService,
             TypeRubriqueService typeRubriqueService, ListeAnalytiqueService listeAnalytiqueService,
@@ -145,6 +148,8 @@ public class HomeController {
         modelAndView.addObject("content", content);
         modelAndView.addObject("sidebar", sidebar);
         modelAndView.addObject("insideContent", validation);
+        modelAndView.addObject("centres", centreRepository.findAll());
+        modelAndView.addObject("produits", marchandiseService.findAll());
         return modelAndView;
     }
 
@@ -197,6 +202,9 @@ public class HomeController {
         modelAndView.addObject("content", content);
         modelAndView.addObject("sidebar", sidebar);
         modelAndView.addObject("insideContent", validation);
+        modelAndView.addObject("centres", centreRepository.findAll());
+        modelAndView.addObject("produits", marchandiseService.findAll());
+        modelAndView.addObject("proformats", proformatService.getAllProformats());
         return modelAndView;
     }
 

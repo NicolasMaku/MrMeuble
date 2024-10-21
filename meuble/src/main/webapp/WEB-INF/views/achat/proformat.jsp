@@ -1,4 +1,5 @@
-<%--
+<%@ page import="com.source.meuble.achat.proformat.Proformat" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: Miarantsoa
   Date: 17/10/2024
@@ -7,6 +8,10 @@
 --%>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%
+    List<Proformat> proformats = ((List<Proformat>) request.getAttribute("proformats"));
+%>
 
 
 <div class="overflow-x-auto bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-30 text-black">
@@ -20,22 +25,21 @@
         </tr>
         </thead>
         <tbody class="text-black">
+        <%
+            for(Proformat proformat : proformats) {
+        %>
         <tr>
-            <th>1</th>
-            <td class="text-black text-center">Nico</td>
-            <td class="text-black text-center">17/10/2024</td>
+            <th><%=proformat.getId()%></th>
+            <td class="text-black text-center"><%=proformat.getIdFournisseur().getNom()%></td>
+            <td class="text-black text-center"><%=proformat.getDaty()%></td>
             <th class="flex justify-center gap-2">
-                <a href="achats/proformat-detail.jsp"><button class="btn btn-default btn-xs">Details</button></a>
+                <a href="/proformat/details?id=<%=proformat.getId()%>"><button class="btn btn-default btn-xs">Details</button></a>
             </th>
         </tr>
-        <tr>
-            <th>2</th>
-            <td class="text-black text-center">Nico</td>
-            <td class="text-black text-center">17/10/2024</td>
-            <th class="flex justify-center gap-2">
-                <a href=""><button class="btn btn-default btn-xs">Details</button></a>
-            </th>
-        </tr>
+        <%
+            }
+        %>
+
         </tbody>
     </table>
 </div>

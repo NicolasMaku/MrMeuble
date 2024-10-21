@@ -96,6 +96,7 @@
         <table class="table">
             <thead>
             <tr>
+                <th></th>
                 <th class="text-black">id</th>
                 <th class="text-black">Demandeur</th>
                 <th class="text-black">Produit</th>

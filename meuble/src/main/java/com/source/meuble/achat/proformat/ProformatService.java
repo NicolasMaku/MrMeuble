@@ -24,6 +24,7 @@ public class ProformatService {
         this.proformatRepository = proformatRepository;
     }
 
+    @Transactional
     public Proformat ajouterPrixProformat(ProformatFille[] proformatFilles, Double[] listePrix)
         throws Exception {
         if(proformatFilles.length == 0) {
@@ -68,6 +69,10 @@ public class ProformatService {
 
         proformatFilleRepository.saveAll(pfs);
         return proformat;
+    }
+
+    public List<Proformat> getAllProformats() {
+        return proformatRepository.findAll();
     }
 
 }

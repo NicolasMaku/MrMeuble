@@ -31,7 +31,7 @@ public class Proformat extends Etat {
     @Column(name = "daty")
     private LocalDate daty;
 
-    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "idProformat", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<ProformatFille> filles;
 
     @Override
