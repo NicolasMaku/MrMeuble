@@ -14,4 +14,8 @@ public interface EtatStockRepository extends JpaRepository<EtatStock, Integer>{
 
     @Query("select e from EtatStock e where e.marchandise.idMarchandise = :idMarchandise")
     List<EtatStock> findAll(@Param("idMarchandise") Integer idMarchandise);
+
+    @Query("SELECT e FROM EtatStock e WHERE e.id IN " +
+            "(SELECT MAX(e2.id) FROM EtatStock e2 GROUP BY e2.marchandise)")
+    List<EtatStock> resteEnStock();
 }
