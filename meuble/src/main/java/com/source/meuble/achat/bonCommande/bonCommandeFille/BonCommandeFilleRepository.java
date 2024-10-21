@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface BonCommandeFilleRepository extends JpaRepository<BonCommandeFille, Integer> {
-    @Query("select b from BonCommandeFille b where b.idBc.id=:idBonComande")
-    public List<BonCommandeFille> findFilleBonCommande(@Param("idBonCommande") Integer id);
+    @Query("select b from BonCommandeFille b where b.idBc.id=:idBonCommande")
+    List<BonCommandeFille> findFilleBonCommande(@Param("idBonCommande") Integer id);
 }
