@@ -1,4 +1,8 @@
-<%--
+<%@ page import="java.util.List" %>
+<%@ page import="com.source.meuble.analytique.centre.Centre" %>
+<%@ page import="com.source.meuble.util.RequestAttribute" %>
+<%@ page import="com.source.meuble.analytique.produit.Produit" %>
+<%@ page import="com.source.meuble.achat.marchandise.Marchandise" %><%--
   Created by IntelliJ IDEA.
   User: Miarantsoa
   Date: 14/10/2024
@@ -6,6 +10,12 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@page pageEncoding="UTF-8" %>
+
+<%
+//    RequestAttribute attribute = new RequestAttribute(request);
+    List<Centre> centres = (List<Centre>) request.getAttribute("centres");
+    List<Marchandise> produits = ((List<Marchandise>) request.getAttribute("produits"));
+%>
 
 <div class="sidebar bg-slate-600 transition-all duration-500">
     <div><a class="link hover:bg-slate-700 transition duration-300" href="#">
@@ -21,24 +31,24 @@
             <div class="miafina">Valider un besoin
             </div>
         </div>
-        </a>
+    </a>
         <a class="link hover:bg-slate-700 transition duration-300" href="/home/achat/proformat">
             <div class="flex">
                 <div class="icon"></div>
-                <div class="miafina" >Proformats
+                <div class="miafina">Proformats
                 </div>
             </div>
         </a><a class="link hover:bg-slate-700 transition duration-300" href="/home/achat/bon-commande">
             <div class="flex">
                 <div class="icon"></div>
-                <div class="miafina" >Bon de commande
+                <div class="miafina">Bon de commande
                 </div>
             </div>
         </a>
         <a class="link hover:bg-slate-700 transition duration-300" href="/home/achat/validation-bon-commande">
             <div class="flex">
                 <div class="icon"></div>
-                <div class="miafina" >Valider un bon de commande
+                <div class="miafina">Valider un bon de commande
                 </div>
             </div>
         </a>
@@ -81,21 +91,39 @@
                         </svg>
                     </button>
                 </div>
-                <form action="" method="POST">
+                <form action="/besoin/save" method="POST">
                     <div class="p-4 overflow-y-auto">
+                        <select type="date" id="departement" name="centre" class="py-3 px-4 block w-full border border-gray-500 rounded-lg text-sm">
+                            <%
+                                for(Centre centre: centres){
+                            %>
+                                <option value="<%=centre.getIdCentre()%>"><%=centre.getNom()%></option>
+                            <%
+                                }
+                            %>
+                        </select>
+
                         <div class="flex items-center justify-center py-3 gap-2">
                             <label for="produit-besoin"
                                    class="block text-sm font-medium mb-2 dark:text-white">Produit:</label>
-                            <select id="produit-besoin" name="produit-besoin"
-                                    class="py-3 px-4 block w-2/3 border border-gray-500 rounded-lg text-sm">
+                            <select id="produit-besoin" name="marchandise"
+                                    class="py-3 px-4 block w-2/3 border border-gray-500 rounded-lg text-sm"
+                            >
+                                <%
+                                    for(Marchandise produit: produits) {
+                                %>
+                                <option value="<%=produit.getIdMarchandise()%>"><%=produit.getNom()%></option>
+                                <%
+                                    }
+                                %>
                             </select>
                             <label for="quantite-besoin" class="block text-sm font-medium mb-2 dark:text-white">Quantité:</label>
                             <input type="number" id="quantite-besoin" name="qte"
                                    class="py-3 px-4 block w-1/3 border border-gray-500 rounded-lg text-sm">
                         </div>
-                        <label for="date-besoin" class="block text-sm font-medium mb-2 dark:text-white">Date
+                        <label for="date" class="block text-sm font-medium mb-2 dark:text-white">Date
                             besoin:</label>
-                        <input type="date" id="date-besoin" name="besoin"
+                        <input type="date" id="date" name="date"
                                class="py-3 px-4 block w-full border border-gray-500 rounded-lg text-sm">
                     </div>
                     <div class="flex justify-center items-center gap-x-2 py-3 px-4 border-t dark:border-neutral-700">

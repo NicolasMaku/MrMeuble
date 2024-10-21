@@ -1,11 +1,15 @@
 package com.source.meuble.achat.proformat;
 
+import com.source.meuble.achat.Fornisseur.Fournisseur;
+import com.source.meuble.achat.besoin.Besoin;
 import com.source.meuble.achat.marchandise.Marchandise;
 import com.source.meuble.achat.proformat.proformatFille.ProformatFille;
 import com.source.meuble.achat.proformat.proformatFille.ProformatFilleRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.*;
 
 @Service
@@ -13,9 +17,11 @@ public class ProformatService {
 
 
     private final ProformatFilleRepository proformatFilleRepository;
+    private final ProformatRepository proformatRepository;
 
-    public ProformatService(ProformatFilleRepository proformatFilleRepository) {
+    public ProformatService(ProformatFilleRepository proformatFilleRepository, ProformatRepository proformatRepository) {
         this.proformatFilleRepository = proformatFilleRepository;
+        this.proformatRepository = proformatRepository;
     }
 
     public Proformat ajouterPrixProformat(ProformatFille[] proformatFilles, Double[] listePrix)
@@ -44,4 +50,24 @@ public class ProformatService {
         });
         return map;
     }
+
+    @Transactional
+    public Proformat demanderProformat(List<Besoin> besoins, Fournisseur fournisseur) {
+        Proformat proformat = new Proformat();
+        proformat.setDaty(LocalDate.now());
+        proformat.setIdFournisseur(fournisseur);
+        proformat = proformatRepository.save(proformat);
+
+        List<ProformatFille> pfs = new ArrayList<>();
+        for(Besoin besoin: besoins) {
+            ProformatFille proformatFille = new ProformatFille();
+            proformatFille.setIdProformat(proformat);
+            proformatFille.setIdMarchandise(besoin.getIdMarchandise());
+            pfs.add(proformatFille);
+        }
+
+        proformatFilleRepository.saveAll(pfs);
+        return proformat;
+    }
+
 }

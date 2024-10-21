@@ -1,14 +1,21 @@
 package com.source.meuble.home;
 
+import com.source.meuble.achat.Fornisseur.FournisseurService;
+import com.source.meuble.achat.besoin.BesoinService;
+import com.source.meuble.achat.marchandise.MarchandiseService;
 import com.source.meuble.analytique.centre.Centre;
+import com.source.meuble.analytique.centre.CentreRepository;
 import com.source.meuble.analytique.centre.CentreService;
 import com.source.meuble.analytique.exercice.Exercice;
 import com.source.meuble.analytique.listeAnalytique.ListeAnalytiqueService;
 import com.source.meuble.analytique.listeAnalytique.ListeAnalytiqueTableau;
+import com.source.meuble.analytique.produit.ProduitService;
 import com.source.meuble.analytique.typeRubrique.TypeRubrique;
 import com.source.meuble.analytique.typeRubrique.TypeRubriqueService;
 import com.source.meuble.analytique.uniteOeuvre.UniteOeuvre;
 import com.source.meuble.analytique.uniteOeuvre.UniteOeuvreService;
+import com.source.meuble.auth.AuthService;
+import com.source.meuble.auth.NoExerciceFoundException;
 import com.source.meuble.visible.cout.AdminCout;
 import com.source.meuble.visible.cout.Cout;
 import com.source.meuble.visible.AdminRepartition;
@@ -42,6 +49,18 @@ public class HomeController {
 
     @Autowired
     CalculSeuil calculSeuil;
+    @Autowired
+    private CentreRepository centreRepository;
+    @Autowired
+    private ProduitService produitService;
+    @Autowired
+    private MarchandiseService marchandiseService;
+    @Autowired
+    private AuthService authService;
+    @Autowired
+    private BesoinService besoinService;
+    @Autowired
+    private FournisseurService fournisseurService;
 
     public HomeController(UniteOeuvreService uniteOeuvreService, CentreService centreService,
             TypeRubriqueService typeRubriqueService, ListeAnalytiqueService listeAnalytiqueService,
@@ -83,13 +102,17 @@ public class HomeController {
     }
 
     @GetMapping("achat")
-    public ModelAndView showAchat(){
+    public ModelAndView showAchat() throws NoExerciceFoundException {
+        Exercice exercice = authService.requireExercice();
+
         ModelAndView modelAndView = new ModelAndView("template");
 
         String content = "landingAchat.jsp";
         String sidebar = "template/floating-sidebar-achat.jsp";
         modelAndView.addObject("content", content);
         modelAndView.addObject("sidebar", sidebar);
+        modelAndView.addObject("centres", centreRepository.findAll());
+        modelAndView.addObject("produits", marchandiseService.findAll());
         return modelAndView;
     }
 
@@ -103,11 +126,17 @@ public class HomeController {
         modelAndView.addObject("content", content);
         modelAndView.addObject("sidebar", sidebar);
         modelAndView.addObject("insideContent", validation);
+        modelAndView.addObject("centres", centreRepository.findAll());
+        modelAndView.addObject("produits", marchandiseService.findAll());
+        modelAndView.addObject("besoinMap", besoinService.getBesoinsGroupByEtat());
+        modelAndView.addObject("fournisseurs", fournisseurService.findAllFournisseur());
+
+//        modelAndView.addObject("besoins", besoinService.ge);
         return modelAndView;
     }
 
     @GetMapping("achat/bon-commande")
-    public ModelAndView showAchatBonCommande(){
+    public ModelAndView showAchatBonCommande() throws NoExerciceFoundException {
         ModelAndView modelAndView = new ModelAndView("template");
 
         String content = "landingAchat.jsp";
