@@ -1,5 +1,8 @@
 package com.source.meuble.home;
 
+import com.source.meuble.achat.BonReception.BonReception;
+import com.source.meuble.achat.BonReception.BonReceptionService;
+import com.source.meuble.achat.Facture.FactureService;
 import com.source.meuble.achat.Fornisseur.FournisseurService;
 import com.source.meuble.achat.besoin.BesoinService;
 import com.source.meuble.achat.marchandise.MarchandiseService;
@@ -64,6 +67,10 @@ public class HomeController {
     private FournisseurService fournisseurService;
     @Autowired
     private ProformatService proformatService;
+    @Autowired
+    private BonReceptionService bonReceptionService;
+    @Autowired
+    private FactureService factureService;
 
     public HomeController(UniteOeuvreService uniteOeuvreService, CentreService centreService,
             TypeRubriqueService typeRubriqueService, ListeAnalytiqueService listeAnalytiqueService,
@@ -200,6 +207,8 @@ public class HomeController {
         modelAndView.addObject("content", content);
         modelAndView.addObject("sidebar", sidebar);
         modelAndView.addObject("insideContent", validation);
+        modelAndView.addObject("factures", factureService.findAll());
+
         return modelAndView;
     }
 
@@ -290,6 +299,21 @@ public class HomeController {
         return modelAndView;
 
         // modelAndView.addObject();
+    }
+
+    @GetMapping("/achat/bon-reception")
+    public ModelAndView showBonReception(){
+
+        ModelAndView modelAndView = new ModelAndView("template");
+        String content = "landingAchat.jsp";
+        String sidebar = "template/floating-sidebar-achat.jsp";
+        String validation = "achat/bon-reception.jsp";
+        modelAndView.addObject("content", content);
+        modelAndView.addObject("sidebar", sidebar);
+        modelAndView.addObject("insideContent", validation);
+        modelAndView.addObject("bonReceptions",bonReceptionService.findAll());
+
+        return modelAndView;
     }
 
 }

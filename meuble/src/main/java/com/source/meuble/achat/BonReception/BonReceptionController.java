@@ -1,5 +1,6 @@
 package com.source.meuble.achat.BonReception;
 
+import com.source.meuble.achat.proformat.Proformat;
 import com.source.meuble.util.Redirection;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -21,16 +23,25 @@ public class BonReceptionController {
         this.bonReceptionService = bonReceptionService1;
     }
 
-    @GetMapping("/bonReception")
-    public String getAllBonReception(Model model){
-        List<BonReception> bonReceptions=bonReceptionService.findAll();
-        model.addAttribute("bonReception",bonReceptions);
-        return "bonReception";
-    }
-
     @PostMapping("/transfert")
     public String transfertToBr(@RequestParam("date") LocalDate daty, @RequestParam("idBc") int id){
         bonReceptionService.transferBcToBr(id,daty);
         return  new Redirection("test/home").getUrl();
+    }
+
+    @GetMapping("/details")
+    public ModelAndView showDetails(
+            @RequestParam("id") BonReception bonReception
+    ) {
+        ModelAndView modelAndView = new ModelAndView("template");
+
+        String content = "landingAchat.jsp";
+        String sidebar = "template/floating-sidebar-achat.jsp";
+        String validation = "achat/bon-reception-detail.jsp";
+        modelAndView.addObject("content", content);
+        modelAndView.addObject("sidebar", sidebar);
+        modelAndView.addObject("insideContent", validation);
+        modelAndView.addObject("brFille", bonReceptionService.findFilleByIdMere(bonReception.getId()));
+        return modelAndView;
     }
 }
