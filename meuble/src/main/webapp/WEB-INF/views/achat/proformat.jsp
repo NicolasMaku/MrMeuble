@@ -34,6 +34,8 @@
             <td class="text-black text-center"><%=proformat.getDaty()%></td>
             <th class="flex justify-center gap-2">
                 <a href="/proformat/details?id=<%=proformat.getId()%>"><button class="btn btn-default btn-xs">Details</button></a>
+                <a href="/bon-commande/generer?id=<%=proformat.getId()%>"><button class="btn btn-success btn-xs">Generer Bon de Commande</button></a>
+
             </th>
         </tr>
         <%

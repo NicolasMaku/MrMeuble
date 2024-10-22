@@ -85,7 +85,13 @@
             <td><%=besoin.getQuantite()%></td>
             <td><%=besoin.getDaty()%></td>
             <th>
-                <a href="/besoin/valider?idBesoin=<%=besoin.getId()%>"><button class="btn btn-success btn-xs">Valider</button></a>
+                <a href="/besoin/valider?idBesoin=<%=besoin.getId()%>"
+                   onclick="
+                        confirmSubmission(event, 'Cette demande est-elle prioritaire par rapport aux autres projets en cours ?')
+                    "
+                >
+                    <button class="btn btn-success btn-xs">Valider</button>
+                </a>
             </th>
         </tr>
         <%

@@ -63,6 +63,7 @@ public class ProformatService {
         for(Besoin besoin: besoins) {
             ProformatFille proformatFille = new ProformatFille();
             proformatFille.setIdProformat(proformat);
+            proformatFille.setQte(besoin.getQuantite().doubleValue());
             proformatFille.setIdMarchandise(besoin.getIdMarchandise());
             pfs.add(proformatFille);
         }
