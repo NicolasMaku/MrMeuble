@@ -28,7 +28,7 @@
             for (int i = 0; i < bonReceptions.size(); i++) {
         %>
         <tr>
-            <td class="text-blue-500 underline text-center"><a href="/BonReception/details?id=<%=bonReceptions.get(i).getId()%>"><%=bonReceptions.get(i).getId()%></a></td>
+            <td class="text-blue-500 underline text-center"><a href="/BonReception/details?id=<%=bonReceptions.get(i).getId()%>">BR00<%=bonReceptions.get(i).getId()%></a></td>
             <td class="text-black text-center">BC00<%=bonReceptions.get(i).getIdBc().getId()%></td>
             <td class="text-black text-center"><%=bonReceptions.get(i).getDateReception()%></td>
             <th class="flex justify-center gap-2">
