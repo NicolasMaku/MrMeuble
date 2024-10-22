@@ -47,6 +47,9 @@ public class BonCommande extends Etat {
     @JoinColumn(name = "id_client")
     private Client idClient;
 
+    @OneToMany(mappedBy = "idBc", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<BonCommandeFille> filles;
+
     @Override
     public EtatCPL transferer(Etat etat) {
         BonCommande bc = (BonCommande) etat;

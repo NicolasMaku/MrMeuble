@@ -44,7 +44,7 @@
                     <button class="btn btn-success btn-xs">Valider</button>
                 </a>
                 <%--                <button class="btn btn-info btn-xs">Transferer</button>--%>
-                <button class="btn btn-default btn-xs">Details</button>
+                <a href="/bon-commande/details?id=<%=bc.getId()%>"><button class="btn btn-default btn-xs">Details</button></a>
             </th>
         </tr>
         <%
@@ -86,7 +86,7 @@
                     <button class="btn btn-success btn-xs">Valider</button>
                 </a>
                 <%--                <button class="btn btn-info btn-xs">Transferer</button>--%>
-                <button class="btn btn-default btn-xs">Details</button>
+                <a href="/bon-commande/details?id=<%=bc.getId()%>"><button class="btn btn-default btn-xs">Details</button></a>
             </th>
         </tr>
         <%
@@ -130,7 +130,7 @@
                     Date Livraison: <input type="date" class="input" name="date">
                     <button type="submit" class="btn btn-info btn-xs">Transferer</button>
                 </form>
-                <button class="btn btn-default btn-xs">Details</button>
+                <a href="/bon-commande/details?id=<%=bc.getId()%>"><button class="btn btn-default btn-xs">Details</button></a>
             </th>
         </tr>
         <%
