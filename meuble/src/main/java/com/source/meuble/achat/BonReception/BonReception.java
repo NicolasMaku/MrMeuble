@@ -1,5 +1,6 @@
 package com.source.meuble.achat.BonReception;
 
+import com.source.meuble.achat.BonReception.BonReceptionFille.BonReceptionFille;
 import com.source.meuble.achat.bonCommande.BonCommande;
 import com.source.meuble.pieces.Etat;
 import com.source.meuble.pieces.EtatCPL;
@@ -32,8 +33,11 @@ public class BonReception extends Etat {
         return null;
     }
 
-    @Override
-    public List<Object> getFille() {
-        return null;
-    }
+    @OneToMany(mappedBy = "idBr", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public List<BonReceptionFille> fille;
+
+//    @Override
+//    public List<Object> getFille() {
+//        return null;
+//    }
 }
