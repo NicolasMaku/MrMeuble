@@ -152,7 +152,9 @@
                 }
             %>
         </select>
-        <button class="btn btn-outline w-2/3 my-3" type="submit">Demander proformat</button>
+<%--        test sur ce bouton--%>
+        <button id="btn" class="btn btn-outline w-2/3 my-3" type="button">Demander proformat</button>
+
     </div>
 </form>
 

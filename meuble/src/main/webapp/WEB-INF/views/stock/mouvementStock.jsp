@@ -20,6 +20,7 @@
             <th class="text-black text-center">Marchandise</th>
             <th class="text-black text-center">Date Enregistrement</th>
             <th class="text-black text-center">Quantite</th>
+            <th class="text-black text-center">Prix Unitaire</th>
             <th class="text-black text-center">Nature</th>
         </tr>
         </thead>

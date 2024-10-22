@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="/assets/output.css">
     <link rel="stylesheet" href="/assets/style.css">
     <link rel="stylesheet" href="/assets/sidebar.css">
+    <link rel="stylesheet" href="/node_modules/tippy.js/dist/tippy.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
@@ -85,11 +86,13 @@
         }
     </script>
 
-
+    <script src="/node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
+    <script src="/node_modules/tippy.js/dist/tippy-bundle.umd.js"></script>
     <script src="/node_modules/preline/dist/preline.js"></script>
     <script src="/assets/js/gsap.min.js"></script>
     <script src="/assets/js/script.js"></script>
     <script src="/assets/js/sidebar.js"></script>
     <script src="/assets/js/sweetalert2.js"></script>
+    <script src="/assets/js/popover.js"></script>
 </body>
 </html>

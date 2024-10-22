@@ -1678,6 +1678,10 @@ input.tab:checked + .tab-content,
     border-color: var(--btn-color, var(--fallback-b2));
   }
 
+  .btn-primary {
+    --btn-color: var(--fallback-p);
+  }
+
   .btn-info {
     --btn-color: var(--fallback-in);
   }
@@ -1730,7 +1734,17 @@ input.tab:checked + .tab-content,
   outline-offset: 2px;
 }
 
+.btn-primary {
+  --tw-text-opacity: 1;
+  color: var(--fallback-pc,oklch(var(--pc)/var(--tw-text-opacity)));
+  outline-color: var(--fallback-p,oklch(var(--p)/1));
+}
+
 @supports (color: oklch(0% 0 0)) {
+  .btn-primary {
+    --btn-color: var(--p);
+  }
+
   .btn-info {
     --btn-color: var(--in);
   }
@@ -3077,6 +3091,10 @@ details.collapse summary::-webkit-details-marker {
   right: 0px;
 }
 
+.right-10 {
+  right: 2.5rem;
+}
+
 .right-20 {
   right: 5rem;
 }
@@ -3099,14 +3117,6 @@ details.collapse summary::-webkit-details-marker {
 
 .top-full {
   top: 100%;
-}
-
-.bottom-0 {
-  bottom: 0px;
-}
-
-.right-10 {
-  right: 2.5rem;
 }
 
 .z-0 {
@@ -3150,14 +3160,14 @@ details.collapse summary::-webkit-details-marker {
   margin-bottom: 0.5rem;
 }
 
-.my-4 {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-
 .my-3 {
   margin-top: 0.75rem;
   margin-bottom: 0.75rem;
+}
+
+.my-4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .\!me-1 {
@@ -3761,11 +3771,6 @@ details.collapse summary::-webkit-details-marker {
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
-
-.bg-red-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(239 68 68 / var(--tw-bg-opacity));
 }
 
 .bg-opacity-10 {
