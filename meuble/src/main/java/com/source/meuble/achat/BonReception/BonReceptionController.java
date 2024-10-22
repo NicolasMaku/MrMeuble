@@ -1,6 +1,7 @@
 package com.source.meuble.achat.BonReception;
 
 import com.source.meuble.achat.proformat.Proformat;
+import com.source.meuble.stock.mouvementStock.MouvementStockService;
 import com.source.meuble.util.Redirection;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +19,8 @@ import java.util.List;
 public class BonReceptionController {
 
     private final BonReceptionService bonReceptionService;
-    public BonReceptionController(BonReceptionService bonReceptionService1){
+
+    public BonReceptionController(BonReceptionService bonReceptionService1, MouvementStockService mouvementStockService){
 
         this.bonReceptionService = bonReceptionService1;
     }
