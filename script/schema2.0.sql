@@ -373,3 +373,5 @@ INSERT INTO produit_marchandise (id_produit_finit, id_marchandise, quantite) VAL
      (4, 1, 10),
      (4, 2, 12),
      (4, 3, 6);
+
+ALTER TABLE proformat_fille ADD COLUMN QTE NUMERIC(15,2);

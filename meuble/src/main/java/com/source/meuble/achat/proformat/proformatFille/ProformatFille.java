@@ -27,6 +27,9 @@ public class ProformatFille {
     @Column(name = "prix", precision = 18, scale = 2)
     private BigDecimal prix;
 
+    @Column(name = "qte")
+    private Double qte;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_marchandise")
     private Marchandise idMarchandise;

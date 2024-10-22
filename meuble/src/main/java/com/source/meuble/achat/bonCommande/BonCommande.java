@@ -40,11 +40,11 @@ public class BonCommande extends Etat {
     private Proformat idProformat;
 
     @ManyToOne
-    @JoinColumn(name = "id_fournisseur", nullable = false)
+    @JoinColumn(name = "id_fournisseur")
     private Fournisseur idFournisseur;
 
     @ManyToOne
-    @JoinColumn(name = "id_client", nullable = false)
+    @JoinColumn(name = "id_client")
     private Client idClient;
 
     @Override

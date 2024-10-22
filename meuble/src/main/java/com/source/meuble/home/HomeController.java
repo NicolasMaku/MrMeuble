@@ -2,6 +2,7 @@ package com.source.meuble.home;
 
 import com.source.meuble.achat.Fornisseur.FournisseurService;
 import com.source.meuble.achat.besoin.BesoinService;
+import com.source.meuble.achat.bonCommande.BonCommandeService;
 import com.source.meuble.achat.marchandise.MarchandiseService;
 import com.source.meuble.achat.proformat.ProformatService;
 import com.source.meuble.analytique.centre.Centre;
@@ -64,6 +65,8 @@ public class HomeController {
     private FournisseurService fournisseurService;
     @Autowired
     private ProformatService proformatService;
+    @Autowired
+    private BonCommandeService bonCommandeService;
 
     public HomeController(UniteOeuvreService uniteOeuvreService, CentreService centreService,
             TypeRubriqueService typeRubriqueService, ListeAnalytiqueService listeAnalytiqueService,
@@ -174,6 +177,9 @@ public class HomeController {
         modelAndView.addObject("content", content);
         modelAndView.addObject("sidebar", sidebar);
         modelAndView.addObject("insideContent", validation);
+        modelAndView.addObject("centres", centreRepository.findAll());
+        modelAndView.addObject("produits", marchandiseService.findAll());
+        modelAndView.addObject("bcMap", bonCommandeService.getBonCommandeGroupByEtat());
         return modelAndView;
     }
 
@@ -187,6 +193,8 @@ public class HomeController {
         modelAndView.addObject("content", content);
         modelAndView.addObject("sidebar", sidebar);
         modelAndView.addObject("insideContent", validation);
+        modelAndView.addObject("centres", centreRepository.findAll());
+        modelAndView.addObject("produits", marchandiseService.findAll());
         return modelAndView;
     }
 
@@ -200,6 +208,8 @@ public class HomeController {
         modelAndView.addObject("content", content);
         modelAndView.addObject("sidebar", sidebar);
         modelAndView.addObject("insideContent", validation);
+        modelAndView.addObject("centres", centreRepository.findAll());
+        modelAndView.addObject("produits", marchandiseService.findAll());
         return modelAndView;
     }
 
