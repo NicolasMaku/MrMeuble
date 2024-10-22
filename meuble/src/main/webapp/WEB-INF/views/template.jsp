@@ -92,6 +92,7 @@
     <script src="/assets/js/gsap.min.js"></script>
     <script src="/assets/js/script.js"></script>
     <script src="/assets/js/sidebar.js"></script>
+    <script src="/assets/js/sweetalert2.js"></script>
     <script src="/assets/js/popover.js"></script>
 </body>
 </html>
