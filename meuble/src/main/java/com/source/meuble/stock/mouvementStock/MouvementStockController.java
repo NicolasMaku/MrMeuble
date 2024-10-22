@@ -75,7 +75,7 @@ public class MouvementStockController {
                 throw new RuntimeException("Marchandise non trouvée avec l'ID: " + idMarchandise);
             }
 
-            EtatStock etatStock = mouvementStockService.saveMouvementStockWithEtat(mouvementStock, mouvementStockService, etatStockService);
+            EtatStock etatStock = mouvementStockService.saveMouvementStockWithEtat(mouvementStock, etatStockService);
 
             System.out.println("Success");
         }catch (Exception e){
@@ -86,45 +86,6 @@ public class MouvementStockController {
         return redirection.getUrl();
     }
 
-    @PostMapping("/achat2")
-    public String achatWithMouvementEtat2(
-            @RequestParam("idBonReception") BonReception idBonReception
-    ){
-        int nat = 0;
-
-        MouvementStock mouvementStock = null;
-
-        try{
-            LocalDate date = idBonReception.getDateReception();
-
-            for (int i=0; i<idBonReception.getFille().size(); i++){
-                BonReceptionFille bonReceptionFille = idBonReception.getFille().get(i);
-                mouvementStock = new MouvementStock();
-
-                mouvementStock.setDateEnregistrement(date);
-                mouvementStock.setQuantite(Integer.parseInt((bonReceptionFille.getQuantite()).toString()));
-                mouvementStock.setPrixUnitaire(bonReceptionFille.getPrix());
-                mouvementStock.setNature(nat);
-                mouvementStock.calculPrixTotal();
-
-                Optional<Marchandise> optionalMarchandise = marchandiseService.findById(bonReceptionFille.getIdMarchandise().getIdMarchandise());
-                if (optionalMarchandise.isPresent()) {
-                    mouvementStock.setMarchandise(optionalMarchandise.get());
-                } else {
-                    throw new RuntimeException("Marchandise non trouvée avec l'ID: " + bonReceptionFille.getIdMarchandise().getIdMarchandise());
-                }
-
-                EtatStock etatStock = mouvementStockService.saveMouvementStockWithEtat(mouvementStock, mouvementStockService, etatStockService);
-
-                System.out.println("Success");
-            }
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-        }
-
-        Redirection redirection = new Redirection("/home");
-        return redirection.getUrl();
-    }
 
     @PostMapping("/vente")
     public String venteWithMouvementEtat(
@@ -157,7 +118,7 @@ public class MouvementStockController {
                     throw new RuntimeException("Marchandise non trouvée avec l'ID: " + produitMarchandise.getMarchandise().getIdMarchandise());
                 }
 
-                EtatStock etatStock = mouvementStockService.saveMouvementStockWithEtat(mouvementStock, mouvementStockService, etatStockService);
+                EtatStock etatStock = mouvementStockService.saveMouvementStockWithEtat(mouvementStock, etatStockService);
 
                 System.out.println("Success");
             }

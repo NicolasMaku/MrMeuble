@@ -52,8 +52,8 @@ insert into marchandise(id_marchandise, nom, id_unite_oeuvre) values
       (default, 'Metal', 1);
 
 insert into  fournisseur(nom, daty, compte) values
-('Dago', '01/05/2024', '40100001'),
-('Quinz', '01/05/2024', '40100002');
+('Dago', '01/05/2024', '4010001'),
+('Quinz', '01/05/2024', '4010002');
 
 INSERT INTO produit_marchandise(id_produit_finit, id_marchandise, quantite) VALUES
      (1, 1, 4),

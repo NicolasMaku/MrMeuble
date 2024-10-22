@@ -70,6 +70,7 @@ public class HomeController {
     private ProformatService proformatService;
     @Autowired
     private BonCommandeService bonCommandeService;
+    @Autowired
     private BonReceptionService bonReceptionService;
     @Autowired
     private FactureService factureService;
@@ -322,6 +323,8 @@ public class HomeController {
         modelAndView.addObject("content", content);
         modelAndView.addObject("sidebar", sidebar);
         modelAndView.addObject("insideContent", validation);
+        modelAndView.addObject("centres", centreRepository.findAll());
+        modelAndView.addObject("produits", marchandiseService.findAll());
         modelAndView.addObject("bonReceptions",bonReceptionService.findAll());
 
         return modelAndView;

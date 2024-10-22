@@ -6,6 +6,7 @@ import com.source.meuble.achat.bonCommande.BonCommande;
 import com.source.meuble.achat.bonCommande.BonCommandeService;
 import com.source.meuble.achat.bonCommande.bonCommandeFille.BonCommandeFille;
 import com.source.meuble.achat.bonCommande.bonCommandeFille.BonCommandeFilleRepository;
+import com.source.meuble.stock.mouvementStock.MouvementStockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,16 +20,16 @@ public class BonReceptionService {
     private final BonReceptionRepository bonReceptionRepository;
     private final BonCommandeService bonCommandeService;
     private final BonReceptionFilleRepository bonReceptionFilleRepository;
-    private final BonCommandeFilleRepository bonCommandeFilleRepository;
+
+    private final MouvementStockService mouvementStockService;
 
     @Autowired
     public BonReceptionService(BonReceptionRepository bonReceptionRepository, BonCommandeService bonCommandeService,
-                               BonReceptionFilleRepository bonReceptionFilleRepository,
-                               BonCommandeFilleRepository bonCommandeFilleRepository) {
+                               BonReceptionFilleRepository bonReceptionFilleRepository, MouvementStockService mouvementStockService) {
         this.bonReceptionRepository = bonReceptionRepository;
         this.bonCommandeService = bonCommandeService;
         this.bonReceptionFilleRepository = bonReceptionFilleRepository;
-        this.bonCommandeFilleRepository = bonCommandeFilleRepository;
+        this.mouvementStockService = mouvementStockService;
     }
 
     public List<BonReception> findAll() {
@@ -54,6 +55,7 @@ public class BonReceptionService {
             BonReception br=this.genererBr(bon,daty);
             List<BonCommandeFille> bcFilles= bonCommandeService.findFilleByIdMere(bon.getId());
             this.genereBonReceptionFille(bcFilles,br);
+            mouvementStockService.achatWithMouvementEtat2(br);
         } else {
             // Gérer le cas où l'objet n'existe pas
         }

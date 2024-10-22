@@ -3,6 +3,7 @@ package com.source.meuble.achat.BonReception;
 import com.source.meuble.achat.marchandise.MarchandiseService;
 import com.source.meuble.achat.proformat.Proformat;
 import com.source.meuble.analytique.centre.CentreRepository;
+import com.source.meuble.stock.mouvementStock.MouvementStockService;
 import com.source.meuble.util.Redirection;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +25,6 @@ public class BonReceptionController {
     private final MarchandiseService marchandiseService;
 
     public BonReceptionController(BonReceptionService bonReceptionService1, CentreRepository centreRepository, MarchandiseService marchandiseService){
-
         this.bonReceptionService = bonReceptionService1;
         this.centreRepository = centreRepository;
         this.marchandiseService = marchandiseService;
