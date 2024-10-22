@@ -22,4 +22,12 @@ public class BonCommandeController {
         bonCommandeService.genererBonCommande(proformat);
         return new Redirection("/home/achat/validation-bon-commande").getUrl();
     }
+
+    @GetMapping("/valider")
+    public String valider(
+        @RequestParam("id") BonCommande bonCommande
+    ){
+        bonCommandeService.validerBonCommande(bonCommande);
+        return new Redirection("/home/achat/validation-bon-commande").getUrl();
+    }
 }
