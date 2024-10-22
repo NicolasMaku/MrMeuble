@@ -10,6 +10,14 @@ import java.util.List;
 public class EtatStockService {
     private final EtatStockRepository etatStockRepository;
 
+    public List<EtatStock> findAll(){
+        return etatStockRepository.findAll();
+    }
+
+    public  List<EtatStock> resteEnStock(){
+        return etatStockRepository.resteEnStock();
+    }
+
     public EtatStockService(EtatStockRepository etatStockRepository) {
         this.etatStockRepository = etatStockRepository;
     }

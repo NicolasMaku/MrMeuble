@@ -8,8 +8,8 @@
     display: -ms-flexbox;
     display: flex;
     overflow: hidden;
-    width: 260px;
-    height: 360px;
+    width: 280px;
+    height: 460px;
     padding-top: 16px;
     padding-bottom: 4px;
     -webkit-box-orient: vertical;
@@ -31,7 +31,7 @@
     margin-bottom: 8px;
     border-left: 3px solid transparent;
     color: hsla(0, 0%, 100%, .69);
-    width: 260px;
+    width: 280px;
     line-height: 16px;
     font-weight: 500;
     text-decoration: none;
@@ -39,14 +39,25 @@
 
 .hr {
     height: 1px;
-    margin-top: 16px;
-    margin-bottom: 16px;
-    background-color: rgba(80, 124, 227, .45);
+    margin-top: 2px;
+    margin-bottom: 2px;
+    background-color: rgba(211, 221, 239, 0.45);
 }
 
 .icon {
-    margin-right: 14px;
-    font-family: 'Fa solid 900', sans-serif;
+    width: 30px;
+    height: 30px;
+    margin-right: 24px;
+}
+
+.icones {
+    width: 30px;
+    height: 30px;
+}
+
+.miafina {
+    display: flex;
+    align-items: center;
 }
 
 

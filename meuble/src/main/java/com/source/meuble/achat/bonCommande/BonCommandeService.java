@@ -1,5 +1,6 @@
 package com.source.meuble.achat.bonCommande;
 
+import com.source.meuble.achat.BonReception.BonReception;
 import com.source.meuble.achat.bonCommande.bonCommandeFille.BonCommandeFille;
 import com.source.meuble.achat.bonCommande.bonCommandeFille.BonCommandeFilleRepository;
 import jakarta.transaction.Transactional;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BonCommandeService {
@@ -17,6 +19,15 @@ public class BonCommandeService {
         this.bonCommandeRepository = bonCommandeRepository;
         this.bonCommandeFilleRepository = bonCommandeFilleRepository;
     }
+
+    public Optional<BonCommande> findById(Integer id) {
+        return bonCommandeRepository.findById(id);
+    }
+    public List<BonCommandeFille> findFilleByIdMere(Integer idBc) {
+
+        return bonCommandeFilleRepository.findByIdBc_Id(idBc);
+    }
+
 
     @Transactional
     public BonCommande commander(LocalDate dateComm, LocalDate dateLivr, List<BonCommandeFille> bcFilles)

@@ -7,9 +7,10 @@ sideBar.addEventListener('mouseover', (e) => {
         firstTime = false;
         return;
     }
-    sideBar.style.width = "260px";
+    sideBar.style.width = "280px";
         miafina.forEach(elem => {
-            elem.style.display = "block";
+            elem.style.display = "flex";
+            elem.style.alignItems = "center";
             // elem.style.transition = "all 0.5s ease"
         });
 });
@@ -18,5 +19,5 @@ sideBar.addEventListener('mouseout', (e) => {
     miafina.forEach(elem => {
         elem.style.display = "none";
     });
-    sideBar.style.width = "50px";
+    sideBar.style.width = "60px";
 });
