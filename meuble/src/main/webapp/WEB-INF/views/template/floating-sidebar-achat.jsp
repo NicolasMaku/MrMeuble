@@ -130,8 +130,7 @@
                 </div>
                 <form action="/besoin/save" method="POST">
                     <div class="p-4 overflow-y-auto">
-                        <label for="departement" class="block text-sm font-medium mb-2 dark:text-white">Date
-                            Departement:</label>
+                        <label for="departement" class="block text-sm font-medium mb-2 dark:text-white">Departement:</label>
                         <select type="date" id="departement" name="centre"
                                 class="py-3 px-4 block w-full border border-gray-500 rounded-lg text-sm">
                             <%
