@@ -65,4 +65,13 @@
         </table>
     </div>
 </div>
-<button class="absolute right-10 btn btn-outline my-3">Commander</button>
+<button id="btn-commande" class="absolute right-10 btn btn-outline my-3">Commander</button>
+
+<div id="for-validation-commande" class="relative">
+    <ul>
+        <li>•	Est-ce que le bon de commande correspond bien à la demande d’achat?</li>
+        <li>•	Est-ce que les prix correspondent au proforma?</li>
+        <li>•	Est-ce que les fonds sont encore disponibles pour l’achat?</li>
+        <li>•	Validation interne effectué?</li>
+    </ul>
+</div>

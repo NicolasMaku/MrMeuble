@@ -159,6 +159,9 @@
 </form>
 
 <div id="for-validation-besoin" class="relative">
-    <p>Est-ce que les besoins ne sont pas disponible au stock</p>
-    <p>Est-ce que les fonds sont assez pour l'achat?</p>
+    <ul>
+        <li>•	Est-ce que les besoins ne sont pas disponible au stock?</li>
+        <li>•	Est-ce que les fonds sont assez pour l'achat?</li>
+        <li>•	Est-ce qu’il y a le budget pour l’achat?</li>
+    </ul>
 </div>
