@@ -19,13 +19,16 @@ public class BonReceptionService {
     private final BonReceptionRepository bonReceptionRepository;
     private final BonCommandeService bonCommandeService;
     private final BonReceptionFilleRepository bonReceptionFilleRepository;
+    private final BonCommandeFilleRepository bonCommandeFilleRepository;
 
     @Autowired
     public BonReceptionService(BonReceptionRepository bonReceptionRepository, BonCommandeService bonCommandeService,
-                               BonReceptionFilleRepository bonReceptionFilleRepository) {
+                               BonReceptionFilleRepository bonReceptionFilleRepository,
+                               BonCommandeFilleRepository bonCommandeFilleRepository) {
         this.bonReceptionRepository = bonReceptionRepository;
         this.bonCommandeService = bonCommandeService;
         this.bonReceptionFilleRepository = bonReceptionFilleRepository;
+        this.bonCommandeFilleRepository = bonCommandeFilleRepository;
     }
 
     public List<BonReception> findAll() {
@@ -74,5 +77,9 @@ public class BonReceptionService {
         }
     }
 
+    public List<BonReceptionFille> findFilleByIdMere(Integer idBr) {
+
+        return bonReceptionFilleRepository.findByIdBr_Id(idBr);
+    }
 
 }

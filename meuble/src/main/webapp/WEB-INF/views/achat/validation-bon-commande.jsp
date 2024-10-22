@@ -27,17 +27,23 @@
         </thead>
         <tbody class="text-black">
         <%
-            for(BonCommande bc: bcMap.get(0)) {
+            for (BonCommande bc : bcMap.get(0)) {
         %>
         <tr>
-            <th>BC00<%=bc.getId()%></th>
-            <td><%=bc.getIdFournisseur().getNom()%></td>
-            <td><%=bc.getDateCommande()%></td>
-            <td><%=bc.getEtat()%></td>
+            <th>BC00<%=bc.getId()%>
+            </th>
+            <td><%=bc.getIdFournisseur().getNom()%>
+            </td>
+            <td><%=bc.getDateCommande()%>
+            </td>
+            <td><%=bc.getEtat()%>
+            </td>
             <td></td>
             <th class="flex justify-center gap-2">
-                <a href="/bon-commande/valider?id=<%=bc.getId()%>"><button class="btn btn-success btn-xs">Valider</button></a>
-<%--                <button class="btn btn-info btn-xs">Transferer</button>--%>
+                <a href="/bon-commande/valider?id=<%=bc.getId()%>">
+                    <button class="btn btn-success btn-xs">Valider</button>
+                </a>
+                <%--                <button class="btn btn-info btn-xs">Transferer</button>--%>
                 <button class="btn btn-default btn-xs">Details</button>
             </th>
         </tr>
@@ -63,17 +69,23 @@
         </thead>
         <tbody class="text-black">
         <%
-            for(BonCommande bc: bcMap.get(1)) {
+            for (BonCommande bc : bcMap.get(1)) {
         %>
         <tr>
-            <th>BC00<%=bc.getId()%></th>
-            <td><%=bc.getIdFournisseur().getNom()%></td>
-            <td><%=bc.getDateCommande()%></td>
-            <td><%=bc.getEtat()%></td>
+            <th>BC00<%=bc.getId()%>
+            </th>
+            <td><%=bc.getIdFournisseur().getNom()%>
+            </td>
+            <td><%=bc.getDateCommande()%>
+            </td>
+            <td><%=bc.getEtat()%>
+            </td>
             <td></td>
             <th class="flex justify-center gap-2">
-                <a href="/bon-commande/valider?id=<%=bc.getId()%>"><button class="btn btn-success btn-xs">Valider</button></a>
-<%--                <button class="btn btn-info btn-xs">Transferer</button>--%>
+                <a href="/bon-commande/valider?id=<%=bc.getId()%>">
+                    <button class="btn btn-success btn-xs">Valider</button>
+                </a>
+                <%--                <button class="btn btn-info btn-xs">Transferer</button>--%>
                 <button class="btn btn-default btn-xs">Details</button>
             </th>
         </tr>
@@ -99,17 +111,25 @@
         </thead>
         <tbody class="text-black">
         <%
-            for(BonCommande bc: bcMap.get(2)) {
+            for (BonCommande bc : bcMap.get(2)) {
         %>
         <tr>
-            <th>BC00<%=bc.getId()%></th>
-            <td><%=bc.getIdFournisseur().getNom()%></td>
-            <td><%=bc.getDateCommande()%></td>
-            <td><%=bc.getEtat()%></td>
+            <th>BC00<%=bc.getId()%>
+            </th>
+            <td><%=bc.getIdFournisseur().getNom()%>
+            </td>
+            <td><%=bc.getDateCommande()%>
+            </td>
+            <td><%=bc.getEtat()%>
+            </td>
             <td></td>
             <th class="flex justify-center gap-2">
-<%--                <a href="/bon-commande/valider?id=<%=bc.getId()%>"><button class="btn btn-success btn-xs">Valider</button></a>--%>
-                <button class="btn btn-info btn-xs">Transferer</button>
+                <%--                <a href="/bon-commande/valider?id=<%=bc.getId()%>"><button class="btn btn-success btn-xs">Valider</button></a>--%>
+                <form action="/bon-commande/transferer" method="post">
+                    <input type="hidden" name="id" value="<%=bc.getId()%>">
+                    Date Livraison: <input type="date" class="input" name="date">
+                    <button type="submit" class="btn btn-info btn-xs">Transferer</button>
+                </form>
                 <button class="btn btn-default btn-xs">Details</button>
             </th>
         </tr>

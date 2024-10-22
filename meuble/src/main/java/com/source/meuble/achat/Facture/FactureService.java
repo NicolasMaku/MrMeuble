@@ -1,6 +1,9 @@
 package com.source.meuble.achat.Facture;
 
 import com.source.meuble.achat.BonReception.BonReception;
+import com.source.meuble.achat.BonReception.BonReceptionFille.BonReceptionFille;
+import com.source.meuble.achat.Facture.FactureFille.FactureFille;
+import com.source.meuble.achat.Facture.FactureFille.FactureFilleRepository;
 import com.source.meuble.achat.Facture.FactureFille.FactureFilleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,10 +15,12 @@ import java.util.Optional;
 public class FactureService {
 
     private final FactureRepository factureRepository;
+    private final FactureFilleRepository factureFilleRepository;
 
     @Autowired
-    public FactureService(FactureRepository factureRepository) {
+    public FactureService(FactureRepository factureRepository, FactureFilleRepository factureFilleRepository) {
         this.factureRepository = factureRepository;
+        this.factureFilleRepository = factureFilleRepository;
     }
 
     @Autowired
@@ -35,6 +40,11 @@ public class FactureService {
 
     public void deleteById(Integer id) {
         factureRepository.deleteById(id);
+    }
+
+    public List<FactureFille> findFilleByIdMere(Integer idFact) {
+
+        return factureFilleRepository.findByIdFacture_Id(idFact);
     }
 
     public Facture genererFacture(BonReception br){
