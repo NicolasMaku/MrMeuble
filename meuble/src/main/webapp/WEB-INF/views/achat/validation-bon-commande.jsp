@@ -7,7 +7,7 @@
   Time: 04:23
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 
 <%
     Map<Integer, List<BonCommande>> bcMap = (Map<Integer, List<BonCommande>>) request.getAttribute("bcMap");
@@ -36,8 +36,8 @@
             <td><%=bc.getEtat()%></td>
             <td></td>
             <th class="flex justify-center gap-2">
-                <button class="btn btn-success btn-xs">Valider</button>
-                <button class="btn btn-info btn-xs">Transferer</button>
+                <a href="/bon-commande/valider?id=<%=bc.getId()%>"><button class="btn btn-success btn-xs">Valider</button></a>
+<%--                <button class="btn btn-info btn-xs">Transferer</button>--%>
                 <button class="btn btn-default btn-xs">Details</button>
             </th>
         </tr>
@@ -72,8 +72,8 @@
             <td><%=bc.getEtat()%></td>
             <td></td>
             <th class="flex justify-center gap-2">
-                <button class="btn btn-success btn-xs">Valider</button>
-                <button class="btn btn-info btn-xs">Transferer</button>
+                <a href="/bon-commande/valider?id=<%=bc.getId()%>"><button class="btn btn-success btn-xs">Valider</button></a>
+<%--                <button class="btn btn-info btn-xs">Transferer</button>--%>
                 <button class="btn btn-default btn-xs">Details</button>
             </th>
         </tr>
@@ -108,7 +108,7 @@
             <td><%=bc.getEtat()%></td>
             <td></td>
             <th class="flex justify-center gap-2">
-                <button class="btn btn-success btn-xs">Valider</button>
+<%--                <a href="/bon-commande/valider?id=<%=bc.getId()%>"><button class="btn btn-success btn-xs">Valider</button></a>--%>
                 <button class="btn btn-info btn-xs">Transferer</button>
                 <button class="btn btn-default btn-xs">Details</button>
             </th>

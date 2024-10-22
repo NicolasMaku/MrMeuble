@@ -180,6 +180,7 @@ public class HomeController {
         modelAndView.addObject("centres", centreRepository.findAll());
         modelAndView.addObject("produits", marchandiseService.findAll());
         modelAndView.addObject("bcMap", bonCommandeService.getBonCommandeGroupByEtat());
+
         return modelAndView;
     }
 
