@@ -18,13 +18,11 @@ import java.util.Optional;
 public class MouvementStockService {
     private final MouvementStockRepository mouvementStockRepository;
     private final EtatStockService etatStockService;
-    private final MouvementStockService mouvementStockService;
-    private final MarchandiseService marchandiseService;
+   private final MarchandiseService marchandiseService;
 
-    public MouvementStockService(MouvementStockRepository mouvementStockRepository, EtatStockService etatStockService, MouvementStockService mouvementStockService, MarchandiseService marchandiseService) {
+    public MouvementStockService(MouvementStockRepository mouvementStockRepository, EtatStockService etatStockService, MarchandiseService marchandiseService) {
         this.mouvementStockRepository = mouvementStockRepository;
         this.etatStockService = etatStockService;
-        this.mouvementStockService = mouvementStockService;
         this.marchandiseService = marchandiseService;
     }
 
@@ -44,7 +42,7 @@ public class MouvementStockService {
 
             EtatStock etatStockNouveau = etatStockService.calculateData(mouvementStock, etatStockDernier);
 
-            mouvementStockService.saveMouvementStock(mouvementStock);
+            saveMouvementStock(mouvementStock);
 
             etatStock = etatStockService.saveEtatStock(etatStockNouveau);
         }
@@ -60,7 +58,7 @@ public class MouvementStockService {
             }
 
             EtatStock etatStockNouveau = etatStockService.calculateData(mouvementStock, etatStockDernier);
-            mouvementStockService.saveMouvementStock(mouvementStock);
+            saveMouvementStock(mouvementStock);
 
             etatStock = etatStockService.saveEtatStock(etatStockNouveau);
         }
@@ -91,7 +89,7 @@ public class MouvementStockService {
                     throw new RuntimeException("Marchandise non trouvée avec l'ID: " + bonReceptionFille.getIdMarchandise().getIdMarchandise());
                 }
 
-                EtatStock etatStock = mouvementStockService.saveMouvementStockWithEtat(mouvementStock, etatStockService);
+                EtatStock etatStock = saveMouvementStockWithEtat(mouvementStock, etatStockService);
 
                 System.out.println("Success");
             }
