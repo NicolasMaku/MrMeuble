@@ -6,7 +6,7 @@ module.exports = {
     "./accueil/*.jsp",
     "./login/*.jsp",
     "./achat/*.jsp",
-    '../../node_modules/preline/dist/*.js'
+    '../../node_modules/preline/dist/*.js',
   ],
   theme: {
     extend: {
@@ -17,6 +17,6 @@ module.exports = {
   },
   plugins: [
     require('preline/plugin'),
-    require('daisyui'),
+    require('daisyui')
   ],
 }
