@@ -5,7 +5,10 @@ import com.source.meuble.achat.BonReception.BonReceptionService;
 import com.source.meuble.achat.marchandise.MarchandiseService;
 import com.source.meuble.achat.proformat.Proformat;
 import com.source.meuble.analytique.centre.CentreRepository;
+import com.source.meuble.auth.AuthService;
+import com.source.meuble.auth.UnallowedRoleException;
 import com.source.meuble.util.Redirection;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,6 +27,9 @@ public class BonCommandeController {
     private final CentreRepository centreRepository;
     private final MarchandiseService marchandiseService;
 
+    @Autowired
+    private AuthService authService;
+
     public BonCommandeController(BonCommandeService bonCommandeService, BonReceptionService bonReceptionService, CentreRepository centreRepository, MarchandiseService marchandiseService) {
         this.bonCommandeService = bonCommandeService;
         this.bonReceptionService = bonReceptionService;
@@ -32,7 +38,8 @@ public class BonCommandeController {
     }
 
     @GetMapping("/generer")
-    public String genererBC(@RequestParam("id") Proformat proformat) {
+    public String genererBC(@RequestParam("id") Proformat proformat) throws UnallowedRoleException {
+        authService.requireRole(5);
         bonCommandeService.genererBonCommande(proformat);
         return new Redirection("/home/achat/validation-bon-commande").getUrl();
     }
@@ -40,7 +47,12 @@ public class BonCommandeController {
     @GetMapping("/valider")
     public String valider(
         @RequestParam("id") BonCommande bonCommande
-    ){
+    ) throws UnallowedRoleException {
+        if(bonCommande.getEtat() == 0) {
+            authService.requireRole(4);
+        } else if (bonCommande.getEtat() == 1) {
+            authService.requireRole(6);
+        }
         bonCommandeService.validerBonCommande(bonCommande);
         return new Redirection("/home/achat/validation-bon-commande").getUrl();
     }
@@ -49,9 +61,10 @@ public class BonCommandeController {
     public String transferer(
         @RequestParam("id")  BonCommande bc,
         @RequestParam("date") LocalDate date
-    ) {
+    ) throws UnallowedRoleException {
+        authService.requireRole(5,6);
         bonReceptionService.transferBcToBr(bc.getId(), date);
-        return new Redirection("/home/achat/validation-bon-reception").getUrl();
+        return new Redirection("/home/achat/bon-reception").getUrl();
     }
 
     @GetMapping("/details")

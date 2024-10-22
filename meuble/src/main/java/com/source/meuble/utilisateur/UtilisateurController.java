@@ -24,9 +24,11 @@ public class UtilisateurController {
 
 
     @GetMapping
-    public ModelAndView showLoginViewl(Model model) {
+    public ModelAndView showLoginViewl(Model model, @RequestParam(name = "msg", required = false) String msg) {
+
         ModelAndView modelAndView = new ModelAndView("login");
         modelAndView.addObject("error", model.getAttribute("error"));
+        modelAndView.addObject("msg", msg);
         return modelAndView;
     }
 

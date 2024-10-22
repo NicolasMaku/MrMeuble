@@ -21,7 +21,7 @@
         <tr>
             <th class="text-black">id</th>
             <th class="text-black text-center">Id facture</th>
-            <th class="text-black text-center">Id marchandise</th>
+            <th class="text-black text-center">marchandise</th>
             <th class="text-black text-center">Quantite</th>
             <th class="text-black text-center">Prix</th>
         </tr>
@@ -31,10 +31,9 @@
             for (int i = 0; i < factureFilles.size(); i++) {
         %>
         <tr>
-            <th><%=i%></th>
             <td class="text-blue-500 underline text-center"> <%=factureFilles.get(i).getId()%></td>
-            <td class="text-black text-center"><%=factureFilles.get(i).getIdFacture()%></td>
-            <td class="text-black text-center"><%=factureFilles.get(i).getIdMarchandise()%></td>
+            <td class="text-black text-center"><%=factureFilles.get(i).getIdFacture().getId()%></td>
+            <td class="text-black text-center"><%=factureFilles.get(i).getIdMarchandise().getNom()%></td>
             <td class="text-black text-center"><%=factureFilles.get(i).getQuantite()%></td>
             <td class="text-black text-center"><%=factureFilles.get(i).getPrix()%></td>
         </tr>

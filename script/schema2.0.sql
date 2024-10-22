@@ -376,3 +376,5 @@ INSERT INTO produit_marchandise (id_produit_finit, id_marchandise, quantite) VAL
 
 ALTER TABLE proformat_fille ADD COLUMN QTE NUMERIC(15,2);
 group by rubrique.id_exercice, type_rubrique.nature;
+
+

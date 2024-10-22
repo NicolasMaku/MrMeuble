@@ -5,7 +5,10 @@ import com.source.meuble.achat.besoin.Besoin;
 import com.source.meuble.achat.marchandise.MarchandiseService;
 import com.source.meuble.achat.proformat.proformatFille.ProformatFille;
 import com.source.meuble.analytique.centre.CentreRepository;
+import com.source.meuble.auth.AuthService;
+import com.source.meuble.auth.UnallowedRoleException;
 import com.source.meuble.util.Redirection;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,6 +25,8 @@ public class ProformatController {
     private final ProformatService proformatService;
     private final CentreRepository centreRepository;
     private final MarchandiseService marchandiseService;
+    @Autowired
+    private AuthService authService;
 
     public ProformatController(ProformatService proformatService, CentreRepository centreRepository, MarchandiseService marchandiseService) {
         this.proformatService = proformatService;
@@ -66,7 +71,8 @@ public class ProformatController {
     public String demanderProformat(
         @RequestParam("besoin[]") List<Besoin> besoins,
         @RequestParam("fournisseur")Fournisseur fournisseur
-    ) {
+    ) throws UnallowedRoleException {
+        authService.requireRole(5);
         proformatService.demanderProformat(besoins, fournisseur);
         return new Redirection("/home/achat/proformat").getUrl();
     }

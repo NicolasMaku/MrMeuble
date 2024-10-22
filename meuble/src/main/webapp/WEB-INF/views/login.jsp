@@ -3,6 +3,17 @@
     String error = attribute.getObject("error", String.class, null);
 %>
 
+<%
+    String msg = ((String) request.getAttribute("msg"));
+%>
+
+<%
+    if(msg != null) {
+%>
+<script>alert("<%=msg%>")</script>
+<%
+    }
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>

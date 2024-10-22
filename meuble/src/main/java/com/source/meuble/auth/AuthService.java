@@ -1,6 +1,7 @@
 package com.source.meuble.auth;
 
 import com.source.meuble.analytique.exercice.Exercice;
+import com.source.meuble.utilisateur.Utilisateur;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Service;
 
@@ -19,4 +20,19 @@ public class AuthService {
         }
         throw new NoExerciceFoundException();
     }
+
+    public void requireRole(Integer... idCentres) throws UnallowedRoleException {
+        Utilisateur user = (Utilisateur) httpSession.getAttribute("utilisateur");
+
+        for(Integer idCentre: idCentres) {
+            if(user.getCentre().getIdCentre() == idCentre) {
+                return;
+            }
+        }
+
+        throw new UnallowedRoleException();
+    }
+//    public void
+
+
 }

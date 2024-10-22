@@ -2,7 +2,12 @@ package com.source.meuble.achat.Facture;
 
 import com.source.meuble.achat.BonReception.BonReception;
 import com.source.meuble.achat.BonReception.BonReceptionService;
+import com.source.meuble.achat.marchandise.MarchandiseService;
+import com.source.meuble.analytique.centre.CentreRepository;
+import com.source.meuble.auth.AuthService;
+import com.source.meuble.auth.UnallowedRoleException;
 import com.source.meuble.util.Redirection;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,15 +22,23 @@ import java.time.LocalDate;
 public class FactureController {
     private final BonReceptionService bonReceptionService;
     private final FactureService factureService;
+    private final CentreRepository centreRepository;
+    private final MarchandiseService marchandiseService;
 
-    public FactureController(BonReceptionService bonReceptionService, FactureService factureService) {
+    @Autowired
+    private AuthService authService;
+
+
+    public FactureController(BonReceptionService bonReceptionService, FactureService factureService, CentreRepository centreRepository, MarchandiseService marchandiseService) {
         this.bonReceptionService = bonReceptionService;
         this.factureService = factureService;
+        this.centreRepository = centreRepository;
+        this.marchandiseService = marchandiseService;
     }
     @GetMapping("/transfert")
-    public String transfertBrToFact(@RequestParam("id") BonReception bonReception){
-        factureService.genererFacture(bonReception);
-//        factureService.genererFactureWithFille(bonReception);
+    public String transfertBrToFact(@RequestParam("id") BonReception bonReception) throws UnallowedRoleException {
+        authService.requireRole(5,6);
+        factureService.genererFactureWithFille(bonReception);
         return  new Redirection("achat/validation-facture").getUrl();
     }
 
@@ -41,6 +54,8 @@ public class FactureController {
         modelAndView.addObject("content", content);
         modelAndView.addObject("sidebar", sidebar);
         modelAndView.addObject("insideContent", validation);
+        modelAndView.addObject("centres", centreRepository.findAll());
+        modelAndView.addObject("produits", marchandiseService.findAll());
         modelAndView.addObject("factFille", factureService.findFilleByIdMere(facture.getId()));
         return modelAndView;
     }

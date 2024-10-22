@@ -1,5 +1,6 @@
 package com.source.meuble.utilisateur;
 
+import com.source.meuble.analytique.centre.Centre;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -17,6 +18,10 @@ public class Utilisateur {
 
     @Column(name = "password")
     String password;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_centre")
+    private Centre centre;
 
     public int getId() {
         return id;

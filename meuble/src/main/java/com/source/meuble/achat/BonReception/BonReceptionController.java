@@ -33,7 +33,7 @@ public class BonReceptionController {
     @PostMapping("/transfert")
     public String transfertToBr(@RequestParam("date") LocalDate daty, @RequestParam("idBc") int id){
         bonReceptionService.transferBcToBr(id,daty);
-        return  new Redirection("test/home").getUrl();
+        return  new Redirection("/achat/bon-reception").getUrl();
     }
 
     @GetMapping("/details")
