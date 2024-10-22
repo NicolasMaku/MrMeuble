@@ -6,6 +6,9 @@
     "tailwindcss": "^3.4.12"
   },
   "dependencies": {
-    "preline": "^2.5.0"
+    "flowbite": "^2.5.2",
+    "pagedone": "^1.2.2",
+    "preline": "^2.5.0",
+    "tippy.js": "^6.3.7"
   }
 }

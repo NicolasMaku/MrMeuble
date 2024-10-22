@@ -1,0 +1,39 @@
+{
+  "name": "pagedone",
+  "version": "1.2.2",
+  "description": "Pagedone provides tailwind components for your website to make it easy.",
+  "main": "index.js",
+  "directories": {
+    "src": "src"
+  },
+  "scripts": {
+    "test": "npm run dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pagedone/Pagedone.git"
+  },
+  "keywords": [
+    "pagedone",
+    "html",
+    "css",
+    "javascript",
+    "tailwind",
+    "tailwind examples",
+    "tailwind conponents",
+    "tailwind components library",
+    "tailwind elements",
+    "tailwind sections",
+    "tailwind css",
+    "tailwind ui"
+  ],
+  "author": "pagedone",
+  "license": "MIT",
+  "homepage": "https://github.com/Pagedone/Pagedone#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.3.2"
+  },
+  "bugs": {
+    "url": "https://github.com/Pagedone/Pagedone/issues"
+  }
+}
