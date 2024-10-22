@@ -22,10 +22,10 @@ public class BonReceptionFille {
     @JoinColumn(name = "id_br")
     private BonReception idBr;
 
-    @Column(name = "quantite", precision = 10, scale = 2)
+    @Column(name = "quantite")
     private Double quantite;
 
-    @Column(name = "prix", precision = 18, scale = 2)
+    @Column(name = "prix")
     private Double prix;
 
     @ManyToOne(fetch = FetchType.LAZY)
