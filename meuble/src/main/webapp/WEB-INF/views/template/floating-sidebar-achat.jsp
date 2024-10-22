@@ -12,7 +12,7 @@
 <%@page pageEncoding="UTF-8" %>
 
 <%
-//    RequestAttribute attribute = new RequestAttribute(request);
+    //    RequestAttribute attribute = new RequestAttribute(request);
     List<Centre> centres = (List<Centre>) request.getAttribute("centres");
     List<Marchandise> produits = ((List<Marchandise>) request.getAttribute("produits"));
 %>
@@ -21,46 +21,83 @@
     <div><a class="link hover:bg-slate-700 transition duration-300" href="#">
         <div class="flex" aria-haspopup="dialog" aria-expanded="false" aria-controls="besoin-modal"
              data-hs-overlay="#besoin-modal">
-            <div class="icon"></div>
+            <div class="icon">
+                <svg class="icones" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                    <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                    <path fill="#ffffff"
+                          d="M0 24C0 10.7 10.7 0 24 0L69.5 0c22 0 41.5 12.8 50.6 32l411 0c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3l-288.5 0 5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5L488 336c13.3 0 24 10.7 24 24s-10.7 24-24 24l-288.3 0c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5L24 48C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/>
+                </svg>
+            </div>
             <div class="miafina">Besoin
             </div>
         </div>
     </a><a class="link hover:bg-slate-700 transition duration-300" href="/home/achat/validation-besoin">
         <div class="flex">
-            <div class="icon"></div>
+            <div class="icon">
+                <svg class="icones" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                    <path fill="#ffffff"
+                          d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-111 111-47-47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l64 64c9.4 9.4 24.6 9.4 33.9 0L369 209z"/>
+                </svg>
+            </div>
             <div class="miafina">Valider un besoin
             </div>
         </div>
     </a>
+        <div class="hr"></div>
         <a class="link hover:bg-slate-700 transition duration-300" href="/home/achat/proformat">
             <div class="flex">
-                <div class="icon"></div>
+                <div class="icon">
+                    <svg class="icones" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                        <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                        <path fill="#ffffff"
+                              d="M64 0C28.7 0 0 28.7 0 64L0 448c0 35.3 28.7 64 64 64l256 0c35.3 0 64-28.7 64-64l0-288-128 0c-17.7 0-32-14.3-32-32L224 0 64 0zM256 0l0 128 128 0L256 0zM80 64l64 0c8.8 0 16 7.2 16 16s-7.2 16-16 16L80 96c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64l64 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-64 0c-8.8 0-16-7.2-16-16s7.2-16 16-16zm16 96l192 0c17.7 0 32 14.3 32 32l0 64c0 17.7-14.3 32-32 32L96 352c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32zm0 32l0 64 192 0 0-64L96 256zM240 416l64 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-64 0c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/>
+                    </svg>
+                </div>
                 <div class="miafina">Proformats
                 </div>
             </div>
+            <div class="hr"></div>
         </a><a class="link hover:bg-slate-700 transition duration-300" href="/home/achat/bon-commande">
             <div class="flex">
-                <div class="icon"></div>
+                <div class="icon">
+                    <svg class="icones" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                        <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                        <path fill="#ffffff"
+                              d="M64 0C28.7 0 0 28.7 0 64L0 448c0 35.3 28.7 64 64 64l256 0c35.3 0 64-28.7 64-64l0-288-128 0c-17.7 0-32-14.3-32-32L224 0 64 0zM256 0l0 128 128 0L256 0zM80 64l64 0c8.8 0 16 7.2 16 16s-7.2 16-16 16L80 96c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64l64 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-64 0c-8.8 0-16-7.2-16-16s7.2-16 16-16zm16 96l192 0c17.7 0 32 14.3 32 32l0 64c0 17.7-14.3 32-32 32L96 352c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32zm0 32l0 64 192 0 0-64L96 256zM240 416l64 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-64 0c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/>
+                    </svg>
+                </div>
                 <div class="miafina">Bon de commande
                 </div>
             </div>
         </a>
         <a class="link hover:bg-slate-700 transition duration-300" href="/home/achat/validation-bon-commande">
             <div class="flex">
-                <div class="icon"></div>
+                <div class="icon">
+                    <svg class="icones" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M620-163 450-333l56-56 114 114 226-226 56 56-282 282Zm220-397h-80v-200h-80v120H280v-120h-80v560h240v80H200q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h167q11-35 43-57.5t70-22.5q40 0 71.5 22.5T594-840h166q33 0 56.5 23.5T840-760v200ZM480-760q17 0 28.5-11.5T520-800q0-17-11.5-28.5T480-840q-17 0-28.5 11.5T440-800q0 17 11.5 28.5T480-760Z"/></svg>
+                </div>
                 <div class="miafina">Valider un bon de commande
                 </div>
             </div>
         </a>
+        <div class="hr"></div>
         <a class="link hover:bg-slate-700 transition duration-300" href="/home/achat/creation-bon-reception">
             <div class="flex">
-                <div class="icon"></div>
+                <div class="icon">
+                    <svg class="icones" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                        <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                        <path fill="#ffffff"
+                              d="M64 0C28.7 0 0 28.7 0 64L0 448c0 35.3 28.7 64 64 64l256 0c35.3 0 64-28.7 64-64l0-288-128 0c-17.7 0-32-14.3-32-32L224 0 64 0zM256 0l0 128 128 0L256 0zM80 64l64 0c8.8 0 16 7.2 16 16s-7.2 16-16 16L80 96c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64l64 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-64 0c-8.8 0-16-7.2-16-16s7.2-16 16-16zm16 96l192 0c17.7 0 32 14.3 32 32l0 64c0 17.7-14.3 32-32 32L96 352c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32zm0 32l0 64 192 0 0-64L96 256zM240 416l64 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-64 0c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/>
+                    </svg>
+                </div>
                 <div class="miafina">Creer bon de reception</div>
             </div>
         </a>
         <a class="link hover:bg-slate-700 transition duration-300" href="/home/achat/validation-facture">
             <div class="flex">
-                <div class="icon"></div>
+                <div class="icon">
+                    <svg class="icones" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M620-163 450-333l56-56 114 114 226-226 56 56-282 282Zm220-397h-80v-200h-80v120H280v-120h-80v560h240v80H200q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h167q11-35 43-57.5t70-22.5q40 0 71.5 22.5T594-840h166q33 0 56.5 23.5T840-760v200ZM480-760q17 0 28.5-11.5T520-800q0-17-11.5-28.5T480-840q-17 0-28.5 11.5T440-800q0 17 11.5 28.5T480-760Z"/></svg>
+                </div>
                 <div class="miafina">Valider facture</div>
             </div>
         </a>
@@ -93,11 +130,15 @@
                 </div>
                 <form action="/besoin/save" method="POST">
                     <div class="p-4 overflow-y-auto">
-                        <select type="date" id="departement" name="centre" class="py-3 px-4 block w-full border border-gray-500 rounded-lg text-sm">
+                        <label for="departement" class="block text-sm font-medium mb-2 dark:text-white">Date
+                            Departement:</label>
+                        <select type="date" id="departement" name="centre"
+                                class="py-3 px-4 block w-full border border-gray-500 rounded-lg text-sm">
                             <%
-                                for(Centre centre: centres){
+                                for (Centre centre : centres) {
                             %>
-                                <option value="<%=centre.getIdCentre()%>"><%=centre.getNom()%></option>
+                            <option value="<%=centre.getIdCentre()%>"><%=centre.getNom()%>
+                            </option>
                             <%
                                 }
                             %>
@@ -110,9 +151,10 @@
                                     class="py-3 px-4 block w-2/3 border border-gray-500 rounded-lg text-sm"
                             >
                                 <%
-                                    for(Marchandise produit: produits) {
+                                    for (Marchandise produit : produits) {
                                 %>
-                                <option value="<%=produit.getIdMarchandise()%>"><%=produit.getNom()%></option>
+                                <option value="<%=produit.getIdMarchandise()%>"><%=produit.getNom()%>
+                                </option>
                                 <%
                                     }
                                 %>

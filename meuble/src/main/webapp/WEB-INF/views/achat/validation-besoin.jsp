@@ -17,7 +17,7 @@
 %>
 
 <div class="overflow-x-auto bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-30 text-black">
-    <h2 class="font-bold">Besoins en cours de validation par departement Achat</h2>
+    <h2 class="p-3 font-bold underline">Besoins en cours de validation par departement Achat:</h2>
 
     <table class="table">
         <thead>
@@ -61,7 +61,7 @@
 </div>
 
 <div class="overflow-x-auto bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-30 text-black mt-2.5">
-    <h2 class="font-bold">Besoins en cours de validation par le Directeur</h2>
+    <h2 class="p-3 font-bold underline">Besoins en cours de validation par le Directeur:</h2>
 
     <table class="table">
         <thead>
