@@ -1,5 +1,8 @@
 package com.source.meuble.stock.mouvementStock;
 
+import com.source.meuble.achat.BonReception.BonReception;
+import com.source.meuble.achat.BonReception.BonReceptionFille.BonReceptionFille;
+import com.source.meuble.achat.bonCommande.bonCommandeFille.BonCommandeFille;
 import com.source.meuble.stock.etatStock.EtatStock;
 import com.source.meuble.stock.etatStock.EtatStockService;
 import com.source.meuble.achat.marchandise.Marchandise;
@@ -75,6 +78,46 @@ public class MouvementStockController {
             EtatStock etatStock = mouvementStockService.saveMouvementStockWithEtat(mouvementStock, mouvementStockService, etatStockService);
 
             System.out.println("Success");
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+        Redirection redirection = new Redirection("/home");
+        return redirection.getUrl();
+    }
+
+    @PostMapping("/achat2")
+    public String achatWithMouvementEtat2(
+            @RequestParam("idBonReception") BonReception idBonReception
+    ){
+        int nat = 0;
+
+        MouvementStock mouvementStock = null;
+
+        try{
+            LocalDate date = idBonReception.getDateReception();
+
+            for (int i=0; i<idBonReception.getFille().size(); i++){
+                BonReceptionFille bonReceptionFille = idBonReception.getFille().get(i);
+                mouvementStock = new MouvementStock();
+
+                mouvementStock.setDateEnregistrement(date);
+                mouvementStock.setQuantite(Integer.parseInt((bonReceptionFille.getQuantite()).toString()));
+                mouvementStock.setPrixUnitaire(bonReceptionFille.getPrix());
+                mouvementStock.setNature(nat);
+                mouvementStock.calculPrixTotal();
+
+                Optional<Marchandise> optionalMarchandise = marchandiseService.findById(bonReceptionFille.getIdMarchandise().getIdMarchandise());
+                if (optionalMarchandise.isPresent()) {
+                    mouvementStock.setMarchandise(optionalMarchandise.get());
+                } else {
+                    throw new RuntimeException("Marchandise non trouvée avec l'ID: " + bonReceptionFille.getIdMarchandise().getIdMarchandise());
+                }
+
+                EtatStock etatStock = mouvementStockService.saveMouvementStockWithEtat(mouvementStock, mouvementStockService, etatStockService);
+
+                System.out.println("Success");
+            }
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
