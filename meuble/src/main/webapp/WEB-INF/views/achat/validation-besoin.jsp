@@ -41,10 +41,16 @@
             <td><%=besoin.getQuantite()%></td>
             <td><%=besoin.getDaty()%></td>
             <th>
-                <a href="/besoin/valider?idBesoin=<%=besoin.getId()%>"
+                <a id="validerBesoin" href="/besoin/valider?idBesoin=<%=besoin.getId()%>"
                    onclick="
-                       confirmSubmission(event, 'Est-ce que les besoins ne sont pas disponible au stock?');
-                       confirmSubmission(event, 'Est-ce que les fonds sont assez pour l\'achat?')
+                        Swal.fire({
+                            title: 'Problème lors de la génération des données',
+                            text: message,
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                       // confirmSubmission(event, 'Est-ce que les besoins ne sont pas disponible au stock?');
+                       // confirmSubmission(event, 'Est-ce que les fonds sont assez pour l\'achat?')
                    "
                 >
                     <button  class="btn btn-success btn-xs">Valider</button>
@@ -158,7 +164,56 @@
     </div>
 </form>
 
-<div id="for-validation-besoin" class="relative">
-    <p>Est-ce que les besoins ne sont pas disponible au stock</p>
-    <p>Est-ce que les fonds sont assez pour l'achat?</p>
-</div>
+<script>
+    document.getElementById('validerBesoin').addEventListener('click', function(event) {
+        event.preventDefault();
+
+        var lienHref = this.getAttribute('href');
+        Swal.fire({
+            title: 'Avez vous validé si :',
+            html: `• les besoins ne sont pas disponibles en stock?.<br>
+                   • les fonds disponibles sont assez pour l’achat?<br>
+                   • Est-ce qu’il y a le budget pour l’achat?`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Valider',
+            cancelButtonText: 'Annuler'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = lienHref;
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                // Si l'utilisateur clique sur "Annuler", rester sur la page
+                console.log('Action annulée');
+                // Aucune redirection ne se produit
+            }
+        });
+    });
+
+    document.getElementById('validerBesoinDg').addEventListener('click', function(event) {
+        event.preventDefault();
+
+        var lienHref = this.getAttribute('href');
+        Swal.fire({
+            title: 'Avez vous validé si :',
+            html: `• les besoins ne sont pas disponibles en stock?.<br>
+                   • les fonds disponibles sont assez pour l’achat?<br>
+                   • Est-ce qu’il y a le budget pour l’achat?`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Valider',
+            cancelButtonText: 'Annuler'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = lienHref;
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                // Si l'utilisateur clique sur "Annuler", rester sur la page
+                console.log('Action annulée');
+                // Aucune redirection ne se produit
+            }
+        });
+    });
+</script>
