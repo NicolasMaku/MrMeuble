@@ -1,0 +1,155 @@
+.dropdown:hover >.dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu{
+    transform: translateY(-55px);
+    /*background-color: rgba(255, 255, 255, 0.65);*/
+    /*backdrop-filter: blur(22px);*/
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
+    border: solid 1px gray;
+    padding-bottom: 24px;
+    border-radius: 0px;
+}
+
+* {
+    border-radius: 0px !important;
+}
+
+.dropdown-title {
+    color: #00466f;
+    padding: 10px 22px;
+    padding-bottom: 16px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+
+/*.fade{*/
+/*    !*backdrop-filter: blur(10px);*!*/
+/*}*/
+
+/*.modal-content {*/
+/*    background-color: rgba(255, 255, 255, 0.65);*/
+/*    filter: brightness(1.1);*/
+/*    backdrop-filter: blur(22px);*/
+/*    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1);*/
+/*}*/
+
+.dropdown-item:hover{
+    background-color: #00629c;
+    color: white;
+}
+
+.dropdown>.dropdown-toggle:active {
+    /*Without this, clicking will make it sticky*/
+// pointer-events: none;
+}
+
+._nav-link {
+    color: white;
+    padding-top: 50px;
+    font-weight: bolder;
+}
+
+._nav-link:hover {
+    text-decoration: none;
+    color: white;
+}
+
+._nav-item {
+    padding: 15px 25px;
+}
+
+._nav-item:hover {
+    background-color: #00466f;
+
+}
+
+nav {
+    background-color: #00629c;
+}
+
+._blue{
+    color:  #00629c;
+}
+
+.white-icon {
+    filter: invert(100);
+}
+
+.bg1 {
+    background-color: rgba(147, 245, 0, 0.09);
+    border-left: solid 4px #1c7430;
+    color: #1c7430;
+}
+
+.bg2 {
+    background-color: rgba(12, 97, 255, 0.11);
+    border-left: solid 4px #003a89;
+    color: #003a89;
+}
+
+.btn-primary{
+    background-color: #00629c;
+    border: solid 1px #00629c;
+}
+
+.btn-primary:hover {
+    background-color: #003b5f;
+}
+
+form{
+    /*all: initial;*/
+    /*width: initial;*/
+    /*height: initial;*/
+    /*margin: initial;*/
+    /*padding: initial;*/
+    display: initial;
+}
+
+.disabled_input {
+    appearance: textfield;
+    background-color: transparent;
+    border: none;
+}
+
+.form-control:disabled{
+    background-color: transparent;;
+}
+
+.sticky-top-offset{
+    /*z-index: 1000;*/
+    top:56px;
+}
+
+._btn-link {
+    padding: initial;
+}
+
+.profil {
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border: s;
+}
+
+.page-selected {
+    background-color: #00629c!important;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+th {
+    background-color: #f2f2f2;
+}
+.selected {
+    background-color: #003a89;
+    color: white;
+}
