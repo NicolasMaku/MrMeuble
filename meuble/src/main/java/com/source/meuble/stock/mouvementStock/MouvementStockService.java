@@ -9,6 +9,7 @@ import com.source.meuble.stock.etatStock.EtatStock;
 import com.source.meuble.stock.etatStock.EtatStockService;
 import com.source.meuble.util.Redirection;
 import org.springframework.stereotype.Service;
+import com.source.meuble.stock.mouvementStock.MouvementStock;
 
 import java.time.LocalDate;
 import java.util.List;
