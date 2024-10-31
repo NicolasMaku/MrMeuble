@@ -8,7 +8,10 @@ import java.util.List;
 
 @Repository
 public interface ProduitRepository extends JpaRepository<Produit, Integer> {
-    @Query("SELECT p FROM Produit p WHERE p.idExercice.id = :idExercice")
+//    @Query("SELECT p FROM Produit p WHERE p.idExercice.id = :idExercice")
+//    List<Produit> findAllByIdExercice(Integer idExercice);
+
+    @Query("SELECT p FROM Produit p")
     List<Produit> findAllByIdExercice(Integer idExercice);
 
 }

@@ -24,8 +24,8 @@ public class UtilisateurController {
 
 
     @GetMapping
-    public ModelAndView showLoginViewl(Model model) {
-        ModelAndView modelAndView = new ModelAndView("login");
+    public ModelAndView showLoginView(Model model) {
+        ModelAndView modelAndView = new ModelAndView("auth/login");
         modelAndView.addObject("error", model.getAttribute("error"));
         return modelAndView;
     }
@@ -39,13 +39,13 @@ public class UtilisateurController {
         Redirection redirection = new Redirection(attributes);
         try {
             Utilisateur utilisateur = utilisateurService.login(username, password);
-            httpSession.setAttribute("utilisateur", utilisateur);
+            httpSession.setAttribute("u", utilisateur);
             redirection.setUrl("/exercice");
 
         } catch (Exception e) {
             final String ERROR = "Identifiant ou mot de passe incorrect";
             System.err.println(ERROR + ": %s / %s".formatted(username, password));
-            redirection.addAttribute("error", ERROR);
+            redirection.addAttribute("msg", ERROR);
             redirection.setUrl("/");
         }
         return redirection.getUrl();

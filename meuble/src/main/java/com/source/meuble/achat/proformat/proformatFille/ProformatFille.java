@@ -1,6 +1,5 @@
 package com.source.meuble.achat.proformat.proformatFille;
 
-import com.source.meuble.achat.marchandise.Marchandise;
 import com.source.meuble.analytique.produit.Produit;
 import com.source.meuble.achat.proformat.Proformat;
 import jakarta.persistence.*;
@@ -32,7 +31,7 @@ public class ProformatFille {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_marchandise")
-    private Marchandise idMarchandise;
+    private Produit idMarchandise;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_produit")

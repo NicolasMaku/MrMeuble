@@ -1,6 +1,6 @@
 package com.source.meuble.stock.etatStock;
 
-import com.source.meuble.achat.marchandise.Marchandise;
+import com.source.meuble.analytique.produit.Produit;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -30,7 +30,7 @@ public class EtatStock {
 
     @ManyToOne
     @JoinColumn(name = "id_marchandise", nullable = false)
-    private Marchandise marchandise;
+    private Produit marchandise;
 
     @Transient
     private BigDecimal prixTotal;

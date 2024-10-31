@@ -1,6 +1,6 @@
 package com.source.meuble.stock.mouvementStock;
 
-import com.source.meuble.achat.marchandise.Marchandise;
+import com.source.meuble.analytique.produit.Produit;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -33,7 +33,7 @@ public class MouvementStock {
 
     @ManyToOne
     @JoinColumn(name = "id_marchandise", nullable = false)
-    private Marchandise marchandise;
+    private Produit marchandise;
 
     @Transient
     private BigDecimal prixTotal;
@@ -65,11 +65,11 @@ public class MouvementStock {
         this.prixUnitaire = this.getPrixTotal().divide(new BigDecimal((this.getQuantite())));
     }
 
-    public Marchandise getMarchandise() {
-        return marchandise;
-    }
+//    public Marchandise getMarchandise() {
+//        return marchandise;
+//    }
 
-    public void setMarchandise(Marchandise marchandise) {
-        this.marchandise = marchandise;
-    }
+//    public void setMarchandise(Marchandise marchandise) {
+//        this.marchandise = marchandise;
+//    }
 }

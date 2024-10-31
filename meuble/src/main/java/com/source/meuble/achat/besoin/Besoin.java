@@ -1,10 +1,11 @@
 package com.source.meuble.achat.besoin;
 
 //import com.source.meuble.achat.marchandise.Marchandise;
-import com.source.meuble.achat.marchandise.Marchandise;
 import com.source.meuble.analytique.centre.Centre;
+import com.source.meuble.analytique.produit.Produit;
 import com.source.meuble.pieces.Etat;
 import com.source.meuble.pieces.EtatCPL;
+import com.source.meuble.utilisateur.UserRole;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -38,7 +39,10 @@ public class Besoin extends Etat {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_marchandise")
-    private Marchandise idMarchandise;
+    private Produit idMarchandise;
+
+    @Column(name = "id_departement")
+    private UserRole role;
 
 
     @Override
@@ -46,7 +50,7 @@ public class Besoin extends Etat {
         return null;
     }
 
-    public EtatCPL demandeProformat(List<Marchandise> marchandises) {
+    public EtatCPL demandeProformat(List<Produit> marchandises) {
         EtatCPL cpl = new EtatCPL();
 
         return cpl;

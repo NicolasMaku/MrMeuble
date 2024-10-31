@@ -1,7 +1,9 @@
 package com.source.meuble.analytique.exercice;
 
 
-import com.source.meuble.util.Layout;
+import com.source.meuble.auth.AuthService;
+import com.source.meuble.exception.NoUserLoggedException;
+//import com.source.meuble.util.Layout;
 import com.source.meuble.util.Redirection;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,25 +20,28 @@ public class ExerciceController {
 
     private final HttpSession session;
     private final ExerciceService exerciceService;
+    private final AuthService authService;
 
-    public ExerciceController(HttpSession session, ExerciceService exerciceService) {
+    public ExerciceController(HttpSession session, ExerciceService exerciceService, AuthService authService) {
         this.session = session;
         this.exerciceService = exerciceService;
+        this.authService = authService;
     }
 
     @GetMapping()
-    public ModelAndView chooseExerciceView() {
-        ModelAndView modelAndView = new ModelAndView("exercice");
+    public ModelAndView chooseExerciceView() throws NoUserLoggedException {
+        authService.requireUser();
+        ModelAndView modelAndView = new ModelAndView("auth/exercice");
         List<Exercice> exercices = exerciceService.getAllExercices();
-        modelAndView.addObject("exercices", exercices);
-
+        modelAndView.addObject("exos", exercices);
         return modelAndView;
     }
 
     @PostMapping("/set")
-    public String setExercice(@RequestParam("exercice") Exercice exercice) {
-        this.session.setAttribute("exercice", exercice);
+    public String setExercice(@RequestParam("id") Exercice exercice) {
+        this.session.setAttribute("exo", exercice);
         Redirection redirection = new Redirection("/home");
+
         return redirection.getUrl();
     }
 

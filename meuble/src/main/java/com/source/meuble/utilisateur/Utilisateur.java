@@ -1,5 +1,6 @@
 package com.source.meuble.utilisateur;
 
+import com.source.meuble.mock.SidebarMock;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -18,21 +19,9 @@ public class Utilisateur {
     @Column(name = "password")
     String password;
 
-    public int getId() {
-        return id;
-    }
+    @Column(name = "id_role")
+    UserRole role;
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
 
     public Utilisateur() {
 
@@ -41,6 +30,10 @@ public class Utilisateur {
     public Utilisateur(int id, String username) {
         this.id = id;
         this.username = username;
+    }
+
+    public String getSidebar(String currentUrl) {
+        return SidebarMock.DEFAULT_SIDEBAR.getHtml(this, currentUrl);
     }
 
 }

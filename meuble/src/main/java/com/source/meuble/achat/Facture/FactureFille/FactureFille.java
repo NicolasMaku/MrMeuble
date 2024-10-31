@@ -1,7 +1,7 @@
 package com.source.meuble.achat.Facture.FactureFille;
 
 import com.source.meuble.achat.Facture.Facture;
-import com.source.meuble.achat.marchandise.Marchandise;
+import com.source.meuble.analytique.produit.Produit;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,7 +24,7 @@ public class FactureFille {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_marchandise")
-    private Marchandise idMarchandise;
+    private Produit idMarchandise;
 
     @Column(name = "quantite", precision = 10, scale = 2)
     private BigDecimal quantite;

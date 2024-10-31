@@ -9,10 +9,10 @@ import java.util.List;
 
 @Repository
 public interface EtatStockRepository extends JpaRepository<EtatStock, Integer>{
-    @Query("select e from EtatStock e where e.marchandise.idMarchandise = :idMarchandise order by e.id desc limit 1")
+    @Query("select e from EtatStock e where e.marchandise.id = :idMarchandise order by e.id desc limit 1")
     EtatStock findLastEtat(@Param("idMarchandise") Integer idMarchandise);
 
-    @Query("select e from EtatStock e where e.marchandise.idMarchandise = :idMarchandise")
+    @Query("select e from EtatStock e where e.marchandise.id = :idMarchandise")
     List<EtatStock> findAll(@Param("idMarchandise") Integer idMarchandise);
 
     @Query("SELECT e FROM EtatStock e WHERE e.id IN " +

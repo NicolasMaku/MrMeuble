@@ -1,7 +1,7 @@
 package com.source.meuble.achat.bonCommande.bonCommandeFille;
 
-import com.source.meuble.achat.marchandise.Marchandise;
 import com.source.meuble.achat.bonCommande.BonCommande;
+import com.source.meuble.analytique.produit.Produit;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -29,6 +29,6 @@ public class BonCommandeFille {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_marchandise")
-    private Marchandise idMarchandise;
+    private Produit idMarchandise;
 
 }

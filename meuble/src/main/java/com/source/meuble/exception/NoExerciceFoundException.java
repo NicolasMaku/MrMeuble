@@ -1,7 +1,7 @@
-package com.source.meuble.auth;
+package com.source.meuble.exception;
 
 public class NoExerciceFoundException extends Exception {
     public NoExerciceFoundException() {
-        super("No exercice was setted");
+        super("Vous devez tout d'abord choisir une exercice");
     }
 }

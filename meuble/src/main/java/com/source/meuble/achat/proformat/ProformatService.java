@@ -2,9 +2,9 @@ package com.source.meuble.achat.proformat;
 
 import com.source.meuble.achat.Fornisseur.Fournisseur;
 import com.source.meuble.achat.besoin.Besoin;
-import com.source.meuble.achat.marchandise.Marchandise;
 import com.source.meuble.achat.proformat.proformatFille.ProformatFille;
 import com.source.meuble.achat.proformat.proformatFille.ProformatFilleRepository;
+import com.source.meuble.analytique.produit.Produit;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -44,8 +44,8 @@ public class ProformatService {
         return proformatFilles[0].getIdProformat();
     }
 
-    public Map<Marchandise, Double> getPrixMarchandise(Proformat proformat) {
-        Map<Marchandise, Double> map = new HashMap<>();
+    public Map<Produit, Double> getPrixMarchandise(Proformat proformat) {
+        Map<Produit, Double> map = new HashMap<>();
         proformat.getFilles().forEach((fille) -> {
             map.put(fille.getIdMarchandise(), fille.getPrix().doubleValue());
         });

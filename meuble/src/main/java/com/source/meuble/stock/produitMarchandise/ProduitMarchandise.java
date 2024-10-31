@@ -1,6 +1,6 @@
 package com.source.meuble.stock.produitMarchandise;
 
-import com.source.meuble.achat.marchandise.Marchandise;
+import com.source.meuble.analytique.produit.Produit;
 import com.source.meuble.stock.produitFinit.ProduitFinit;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -22,7 +22,7 @@ public class ProduitMarchandise {
 
     @ManyToOne
     @JoinColumn(name = "id_marchandise", nullable = false)
-    private Marchandise marchandise;
+    private Produit marchandise;
 
     @Column(name = "quantite")
     private Integer quantite;

@@ -1,22 +1,17 @@
 package com.source.meuble.util;
 
+import com.source.meuble.analytique.exercice.Exercice;
+import com.source.meuble.utilisateur.Utilisateur;
+import lombok.Data;
 import org.springframework.web.servlet.ModelAndView;
 
+@Data
 public class Layout {
-    private final ModelAndView modelAndView;
-    private static final String VIEW_NAME = "";
-    private static final String DEFAULT_CONTENT = "";
+    private ModelAndView modelAndView;
+    private Exercice exercice;
+    private Utilisateur utilisateur;
 
     public Layout() {
-        this(DEFAULT_CONTENT);
     }
 
-    public Layout(String content) {
-        this.modelAndView = new ModelAndView(VIEW_NAME);
-        this.modelAndView.addObject("content", content);
-    }
-
-    public ModelAndView getModelAndView() {
-        return this.modelAndView;
-    }
 }

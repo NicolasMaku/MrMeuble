@@ -3,10 +3,10 @@ package com.source.meuble.stock.mouvementStock;
 import com.source.meuble.achat.BonReception.BonReception;
 import com.source.meuble.achat.BonReception.BonReceptionFille.BonReceptionFille;
 import com.source.meuble.achat.bonCommande.bonCommandeFille.BonCommandeFille;
+import com.source.meuble.analytique.produit.Produit;
+import com.source.meuble.analytique.produit.ProduitService;
 import com.source.meuble.stock.etatStock.EtatStock;
 import com.source.meuble.stock.etatStock.EtatStockService;
-import com.source.meuble.achat.marchandise.Marchandise;
-import com.source.meuble.achat.marchandise.MarchandiseService;
 import com.source.meuble.stock.produitMarchandise.ProduitMarchandise;
 import com.source.meuble.stock.produitMarchandise.ProduitMarchandiseService;
 import com.source.meuble.util.Redirection;
@@ -33,7 +33,7 @@ public class MouvementStockController {
     EtatStockService etatStockService;
 
     @Autowired
-    MarchandiseService marchandiseService;
+    ProduitService marchandiseService;
 
     @Autowired
     ProduitMarchandiseService produitMarchandiseService;
@@ -68,7 +68,7 @@ public class MouvementStockController {
             mouvementStock.setNature(nat);
             mouvementStock.calculPrixTotal();
 
-            Optional<Marchandise> optionalMarchandise = marchandiseService.findById(idMarchandise);
+            Optional<Produit> optionalMarchandise = marchandiseService.findById(idMarchandise);
             if (optionalMarchandise.isPresent()) {
                 mouvementStock.setMarchandise(optionalMarchandise.get());
             } else {
@@ -111,11 +111,11 @@ public class MouvementStockController {
                 mouvementStock.setQuantite(qt*produitMarchandise.getQuantite());
                 mouvementStock.setNature(nat);
 
-                Optional<Marchandise> optionalMarchandise = marchandiseService.findById(produitMarchandise.getMarchandise().getIdMarchandise());
+                Optional<Produit> optionalMarchandise = marchandiseService.findById(produitMarchandise.getMarchandise().getId());
                 if (optionalMarchandise.isPresent()) {
                     mouvementStock.setMarchandise(optionalMarchandise.get());
                 } else {
-                    throw new RuntimeException("Marchandise non trouvée avec l'ID: " + produitMarchandise.getMarchandise().getIdMarchandise());
+                    throw new RuntimeException("Marchandise non trouvée avec l'ID: " + produitMarchandise.getMarchandise().getId());
                 }
 
                 EtatStock etatStock = mouvementStockService.saveMouvementStockWithEtat(mouvementStock, etatStockService);

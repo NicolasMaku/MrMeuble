@@ -2,9 +2,10 @@ package com.source.meuble.achat.proformat;
 
 import com.source.meuble.achat.Fornisseur.Fournisseur;
 import com.source.meuble.achat.besoin.Besoin;
-import com.source.meuble.achat.marchandise.MarchandiseService;
 import com.source.meuble.achat.proformat.proformatFille.ProformatFille;
 import com.source.meuble.analytique.centre.CentreRepository;
+import com.source.meuble.analytique.produit.Produit;
+import com.source.meuble.analytique.produit.ProduitService;
 import com.source.meuble.util.Redirection;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,9 +22,9 @@ public class ProformatController {
 
     private final ProformatService proformatService;
     private final CentreRepository centreRepository;
-    private final MarchandiseService marchandiseService;
+    private final ProduitService marchandiseService;
 
-    public ProformatController(ProformatService proformatService, CentreRepository centreRepository, MarchandiseService marchandiseService) {
+    public ProformatController(ProformatService proformatService, CentreRepository centreRepository, ProduitService marchandiseService) {
         this.proformatService = proformatService;
         this.centreRepository = centreRepository;
         this.marchandiseService = marchandiseService;

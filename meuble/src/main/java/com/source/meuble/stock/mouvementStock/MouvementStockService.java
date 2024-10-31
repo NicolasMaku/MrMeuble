@@ -2,8 +2,9 @@ package com.source.meuble.stock.mouvementStock;
 
 import com.source.meuble.achat.BonReception.BonReception;
 import com.source.meuble.achat.BonReception.BonReceptionFille.BonReceptionFille;
-import com.source.meuble.achat.marchandise.Marchandise;
-import com.source.meuble.achat.marchandise.MarchandiseService;
+
+import com.source.meuble.analytique.produit.Produit;
+import com.source.meuble.analytique.produit.ProduitService;
 import com.source.meuble.stock.produitMarchandise.ProduitMarchandiseService;
 import com.source.meuble.stock.etatStock.EtatStock;
 import com.source.meuble.stock.etatStock.EtatStockService;
@@ -19,9 +20,9 @@ import java.util.Optional;
 public class MouvementStockService {
     private final MouvementStockRepository mouvementStockRepository;
     private final EtatStockService etatStockService;
-   private final MarchandiseService marchandiseService;
+   private final ProduitService marchandiseService;
 
-    public MouvementStockService(MouvementStockRepository mouvementStockRepository, EtatStockService etatStockService, MarchandiseService marchandiseService) {
+    public MouvementStockService(MouvementStockRepository mouvementStockRepository, EtatStockService etatStockService, ProduitService marchandiseService) {
         this.mouvementStockRepository = mouvementStockRepository;
         this.etatStockService = etatStockService;
         this.marchandiseService = marchandiseService;
@@ -37,7 +38,7 @@ public class MouvementStockService {
 
     public EtatStock saveMouvementStockWithEtat(MouvementStock mouvementStock, EtatStockService etatStockService)throws Exception{
         EtatStock etatStock = null;
-        if(etatStockService.findAllEtat(mouvementStock.getMarchandise().getIdMarchandise()).size()==0){
+        if(etatStockService.findAllEtat(mouvementStock.getMarchandise().getId()).size()==0){
 
             EtatStock etatStockDernier = new EtatStock(mouvementStock.getDateEnregistrement(), 0, 0);
 
@@ -49,7 +50,7 @@ public class MouvementStockService {
         }
         else {
 
-            EtatStock etatStockDernier = etatStockService.findLastEtat(mouvementStock.getMarchandise().getIdMarchandise());
+            EtatStock etatStockDernier = etatStockService.findLastEtat(mouvementStock.getMarchandise().getId());
             etatStockDernier.calculPrixTotal();
 
             if(mouvementStock.getNature()==1){
@@ -83,11 +84,11 @@ public class MouvementStockService {
                 mouvementStock.setNature(nat);
                 mouvementStock.calculPrixTotal();
 
-                Optional<Marchandise> optionalMarchandise = marchandiseService.findById(bonReceptionFille.getIdMarchandise().getIdMarchandise());
+                Optional<Produit> optionalMarchandise = marchandiseService.findById(bonReceptionFille.getIdMarchandise().getId());
                 if (optionalMarchandise.isPresent()) {
                     mouvementStock.setMarchandise(optionalMarchandise.get());
                 } else {
-                    throw new RuntimeException("Marchandise non trouvée avec l'ID: " + bonReceptionFille.getIdMarchandise().getIdMarchandise());
+                    throw new RuntimeException("Marchandise non trouvée avec l'ID: " + bonReceptionFille.getIdMarchandise().getId());
                 }
 
                 EtatStock etatStock = saveMouvementStockWithEtat(mouvementStock, etatStockService);

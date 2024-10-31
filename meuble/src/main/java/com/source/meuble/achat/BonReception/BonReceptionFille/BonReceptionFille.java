@@ -1,7 +1,7 @@
 package com.source.meuble.achat.BonReception.BonReceptionFille;
 
 import com.source.meuble.achat.BonReception.BonReception;
-import com.source.meuble.achat.marchandise.Marchandise;
+import com.source.meuble.analytique.produit.Produit;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -30,6 +30,6 @@ public class BonReceptionFille {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_marchandise")
-    private Marchandise idMarchandise;
+    private Produit idMarchandise;
 
 }
