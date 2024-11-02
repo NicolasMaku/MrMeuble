@@ -31,4 +31,14 @@ public class GlobalExceptionHandler {
     public String handleNoUserLogged(NoUserLoggedException e) {
         return new Redirection("/?msg=" + e.getMessage()).getUrl();
     }
+
+    @ExceptionHandler(Alert.class)
+    public String handleAlert(Alert e, HttpServletRequest req, RedirectAttributes atts) {
+        String referer = req.getHeader("Referer");
+        atts.addFlashAttribute("alert", e.getMessage());
+
+        return new Redirection(referer != null ? referer : "/").getUrl();
+    }
+
+
 }

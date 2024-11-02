@@ -4,7 +4,10 @@ import com.source.meuble.achat.BonReception.BonReception;
 import com.source.meuble.achat.bonCommande.bonCommandeFille.BonCommandeFille;
 import com.source.meuble.achat.bonCommande.bonCommandeFille.BonCommandeFilleRepository;
 import com.source.meuble.achat.proformat.Proformat;
+import com.source.meuble.achat.proformat.ProformatRepository;
 import com.source.meuble.achat.proformat.proformatFille.ProformatFille;
+import com.source.meuble.exception.Alert;
+import com.source.meuble.utilisateur.Utilisateur;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -15,10 +18,13 @@ import java.util.*;
 public class BonCommandeService {
     private final BonCommandeRepository bonCommandeRepository;
     private final BonCommandeFilleRepository bonCommandeFilleRepository;
+    private final ProformatRepository proformatRepository;
 
-    public BonCommandeService(BonCommandeRepository bonCommandeRepository, BonCommandeFilleRepository bonCommandeFilleRepository) {
+    public BonCommandeService(BonCommandeRepository bonCommandeRepository, BonCommandeFilleRepository bonCommandeFilleRepository,
+                              ProformatRepository proformatRepository) {
         this.bonCommandeRepository = bonCommandeRepository;
         this.bonCommandeFilleRepository = bonCommandeFilleRepository;
+        this.proformatRepository = proformatRepository;
     }
 
     public Optional<BonCommande> findById(Integer id) {
@@ -31,6 +37,10 @@ public class BonCommandeService {
 
     public List<BonCommande> getAllBonCommande() {
         return bonCommandeRepository.findAll();
+    }
+
+    public List<BonCommande> getAllBcByUtilisateur(Utilisateur u) {
+        return bonCommandeRepository.findAllByRole(u.getRole().name());
     }
 
 
@@ -55,6 +65,31 @@ public class BonCommandeService {
     }
 
     @Transactional
+    public BonCommande commander(BonCommande bc, LocalDate dateComm, LocalDate dateLivr)
+        throws Exception {
+//        if(bc.getEtat() == 3) {
+//            throw new Alert("Proformat");
+//        }
+        List<BonCommandeFille> bcFilles = bc.getFilles();
+
+        if(bcFilles.isEmpty()) {
+            throw new Exception("le nombre de BCF doit etre superieur a 0");
+        }
+
+        bc.setDateCommande(dateComm != null ? dateComm : LocalDate.now());
+        bc.setDateLivraison(dateLivr);
+        bc.setEtat(3);
+        bc = bonCommandeRepository.save(bc);
+
+        for(BonCommandeFille bcf: bcFilles) {
+            bcf.setIdBc(bc);
+        }
+
+        bonCommandeFilleRepository.saveAll(bcFilles);
+        return bc;
+    }
+
+    @Transactional
     public BonCommande validerBonCommande(BonCommande bc) {
         if(bc.getEtat() < 2) {
             bc.setEtat(bc.getEtat() + 1);
@@ -68,7 +103,7 @@ public class BonCommandeService {
         List<ProformatFille> pfs = proformat.getFilles();
 
         bc.setEtat(0);
-        bc.setDateCommande(LocalDate.now());
+        bc.setDateCommande(null);
         bc.setIdFournisseur(proformat.getIdFournisseur());
         bc.setIdProformat(proformat);
         bc = bonCommandeRepository.save(bc);
@@ -85,6 +120,8 @@ public class BonCommandeService {
         }
 
         bonCommandeFilleRepository.saveAll(bcfs);
+        proformat.setEtat(2);
+        proformatRepository.save(proformat);
         return bc;
     }
 
@@ -101,6 +138,10 @@ public class BonCommandeService {
         }
 
         return map;
+    }
+
+    public List<BonCommande> findAll() {
+        return bonCommandeRepository.findAll();
     }
 }
 

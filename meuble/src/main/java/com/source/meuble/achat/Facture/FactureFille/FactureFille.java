@@ -23,7 +23,7 @@ public class FactureFille {
     private Facture idFacture;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_marchandise")
+    @JoinColumn(name = "id_produit")
     private Produit idMarchandise;
 
     @Column(name = "quantite", precision = 10, scale = 2)

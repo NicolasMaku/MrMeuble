@@ -29,7 +29,7 @@ public class BonReceptionFille {
     private Double prix;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_marchandise")
+    @JoinColumn(name = "id_produit")
     private Produit idMarchandise;
 
 }

@@ -43,6 +43,9 @@ public class Facture extends Etat {
     @JoinColumn(name = "id_client")
     private Client idClient;
 
+    @OneToMany(mappedBy = "idFacture", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<FactureFille> filles;
+
     @Override
     public EtatCPL transferer(Etat etat) {
         return null;

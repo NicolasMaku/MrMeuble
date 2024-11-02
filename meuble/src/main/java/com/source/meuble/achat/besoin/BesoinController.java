@@ -8,6 +8,7 @@ import com.source.meuble.auth.AuthService;
 import com.source.meuble.auth.LayoutService;
 import com.source.meuble.exception.NoExerciceFoundException;
 import com.source.meuble.exception.NoUserLoggedException;
+import com.source.meuble.exception.UnallowedRoleException;
 import com.source.meuble.util.Layout;
 import com.source.meuble.util.Redirection;
 import com.source.meuble.utilisateur.Utilisateur;
@@ -63,9 +64,17 @@ public class BesoinController {
         return new Redirection("/home/achat").getUrl();
     }
 
+    @GetMapping("/list")
+    public ModelAndView showList() throws NoUserLoggedException, NoExerciceFoundException {
+        Layout layout = layoutService.getLayout("besoin/list");
+        ModelAndView mav = layout.getModelAndView();
+        mav.addObject("besoins", besoinService.findAllByUtilisateur(layout.getUtilisateur()));
+        return mav;
+    }
+
     @GetMapping("/valider")
-    public String valider(@RequestParam("idBesoin") Besoin besoin) {
+    public String valider(@RequestParam("idBesoin") Besoin besoin) throws UnallowedRoleException, NoUserLoggedException {
         besoinService.validerBesoin(besoin);
-        return new Redirection("/home/achat/validation-besoin").getUrl();
+        return new Redirection("/besoin/list").getUrl();
     }
 }

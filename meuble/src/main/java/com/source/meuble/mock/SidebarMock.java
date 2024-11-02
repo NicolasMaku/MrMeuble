@@ -23,7 +23,7 @@ public class SidebarMock {
                     .addSubmenu(
                         new Menu("Validation Besoin") // Besoin -> Validation Besoin
                             .withIcon("bx bx-task")
-                            .withLien("/besoin/liste")
+                            .withLien("/besoin/list")
                             .withRoles(UserRole.DIRECTION, UserRole.DEPT_ACHAT) // Liste des departements qui peuvent voir le menu sur leur sidebar (vide si tout les depts peut acceder)
                     )
             )
@@ -35,26 +35,61 @@ public class SidebarMock {
                     .withRoles()
                     .addSubmenu(
                         new Menu("Proformat")
-                            .withIcon("")
+                            .withIcon("bx bx-receipt")
                             .withLien("")
-                            .withRoles(UserRole.DEPT_FINANCE)
+                            .withRoles()
+                            .addSubmenu(
+                                new Menu("Demande Proformat")
+                                    .withIcon("bx bx-plus")
+                                    .withLien("/proformat/form")
+                            )
+                            .addSubmenu(
+                                new Menu("Validation Proformat")
+                                    .withIcon("bx bx-task")
+                                    .withLien("/proformat/list")
+                            )
                     )
                     .addSubmenu(
                         new Menu("Bon de Commande")
                             .withIcon("bx bx-receipt")
                             .withLien("")
                             .withRoles()
+                            .addSubmenu(
+                                new Menu("Validation")
+                                    .withIcon("bx bx-task")
+                                    .withLien("/bon-commande/validation")
+                                    .withRoles(UserRole.DIRECTION, UserRole.DEPT_FINANCE)
+                            )
+                            .addSubmenu(
+                                new Menu("Liste")
+                                    .withLien("/bon-commande/list")
+                                    .withIcon("bx bx-list-ol")
+                            )
                     )
                     .addSubmenu(
                         new Menu("Bon de Reception")
-                            .withIcon("")
-                            .withLien("")
+                            .withIcon("bx bx-receipt")
+                            .withLien("/bon-reception/list")
                             .withRoles()
                     )
                     .addSubmenu(
                         new Menu("Facture Achat")
                             .withIcon("bx bx-file-blank")
-                            .withLien("/achat/facture")
+                            .withLien("/facture/list")
+                    )
+            )
+            .addMenu(
+                new Menu("Stock")
+                    .withIcon("bx bx-cube")
+                    .addSubmenu(
+                        new Menu("Mouvement de Stock")
+                            .withIcon("bx bx-transfer")
+                            .withLien("/mouvement-stock/list")
+                    )
+                    .addSubmenu(
+                        new Menu("Etat de Stock")
+                            .withIcon("bx bx-stats")
+                            .withLien("/etat-stock/list")
                     )
             )
             .addMenu(

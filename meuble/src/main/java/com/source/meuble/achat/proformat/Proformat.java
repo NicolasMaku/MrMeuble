@@ -34,6 +34,9 @@ public class Proformat extends Etat {
     @OneToMany(mappedBy = "idProformat", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<ProformatFille> filles;
 
+    @Column(name = "etat", nullable = true)
+    private Integer etat;
+
     @Override
     public EtatCPL transferer(Etat etat) {
         return null;
@@ -42,5 +45,25 @@ public class Proformat extends Etat {
     @Override
     public List<ProformatFille> getFille() {
         return null;
+    }
+
+    public boolean isValide() {
+        return this.etat > 0;
+    }
+
+    public String getEtatHtml() {
+        if(etat == null) etat = 0;
+        String html = "";
+        if(etat == 0) {
+            html += "<span class=\"badge bg-label-warning me-1\">Non Validée</span>";
+
+        } else if (etat >= 1) {
+            html += "<span class=\"badge bg-label-success me-1\">Validée</span>";
+        }
+        if(etat >= 2) {
+            html += "<span class=\"badge bg-label-primary me-1\">BC generé</span>";
+        }
+
+        return html;
     }
 }

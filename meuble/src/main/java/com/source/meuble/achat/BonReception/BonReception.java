@@ -28,6 +28,9 @@ public class BonReception extends Etat {
     @Column(name = "date_reception")
     private LocalDate dateReception;
 
+    @Column(name = "etat")
+    private Integer etat;
+
     @Override
     public EtatCPL transferer(Etat etat) {
         return null;

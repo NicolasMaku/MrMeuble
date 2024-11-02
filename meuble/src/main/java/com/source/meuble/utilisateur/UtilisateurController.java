@@ -50,4 +50,11 @@ public class UtilisateurController {
         }
         return redirection.getUrl();
     }
+
+    @GetMapping("/logout")
+    public String logout() {
+        httpSession.removeAttribute("exo");
+        httpSession.removeAttribute("u");
+        return new Redirection("/").getUrl();
+    }
 }

@@ -15,7 +15,7 @@ public class Menu {
     private String lien;
     private List<Menu> submenus;
     private List<UserRole> roles;
-//    private String name;
+    private String alias;
 
     public Menu() {
         submenus = new ArrayList<>();

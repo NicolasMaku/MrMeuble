@@ -30,11 +30,11 @@ public class ProformatFille {
     private Double qte;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_marchandise")
+    @JoinColumn(name = "id_produit")
     private Produit idMarchandise;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_produit")
-    private Produit idProduit;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "id_produit")
+//    private Produit idProduit;
 
 }

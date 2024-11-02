@@ -27,9 +27,9 @@ public class Besoin extends Etat {
     @Column(name = "quantite", precision = 10, scale = 2)
     private BigDecimal quantite;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_demandeur")
-    private Centre idDemandeur;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "id_demandeur")
+//    private Centre idDemandeur;
 
     @Column(name = "etat")
     private Integer etat;
@@ -38,7 +38,7 @@ public class Besoin extends Etat {
     private LocalDate daty;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_marchandise")
+    @JoinColumn(name = "id_produit")
     private Produit idMarchandise;
 
     @Column(name = "id_departement")

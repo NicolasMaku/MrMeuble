@@ -76,4 +76,46 @@ public class BonCommande extends Etat {
     public List<BonCommandeFille> getFille() {
         return null;
     }
+
+    public String getEtatHtml() {
+        String html = "";
+
+        boolean isVFinance = false;
+        boolean isVDirection = false;
+
+        if(etat >= 1) {
+            isVFinance = true;
+        }
+        if(etat >= 2) {
+            isVDirection = true;
+        }
+
+        if(isVFinance) {
+            html += "<span class=\"badge bg-label-success me-1 p-1\"><i class=\"bx bx-check\"></i> Finance</span>";
+
+        } else {
+            html += "<span class=\"badge bg-label-warning me-1 p-1\"><i class=\"bx bx-x\"></i> Finance</span>";
+        }
+
+        if(isVDirection) {
+            html += "<span class=\"badge bg-label-success me-1 p-1\"><i class=\"bx bx-check\"></i> Direction</span>";
+
+        } else {
+            html += "<span class=\"badge bg-label-warning me-1 p-1\"><i class=\"bx bx-x\"></i> Direction</span>";
+        }
+
+        if(etat == 3) {
+            html += "<span class=\"badge bg-label-primary me-1 p-1\"><i class=\"bx bx-check\"></i>Commandé</span>";
+        }
+
+        if(etat == 4) {
+            html += "<span class=\"badge bg-label-primary me-1 p-1\"><i class=\"bx bx-check\"></i>Reçu</span>";
+        }
+
+        return html;
+    }
+
+    public boolean isValide() {
+        return this.etat == 2;
+    }
 }

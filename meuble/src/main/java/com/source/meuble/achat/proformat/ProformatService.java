@@ -25,7 +25,7 @@ public class ProformatService {
     }
 
     @Transactional
-    public Proformat ajouterPrixProformat(ProformatFille[] proformatFilles, Double[] listePrix)
+    public Proformat ajouterPrixProformat(Proformat proformat, ProformatFille[] proformatFilles, Double[] listePrix)
         throws Exception {
         if(proformatFilles.length == 0) {
             throw new Exception("Le nombre de PF doit etre superieur a 0");
@@ -41,7 +41,9 @@ public class ProformatService {
         }
 
         proformatFilleRepository.saveAll(pfs);
-        return proformatFilles[0].getIdProformat();
+        proformat.setEtat(1);
+        proformatRepository.save(proformat);
+        return proformat;
     }
 
     public Map<Produit, Double> getPrixMarchandise(Proformat proformat) {

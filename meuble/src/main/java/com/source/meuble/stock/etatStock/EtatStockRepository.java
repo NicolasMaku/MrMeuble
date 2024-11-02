@@ -1,5 +1,6 @@
 package com.source.meuble.stock.etatStock;
 
+import com.source.meuble.analytique.produit.Produit;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -18,4 +19,7 @@ public interface EtatStockRepository extends JpaRepository<EtatStock, Integer>{
     @Query("SELECT e FROM EtatStock e WHERE e.id IN " +
             "(SELECT MAX(e2.id) FROM EtatStock e2 GROUP BY e2.marchandise)")
     List<EtatStock> resteEnStock();
+
+    @Query("select e from EtatStock e where e.marchandise = :produit order by e.dateEnregistrement desc limit 1")
+    EtatStock findLastEtatStockProduit(Produit produit);
 }

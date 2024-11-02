@@ -25,11 +25,14 @@ public class EtatStock {
     @Column(name = "quantite")
     private Integer quantite;
 
+    @Column(name = "qte")
+    private Double qte;
+
     @Column(name = "prix_unitaire", precision = 11, scale = 2)
     private BigDecimal prixUnitaire;
 
     @ManyToOne
-    @JoinColumn(name = "id_marchandise", nullable = false)
+    @JoinColumn(name = "id_produit", nullable = false)
     private Produit marchandise;
 
     @Transient

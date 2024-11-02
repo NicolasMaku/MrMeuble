@@ -28,7 +28,7 @@ public class BonCommandeFille {
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_marchandise")
+    @JoinColumn(name = "id_produit")
     private Produit idMarchandise;
 
 }
