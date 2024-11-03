@@ -5,6 +5,7 @@ import com.source.meuble.achat.BonReception.BonReceptionService;
 import com.source.meuble.achat.marchandise.MarchandiseService;
 import com.source.meuble.analytique.centre.CentreRepository;
 import com.source.meuble.auth.AuthService;
+import com.source.meuble.auth.NoAccountLoggedException;
 import com.source.meuble.auth.UnallowedRoleException;
 import com.source.meuble.util.Redirection;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,10 +37,11 @@ public class FactureController {
         this.marchandiseService = marchandiseService;
     }
     @GetMapping("/transfert")
-    public String transfertBrToFact(@RequestParam("id") BonReception bonReception) throws UnallowedRoleException {
+    public String transfertBrToFact(@RequestParam("id") BonReception bonReception) throws UnallowedRoleException, NoAccountLoggedException {
+        authService.requireUser();
         authService.requireRole(5,6);
         factureService.genererFactureWithFille(bonReception);
-        return  new Redirection("achat/validation-facture").getUrl();
+        return  new Redirection("/home/achat/validation-facture").getUrl();
     }
 
     @GetMapping("/details")

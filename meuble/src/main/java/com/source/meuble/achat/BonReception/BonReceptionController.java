@@ -3,8 +3,11 @@ package com.source.meuble.achat.BonReception;
 import com.source.meuble.achat.marchandise.MarchandiseService;
 import com.source.meuble.achat.proformat.Proformat;
 import com.source.meuble.analytique.centre.CentreRepository;
+import com.source.meuble.auth.AuthService;
+import com.source.meuble.auth.NoAccountLoggedException;
 import com.source.meuble.stock.mouvementStock.MouvementStockService;
 import com.source.meuble.util.Redirection;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +27,9 @@ public class BonReceptionController {
     private final CentreRepository centreRepository;
     private final MarchandiseService marchandiseService;
 
+    @Autowired
+    private AuthService authService;
+
     public BonReceptionController(BonReceptionService bonReceptionService1, CentreRepository centreRepository, MarchandiseService marchandiseService){
         this.bonReceptionService = bonReceptionService1;
         this.centreRepository = centreRepository;
@@ -31,7 +37,8 @@ public class BonReceptionController {
     }
 
     @PostMapping("/transfert")
-    public String transfertToBr(@RequestParam("date") LocalDate daty, @RequestParam("idBc") int id){
+    public String transfertToBr(@RequestParam("date") LocalDate daty, @RequestParam("idBc") int id) throws NoAccountLoggedException {
+        authService.requireUser();
         bonReceptionService.transferBcToBr(id,daty);
         return  new Redirection("/achat/bon-reception").getUrl();
     }
@@ -39,7 +46,9 @@ public class BonReceptionController {
     @GetMapping("/details")
     public ModelAndView showDetails(
             @RequestParam("id") BonReception bonReception
-    ) {
+    ) throws NoAccountLoggedException {
+        authService.requireUser();
+
         ModelAndView modelAndView = new ModelAndView("template");
 
         String content = "landingAchat.jsp";

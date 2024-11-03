@@ -6,6 +6,7 @@ import com.source.meuble.achat.marchandise.MarchandiseService;
 import com.source.meuble.achat.proformat.Proformat;
 import com.source.meuble.analytique.centre.CentreRepository;
 import com.source.meuble.auth.AuthService;
+import com.source.meuble.auth.NoAccountLoggedException;
 import com.source.meuble.auth.UnallowedRoleException;
 import com.source.meuble.util.Redirection;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,8 @@ public class BonCommandeController {
     }
 
     @GetMapping("/generer")
-    public String genererBC(@RequestParam("id") Proformat proformat) throws UnallowedRoleException {
+    public String genererBC(@RequestParam("id") Proformat proformat) throws UnallowedRoleException, NoAccountLoggedException {
+        authService.requireUser();
         authService.requireRole(5);
         bonCommandeService.genererBonCommande(proformat);
         return new Redirection("/home/achat/validation-bon-commande").getUrl();
@@ -61,7 +63,8 @@ public class BonCommandeController {
     public String transferer(
         @RequestParam("id")  BonCommande bc,
         @RequestParam("date") LocalDate date
-    ) throws UnallowedRoleException {
+    ) throws UnallowedRoleException, NoAccountLoggedException {
+        authService.requireUser();
         authService.requireRole(5,6);
         bonReceptionService.transferBcToBr(bc.getId(), date);
         return new Redirection("/home/achat/bon-reception").getUrl();
@@ -70,7 +73,8 @@ public class BonCommandeController {
     @GetMapping("/details")
     public ModelAndView showDetails(
         @RequestParam("id") BonCommande bonCommande
-    ) {
+    ) throws NoAccountLoggedException {
+        authService.requireUser();
         ModelAndView modelAndView = new ModelAndView("template");
 
         String content = "landingAchat.jsp";

@@ -32,6 +32,16 @@ public class AuthService {
 
         throw new UnallowedRoleException();
     }
+
+    public Utilisateur requireUser() throws NoAccountLoggedException {
+        Object obj = httpSession.getAttribute("utilisateur");
+
+        if(obj != null && (obj instanceof Utilisateur u)) {
+            return u;
+        }
+
+        throw new NoAccountLoggedException();
+    }
 //    public void
 
 

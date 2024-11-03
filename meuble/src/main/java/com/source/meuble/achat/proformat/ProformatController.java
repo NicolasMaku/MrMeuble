@@ -6,6 +6,7 @@ import com.source.meuble.achat.marchandise.MarchandiseService;
 import com.source.meuble.achat.proformat.proformatFille.ProformatFille;
 import com.source.meuble.analytique.centre.CentreRepository;
 import com.source.meuble.auth.AuthService;
+import com.source.meuble.auth.NoAccountLoggedException;
 import com.source.meuble.auth.UnallowedRoleException;
 import com.source.meuble.util.Redirection;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,7 +72,8 @@ public class ProformatController {
     public String demanderProformat(
         @RequestParam("besoin[]") List<Besoin> besoins,
         @RequestParam("fournisseur")Fournisseur fournisseur
-    ) throws UnallowedRoleException {
+    ) throws UnallowedRoleException, NoAccountLoggedException {
+        authService.requireUser();
         authService.requireRole(5);
         proformatService.demanderProformat(besoins, fournisseur);
         return new Redirection("/home/achat/proformat").getUrl();
@@ -82,6 +84,7 @@ public class ProformatController {
         @RequestParam("pf[]") List<ProformatFille> pfs,
         @RequestParam("prix[]") List<Double> prixList
     ) throws Exception {
+        authService.requireUser();
         proformatService.ajouterPrixProformat(pfs.toArray(new ProformatFille[0]), prixList.toArray(new Double[0]));
         return new Redirection("/proformat/details?id="+pfs.get(0).getIdProformat().getId()).getUrl();
     }

@@ -1,5 +1,6 @@
 package com.source.meuble.util;
 
+import com.source.meuble.auth.NoAccountLoggedException;
 import com.source.meuble.auth.NoExerciceFoundException;
 import com.source.meuble.auth.UnallowedRoleException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -15,6 +16,11 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(UnallowedRoleException.class)
     public String handleUnallowedRole(UnallowedRoleException e) {
+        return new Redirection("/?msg="+e.getMessage()).getUrl();
+    }
+
+    @ExceptionHandler(NoAccountLoggedException.class)
+    public String handleNoAccountLogged(NoAccountLoggedException e) {
         return new Redirection("/?msg="+e.getMessage()).getUrl();
     }
 }

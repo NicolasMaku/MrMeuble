@@ -20,6 +20,7 @@ import com.source.meuble.analytique.typeRubrique.TypeRubriqueService;
 import com.source.meuble.analytique.uniteOeuvre.UniteOeuvre;
 import com.source.meuble.analytique.uniteOeuvre.UniteOeuvreService;
 import com.source.meuble.auth.AuthService;
+import com.source.meuble.auth.NoAccountLoggedException;
 import com.source.meuble.auth.NoExerciceFoundException;
 import com.source.meuble.visible.cout.AdminCout;
 import com.source.meuble.visible.cout.Cout;
@@ -87,7 +88,8 @@ public class HomeController {
     }
 
     @GetMapping
-    public ModelAndView showHome() {
+    public ModelAndView showHome() throws NoAccountLoggedException {
+        authService.requireUser();
         ModelAndView modelAndView = new ModelAndView("template");
         String content = "landing.jsp";
         modelAndView.addObject("content", content);
@@ -95,7 +97,8 @@ public class HomeController {
     }
 
     @GetMapping("ca")
-    public ModelAndView showCa(){
+    public ModelAndView showCa() throws NoAccountLoggedException {
+        authService.requireUser();
         ModelAndView modelAndView = new ModelAndView("template");
 
         List<UniteOeuvre> uniteOeuvres = uniteOeuvreService.getAllUO();
@@ -115,7 +118,8 @@ public class HomeController {
     }
 
     @GetMapping("achat")
-    public ModelAndView showAchat() throws NoExerciceFoundException {
+    public ModelAndView showAchat() throws NoExerciceFoundException, NoAccountLoggedException {
+        authService.requireUser();
         Exercice exercice = authService.requireExercice();
 
         ModelAndView modelAndView = new ModelAndView("template");
@@ -130,7 +134,8 @@ public class HomeController {
     }
 
     @GetMapping("stock")
-    public ModelAndView showStock(){
+    public ModelAndView showStock() throws NoAccountLoggedException {
+        authService.requireUser();
         ModelAndView modelAndView = new ModelAndView("template");
 
         String content = "landingStock.jsp";
@@ -141,7 +146,8 @@ public class HomeController {
     }
 
     @GetMapping("achat/validation-besoin")
-    public ModelAndView showAchatValidationBesoin(){
+    public ModelAndView showAchatValidationBesoin() throws NoAccountLoggedException {
+        authService.requireUser();
         ModelAndView modelAndView = new ModelAndView("template");
 
         String content = "landingAchat.jsp";
@@ -160,7 +166,8 @@ public class HomeController {
     }
 
     @GetMapping("achat/bon-commande")
-    public ModelAndView showAchatBonCommande() throws NoExerciceFoundException {
+    public ModelAndView showAchatBonCommande() throws NoExerciceFoundException, NoAccountLoggedException {
+        authService.requireUser();
         ModelAndView modelAndView = new ModelAndView("template");
 
         String content = "landingAchat.jsp";
@@ -175,7 +182,8 @@ public class HomeController {
     }
 
     @GetMapping("achat/validation-bon-commande")
-    public ModelAndView showAchatValidationBonCommande(){
+    public ModelAndView showAchatValidationBonCommande() throws NoAccountLoggedException {
+        authService.requireUser();
         ModelAndView modelAndView = new ModelAndView("template");
 
         String content = "landingAchat.jsp";
@@ -192,7 +200,8 @@ public class HomeController {
     }
 
     @GetMapping("achat/creation-bon-reception")
-    public ModelAndView showAchatCreationBonReception(){
+    public ModelAndView showAchatCreationBonReception() throws NoAccountLoggedException {
+        authService.requireUser();
         ModelAndView modelAndView = new ModelAndView("template");
 
         String content = "landingAchat.jsp";
@@ -207,7 +216,8 @@ public class HomeController {
     }
 
     @GetMapping("achat/validation-facture")
-    public ModelAndView showAchatValidationFacture(){
+    public ModelAndView showAchatValidationFacture() throws NoAccountLoggedException {
+        authService.requireUser();
         ModelAndView modelAndView = new ModelAndView("template");
 
         String content = "landingAchat.jsp";
@@ -225,7 +235,8 @@ public class HomeController {
     }
 
     @GetMapping("achat/proformat")
-    public ModelAndView showAchatProformat(){
+    public ModelAndView showAchatProformat() throws NoAccountLoggedException {
+        authService.requireUser();
         ModelAndView modelAndView = new ModelAndView("template");
 
         String content = "landingAchat.jsp";
@@ -242,7 +253,8 @@ public class HomeController {
 
 
     @GetMapping("table")
-    public ModelAndView showTable() {
+    public ModelAndView showTable() throws NoAccountLoggedException {
+        authService.requireUser();
         Exercice myExo = ((Exercice) httpSession.getAttribute("exercice"));
         if (myExo == null)
             return new ModelAndView("redirect:/exercice");
@@ -282,7 +294,7 @@ public class HomeController {
             @RequestParam("pv") Double pv,
             @RequestParam("uo") UniteOeuvre uo,
             @RequestParam("qte") Double qte,
-            @RequestParam("centre[]") List<Centre> centre) {
+            @RequestParam("centre[]") List<Centre> centre) throws NoAccountLoggedException {
         Exercice myExo = ((Exercice) httpSession.getAttribute("exercice"));
         centre.forEach(System.out::println);
         ListeAnalytiqueTableau tableau = listeAnalytiqueService.getTableau(myExo.getId());
@@ -314,7 +326,8 @@ public class HomeController {
     }
 
     @GetMapping("/achat/bon-reception")
-    public ModelAndView showBonReception(){
+    public ModelAndView showBonReception() throws NoAccountLoggedException {
+        authService.requireUser();
 
         ModelAndView modelAndView = new ModelAndView("template");
         String content = "landingAchat.jsp";

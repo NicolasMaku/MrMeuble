@@ -3,6 +3,7 @@ package com.source.meuble.achat.besoin;
 import com.source.meuble.achat.marchandise.Marchandise;
 import com.source.meuble.analytique.centre.Centre;
 import com.source.meuble.auth.AuthService;
+import com.source.meuble.auth.NoAccountLoggedException;
 import com.source.meuble.auth.UnallowedRoleException;
 import com.source.meuble.util.Redirection;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,8 @@ public class BesoinController {
         @RequestParam("marchandise") Marchandise marchandise,
         @RequestParam("qte") Double qte,
         @RequestParam("date")LocalDate date
-    ) throws UnallowedRoleException {
+    ) throws UnallowedRoleException, NoAccountLoggedException {
+        authService.requireUser();
         authService.requireRole(
                 5,6
         );
@@ -49,7 +51,8 @@ public class BesoinController {
     }
 
     @GetMapping("/valider")
-    public String valider(@RequestParam("idBesoin") Besoin besoin) throws UnallowedRoleException {
+    public String valider(@RequestParam("idBesoin") Besoin besoin) throws UnallowedRoleException, NoAccountLoggedException {
+        authService.requireUser();
         if(besoin.getEtat() == 0) {
             authService.requireRole(5);
         } else if (besoin.getEtat() == 1) {
